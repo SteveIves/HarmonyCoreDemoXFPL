@@ -1,0 +1,178 @@
+;;*****************************************************************************
+;;
+;; Title:       StartupCustom.dbl
+;;
+;; Description: Custom startup code
+;;
+;;*****************************************************************************
+;; This code was hand crafted
+;;*****************************************************************************
+;; 
+
+import Harmony.AspNetCore
+import Harmony.AspNetCore.Context
+import Harmony.Core
+import Harmony.Core.Context
+import Harmony.Core.FileIO
+import Harmony.Core.Interface
+import Harmony.Core.Utility
+import Harmony.OData
+import Harmony.OData.Adapter
+
+import Microsoft.AspNetCore.Builder
+import Microsoft.AspNetCore.Hosting
+import Microsoft.AspNetCore.Http
+import Microsoft.AspNetCore.Mvc.Abstractions
+import Microsoft.AspNetCore.StaticFiles
+import Microsoft.AspNet.OData
+import Microsoft.AspNet.OData.Extensions
+import Microsoft.AspNet.OData.Builder
+import Microsoft.AspNet.OData.Routing
+import Microsoft.AspNet.OData.Routing.Conventions
+import Microsoft.EntityFrameworkCore
+import Microsoft.Extensions.Configuration
+import Microsoft.Extensions.DependencyInjection
+import Microsoft.Extensions.DependencyInjection.Extensions
+import Microsoft.Extensions.Logging
+import Microsoft.Extensions.Options
+import Microsoft.Extensions.Primitives
+import Microsoft.OData
+import Microsoft.OData.Edm
+import Microsoft.OData.UriParser
+
+import System.Collections.Generic
+import System.IO
+import System.Linq
+import System.Text
+import System.Threading.Tasks
+
+import Services.Controllers
+import Services.Models
+
+namespace Services
+
+    public partial class Startup
+
+        partial method ConfigureServicesCustom, void
+            services, @IServiceCollection 
+        proc
+            ;;------------------------------------------------------------------------
+            ;;Configure a custom primary key factory to provide new primary key
+            ;;values for entities created via POST operations
+
+            ;;Create a new parameter file
+            data parameterFile, string, "DAT:sysparams.ddf"
+            data tmpChn = 0
+            try
+            begin
+                open(tmpChn,i:r,parameterFile)
+                close tmpChn
+                xcall delet(parameterFile)
+            end
+            catch (e, @NoFileFoundException)
+            begin
+                nop
+            end
+            finally
+            begin
+                data sourceFile = parameterFile.ToLower().Replace(".ddf",".txt")
+                xcall copy(sourceFile,parameterFile,1)
+            end
+            endtry
+
+            ;;Add the primary key factory service
+            services.AddScoped<IPrimaryKeyFactory,PrimaryKeyGenerator>()
+
+            ;;-----------------------------------------------------------------
+            ;; Add a custom "file spec resolver" service
+
+;            services.AddSingleton<IFileChannelManager,MyFileSpecResolver>()
+            
+            ;;-----------------------------------------------------------------
+            ; Configure "out of process" Traditional Bridge to a Linux Server
+
+;;            data targetOs, RemoteTargetOS, RemoteTargetOS.Windows
+;;            data bridgeServer, string, "localhost"
+;;            data bridgeUser, string, "iisBridge"
+;;            data bridgePassword, string, "p@ssw0rd"
+;;            data bridgeCommand, string, "TraditionalBridgeHost.bat"
+;
+;            data targetOs, RemoteTargetOS, RemoteTargetOS.Linux
+;            data bridgeServer, string, "silinux.eastus.cloudapp.azure.com"
+;            data bridgeUser, string, "bridge"
+;            data bridgePassword, string, "p@ssw0rd"
+;            data bridgeCommand, string, "dbs TraditionalBridgeHost.dbr"
+;
+;            .define CALL_TIMEOUT 100000
+;            .define CONNECTION_TIMEOUT 600000
+;            .define ITEMS_IN_POOL 4
+;
+;            data contextPool, @RemoteExternalContextPool<TraditionalBridgeService>
+;
+;            contextPool = new RemoteExternalContextPool<TraditionalBridgeService>
+;            &    (
+;            &    targetOs,
+;            &    bridgeServer,
+;            &    bridgeUser,
+;            &    new Renci.SshNet.PasswordAuthenticationMethod(bridgeUser,bridgePassword),
+;            &    bridgeCommand,
+;            &    ITEMS_IN_POOL,
+;            &    CALL_TIMEOUT,
+;            &    CONNECTION_TIMEOUT
+;            &    ) 
+
+            ;;-----------------------------------------------------------------
+            ;; Configure "in process" Traditional Bridge to the local Windows system
+
+            data traditionalBridgeDirectory, string
+
+            if (_env.IsDevelopment()) then
+            begin
+                traditionalBridgeDirectory = Path.GetFullPath(Path.Combine(Path.GetDirectoryName(^typeof(Startup).Assembly.Location),"..\..\..\..\TraditionalBridge\bin\Debug\x64"))
+            end
+            else
+            begin
+                traditionalBridgeDirectory = Path.GetFullPath(Path.GetDirectoryName(^typeof(Startup).Assembly.Location))
+            end
+
+            data launchCommand, string, Path.Combine(traditionalBridgeDirectory,"launch.bat")
+            data environmentVariables, @Dictionary<string,string>,new Dictionary<string,string>(){{"HARMONY_LOG_LEVEL","6"}}
+            
+            ;Create a context pool for 'TraditionalBridgeService'
+            data contextPool1, @ExternalContextPool<TraditionalBridgeService>, new ExternalContextPool<TraditionalBridgeService>
+            &    (
+            &    launchCommand,
+            &    "optional_command_parameters",
+            &    traditionalBridgeDirectory,
+            &    environmentVariables,
+            &    4
+            &    ) 
+
+            ;; Make 'TraditionalBridgeService' available as a DI service
+            services.AddSingleton<IContextFactory<TraditionalBridgeService>>(contextPool1)
+            services.AddContextPool<TraditionalBridgeService>()
+
+            ;Create a context pool for 'MyApiService'
+            data contextPool2, @ExternalContextPool<MyApiService>, new ExternalContextPool<MyApiService>
+            &    (
+            &    launchCommand,
+            &    "optional_command_parameters",
+            &    traditionalBridgeDirectory,
+            &    environmentVariables,
+            &    4
+            &    ) 
+
+            ;; Make 'MyApiService' available as a DI service
+            services.AddSingleton<IContextFactory<MyApiService>>(contextPool2)
+            services.AddContextPool<MyApiService>()
+
+;            ;;-----------------------------------------------------------------
+;            ;; Enable "SignalR" support
+;
+;            services.AddSignalR()
+
+        endmethod
+
+    endclass
+
+endnamespace
