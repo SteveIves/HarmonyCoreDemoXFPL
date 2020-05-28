@@ -13,7 +13,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{
 		Templates\HarmonyCoreCustomization.tpl = Templates\HarmonyCoreCustomization.tpl
 		Templates\ODataClientModel.tpl = Templates\ODataClientModel.tpl
 		Templates\ODataController.tpl = Templates\ODataController.tpl
+		Templates\ODataControllerPropertyEndpoints.tpl = Templates\ODataControllerPropertyEndpoints.tpl
 		Templates\ODataControllerV2.tpl = Templates\ODataControllerV2.tpl
+		Templates\ODataCustomAuthController.tpl = Templates\ODataCustomAuthController.tpl
+		Templates\ODataCustomAuthModels.tpl = Templates\ODataCustomAuthModels.tpl
+		Templates\ODataCustomAuthTools.tpl = Templates\ODataCustomAuthTools.tpl
 		Templates\ODataDbContext.tpl = Templates\ODataDbContext.tpl
 		Templates\ODataEdmBuilder.tpl = Templates\ODataEdmBuilder.tpl
 		Templates\ODataMetaData.tpl = Templates\ODataMetaData.tpl
@@ -77,6 +81,19 @@ EndProject
 Project("{BBD0F5D1-1CC4-42FD-BA4C-A96779C64378}") = "TraditionalBridge", "TraditionalBridge\TraditionalBridge.synproj", "{3BA88C80-BA85-4063-AE3B-9005A1B568BC}"
 EndProject
 Project("{BBD0F5D1-1CC4-42FD-BA4C-A96779C64378}") = "xfplMethods", "xfplMethods\xfplMethods.synproj", "{D155B547-9757-4874-8721-4AE3D19EA435}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xfServerPlus", "xfServerPlus", "{AACB9332-FC00-49F0-83C6-681F769AA59F}"
+	ProjectSection(SolutionItems) = preProject
+		Templates\xfServerPlus\xf_net_add.tpl = Templates\xfServerPlus\xf_net_add.tpl
+		Templates\xfServerPlus\xf_net_can_delete.tpl = Templates\xfServerPlus\xf_net_can_delete.tpl
+		Templates\xfServerPlus\xf_net_delete.tpl = Templates\xfServerPlus\xf_net_delete.tpl
+		Templates\xfServerPlus\xf_net_get.tpl = Templates\xfServerPlus\xf_net_get.tpl
+		Templates\xfServerPlus\xf_net_get_all.tpl = Templates\xfServerPlus\xf_net_get_all.tpl
+		Templates\xfServerPlus\xf_net_get_master_detail.tpl = Templates\xfServerPlus\xf_net_get_master_detail.tpl
+		Templates\xfServerPlus\xf_net_select_all.tpl = Templates\xfServerPlus\xf_net_select_all.tpl
+		Templates\xfServerPlus\xf_net_update.tpl = Templates\xfServerPlus\xf_net_update.tpl
+		Templates\xfServerPlus\xf_net_validate.tpl = Templates\xfServerPlus\xf_net_validate.tpl
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -191,6 +208,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{1E3F00B9-F73D-459B-A8DB-310E97FEE18C} = {6C9AD151-7DA4-477B-A52C-FB883D9D1057}
 		{F11D78B0-4DF7-453C-854C-A87CA031EC84} = {6C9AD151-7DA4-477B-A52C-FB883D9D1057}
+		{AACB9332-FC00-49F0-83C6-681F769AA59F} = {6C9AD151-7DA4-477B-A52C-FB883D9D1057}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C2148F04-2CE1-4E0D-BEBF-ACD671D47ECE}

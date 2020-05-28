@@ -88,24 +88,22 @@ rem Comment or uncomment the following lines to enable or disable optional featu
 rem Note that the ENABLE_SWAGGER_DOCS and ENABLE_API_VERSIONING are mutually exclusive.
 
 set ENABLE_ODATA_ENVIRONMENT=YES
+set ENABLE_SELF_HOST_GENERATION=YES
+set ENABLE_CREATE_TEST_FILES=-define ENABLE_CREATE_TEST_FILES
+rem set DO_NOT_SET_FILE_LOGICALS=-define DO_NOT_SET_FILE_LOGICALS
 set ENABLE_GET_ALL=-define ENABLE_GET_ALL
 set ENABLE_GET_ONE=-define ENABLE_GET_ONE
-set ENABLE_SELF_HOST_GENERATION=YES
-rem set DO_NOT_SET_FILE_LOGICALS=-define DO_NOT_SET_FILE_LOGICALS
-set ENABLE_CREATE_TEST_FILES=-define ENABLE_CREATE_TEST_FILES
-rem set ENABLE_SWAGGER_DOCS=-define ENABLE_SWAGGER_DOCS
-set ENABLE_API_VERSIONING=-define ENABLE_API_VERSIONING
 set ENABLE_POSTMAN_TESTS=YES
 set ENABLE_ALTERNATE_KEYS=-define ENABLE_ALTERNATE_KEYS
 set ENABLE_COUNT=-define ENABLE_COUNT
 rem set ENABLE_PROPERTY_ENDPOINTS=-define ENABLE_PROPERTY_ENDPOINTS
-rem set ENABLE_PROPERTY_VALUE_DOCS=-define ENABLE_PROPERTY_VALUE_DOCS
 set ENABLE_SELECT=-define ENABLE_SELECT
 set ENABLE_FILTER=-define ENABLE_FILTER
 set ENABLE_ORDERBY=-define ENABLE_ORDERBY
 set ENABLE_TOP=-define ENABLE_TOP
 rem set ENABLE_SKIP=-define ENABLE_SKIP
 set ENABLE_RELATIONS=-define ENABLE_RELATIONS
+rem set ENABLE_RELATIONS_VALIDATION=-define ENABLE_RELATIONS_VALIDATION
 set ENABLE_PUT=-define ENABLE_PUT
 set ENABLE_POST=-define ENABLE_POST
 set ENABLE_PATCH=-define ENABLE_PATCH
@@ -128,6 +126,7 @@ set ENABLE_XFSERVERPLUS_MIGRATION=YES
 rem set ENABLE_XFSERVERPLUS_MODEL_GENERATION=YES
 set ENABLE_BRIDGE_SAMPLE_DISPATCHERS=-define ENABLE_BRIDGE_SAMPLE_DISPATCHERS
 rem set ENABLE_BRIDGE_OPTIONAL_PARAMETERS=YES
+rem set ENABLE_NEWTONSOFT=-define ENABLE_NEWTONSOFT
 
 if not "NONE%ENABLE_SELECT%%ENABLE_FILTER%%ENABLE_ORDERBY%%ENABLE_TOP%%ENABLE_SKIP%%ENABLE_RELATIONS%"=="NONE" (
   set PARAM_OPTIONS_PRESENT=-define PARAM_OPTIONS_PRESENT
@@ -136,7 +135,7 @@ if not "NONE%ENABLE_SELECT%%ENABLE_FILTER%%ENABLE_ORDERBY%%ENABLE_TOP%%ENABLE_SK
 rem ================================================================================================================================
 rem Configure standard command line options and the CodeGen environment
 
-set NOREPLACEOPTS=-e -lf -u %SolutionDir%UserDefinedTokens.tkn %ENABLE_GET_ALL% %ENABLE_GET_ONE% %ENABLE_OVERLAYS% %DO_NOT_SET_FILE_LOGICALS% %ENABLE_ALTERNATE_FIELD_NAMES% %ENABLE_AUTHENTICATION% %ENABLE_CUSTOM_AUTHENTICATION% %ENABLE_SIGNALR% %ENABLE_FIELD_SECURITY% %ENABLE_PROPERTY_ENDPOINTS% %ENABLE_PROPERTY_VALUE_DOCS% %ENABLE_CASE_SENSITIVE_URL% %ENABLE_CREATE_TEST_FILES% %ENABLE_CORS% %ENABLE_IIS_SUPPORT% %ENABLE_DELETE% %ENABLE_PUT% %ENABLE_POST% %ENABLE_PATCH% %ENABLE_ALTERNATE_KEYS% %ENABLE_SWAGGER_DOCS% %ENABLE_API_VERSIONING% %ENABLE_RELATIONS% %ENABLE_SELECT% %ENABLE_FILTER% %ENABLE_ORDERBY% %ENABLE_COUNT% %ENABLE_TOP% %ENABLE_SKIP% %ENABLE_SPROC% %ENABLE_ADAPTER_ROUTING% %ENABLE_READ_ONLY_PROPERTIES% %PARAM_OPTIONS_PRESENT% -rps %RPSMFIL% %RPSTFIL%
+set NOREPLACEOPTS=-e -lf -u %SolutionDir%UserDefinedTokens.tkn %ENABLE_GET_ALL% %ENABLE_GET_ONE% %ENABLE_OVERLAYS% %DO_NOT_SET_FILE_LOGICALS% %ENABLE_ALTERNATE_FIELD_NAMES% %ENABLE_AUTHENTICATION% %ENABLE_CUSTOM_AUTHENTICATION% %ENABLE_SIGNALR% %ENABLE_FIELD_SECURITY% %ENABLE_PROPERTY_ENDPOINTS% %ENABLE_CASE_SENSITIVE_URL% %ENABLE_CREATE_TEST_FILES% %ENABLE_CORS% %ENABLE_IIS_SUPPORT% %ENABLE_DELETE% %ENABLE_PUT% %ENABLE_POST% %ENABLE_PATCH% %ENABLE_ALTERNATE_KEYS% %ENABLE_RELATIONS% %ENABLE_RELATIONS_VALIDATION% %ENABLE_SELECT% %ENABLE_FILTER% %ENABLE_ORDERBY% %ENABLE_COUNT% %ENABLE_TOP% %ENABLE_SKIP% %ENABLE_SPROC% %ENABLE_ADAPTER_ROUTING% %ENABLE_READ_ONLY_PROPERTIES% %ENABLE_NEWTONSOFT% %PARAM_OPTIONS_PRESENT% -rps %RPSMFIL% %RPSTFIL%
 set STDOPTS=%NOREPLACEOPTS% -r
 
 rem ================================================================================================================================
@@ -147,7 +146,7 @@ if DEFINED ENABLE_ODATA_ENVIRONMENT (
   rem Generate model and metadata classes
   codegen -s  %DATA_STRUCTURES% %CUSTOM_STRUCTURES% ^
           -a  %DATA_ALIASES% %CUSTOM_ALIASES% ^
-		  -fo %DATA_FILES% ^
+          -fo %DATA_FILES% ^
           -t  ODataModel ODataMetaData ^
           -i  %SolutionDir%Templates ^
           -o  %SolutionDir%%ModelsProject% ^
@@ -158,7 +157,7 @@ if DEFINED ENABLE_ODATA_ENVIRONMENT (
   rem Generate controller classes
   codegen -s  %DATA_STRUCTURES% ^
           -a  %DATA_ALIASES% ^
-		  -fo %DATA_FILES% ^
+          -fo %DATA_FILES% ^
           -t  ODataController ^
           -i  %SolutionDir%Templates ^
           -o  %SolutionDir%%ControllersProject% ^
@@ -166,10 +165,23 @@ if DEFINED ENABLE_ODATA_ENVIRONMENT (
               %STDOPTS%
   if ERRORLEVEL 1 goto error
   
+if DEFINED ENABLE_PROPERTY_ENDPOINTS (
+  rem Generate partial controller class for individual property endpoints
+
+  codegen -s  %DATA_STRUCTURES% ^
+          -a  %DATA_ALIASES% ^
+          -fo %DATA_FILES% ^
+          -t  ODataControllerPropertyEndpoints ^
+          -i  %SolutionDir%Templates ^
+          -o  %SolutionDir%%ControllersProject% ^
+          -n  %ControllersProject% ^
+              %STDOPTS%
+  if ERRORLEVEL 1 goto error
+)
   rem Generate the DbContext class
   codegen -s  %DATA_STRUCTURES% -ms ^
           -a  %DATA_ALIASES% ^
-		  -fo %DATA_FILES% ^
+          -fo %DATA_FILES% ^
           -t  ODataDbContext ^
           -i  %SolutionDir%Templates ^
           -o  %SolutionDir%%ModelsProject% ^
@@ -180,7 +192,7 @@ if DEFINED ENABLE_ODATA_ENVIRONMENT (
   rem Generate the EdmBuilder and Startup classes
   codegen -s  %DATA_STRUCTURES% -ms ^
           -a  %DATA_ALIASES% ^
-		  -fo %DATA_FILES% ^
+          -fo %DATA_FILES% ^
           -t  ODataEdmBuilder ODataStartup ^
           -i  %SolutionDir%Templates ^
           -o  %SolutionDir%%ServicesProject% ^
@@ -197,7 +209,7 @@ if DEFINED ENABLE_SELF_HOST_GENERATION (
 
   codegen -s  %FILE_STRUCTURES% -ms ^
           -a  %FILE_ALIASES% ^
-		  -fo %FILE_FILES% ^
+          -fo %FILE_FILES% ^
           -t  ODataSelfHost ODataSelfHostEnvironment ^
           -i  %SolutionDir%Templates ^
           -o  %SolutionDir%%HostProject% ^
@@ -208,40 +220,41 @@ if DEFINED ENABLE_SELF_HOST_GENERATION (
 )
 
 rem ================================================================================
-rem Swagger documentation and Postman tests
-
-if DEFINED ENABLE_SWAGGER_DOCS (
-
-  rem Generate main Swagger files
-  codegen -s  %DATA_STRUCTURES% -ms ^
-          -a  %DATA_ALIASES% ^
-		  -fo %DATA_FILES% ^
-          -t  ODataSwaggerYaml ^
-          -i  %SolutionDir%Templates ^
-          -o  %SolutionDir%%ServicesProject%\wwwroot ^
-              %STDOPTS%
-  if ERRORLEVEL 1 goto error
-
-  rem Generate Swagger files for each model
-  codegen -s  %DATA_STRUCTURES% ^
-          -a  %DATA_ALIASES% ^
-		  -fo %DATA_FILES% ^
-          -t  ODataSwaggerType ^
-          -i  %SolutionDir%Templates ^
-          -o  %SolutionDir%%ServicesProject%\wwwroot ^
-              %STDOPTS%
-  if ERRORLEVEL 1 goto error
-)
+rem Postman tests
 
 rem Generate Postman Tests
 if DEFINED ENABLE_POSTMAN_TESTS (
   codegen -s  %DATA_STRUCTURES% -ms ^
           -a  %DATA_ALIASES% ^
-		  -fo %DATA_FILES% ^
+          -fo %DATA_FILES% ^
           -t  ODataPostManTests ^
           -i  %SolutionDir%Templates ^
           -o  %SolutionDir% ^
               %STDOPTS%
+  if ERRORLEVEL 1 goto error
+)
+
+rem ================================================================================
+rem Custom Authentication Example
+
+if DEFINED ENABLE_CUSTOM_AUTHENTICATION (
+
+  rem Generate AuthenticationModels.dbl
+  codegen -t  ODataCustomAuthModels ^
+          -i  %SolutionDir%Templates ^
+          -o  %SolutionDir%%ModelsProject% ^
+          -n  %ModelsProject% ^
+              %NOREPLACEOPTS%
+  echo Note: 1 file failed can be normal here, the file exists and should not be replaced
+  if ERRORLEVEL 1 goto error
+
+  rem Generate AuthenticationController.dbl and AuthenticationTools.dbl
+  codegen -t  ODataCustomAuthController ODataCustomAuthTools ^
+          -i  %SolutionDir%Templates ^
+          -o  %SolutionDir%%ControllersProject% ^
+          -n  %ControllersProject% ^
+              %NOREPLACEOPTS%
+  echo Note: 2 files failed can be normal here, the files exists and should not be replaced
   if ERRORLEVEL 1 goto error
 )
 
@@ -253,7 +266,7 @@ if DEFINED ENABLE_UNIT_TEST_GENERATION (
   rem Generate OData client model, data loader and unit test classes
   codegen -s  %DATA_STRUCTURES% ^
           -a  %DATA_ALIASES% ^
-		  -fo %DATA_FILES% ^
+          -fo %DATA_FILES% ^
           -t  ODataClientModel ODataTestDataLoader ODataUnitTests ^
           -i  %SolutionDir%Templates ^
           -o  %SolutionDir%%TestProject% -tf ^
@@ -264,7 +277,7 @@ if DEFINED ENABLE_UNIT_TEST_GENERATION (
   rem Generate the test environment
   codegen -s  %FILE_STRUCTURES% -ms ^
           -a  %FILE_ALIASES% ^
-		  -fo %FILE_FILES% ^
+          -fo %FILE_FILES% ^
           -t  ODataTestEnvironment ^
           -i  %SolutionDir%Templates ^
           -o  %SolutionDir%%TestProject% ^
@@ -275,7 +288,7 @@ if DEFINED ENABLE_UNIT_TEST_GENERATION (
   rem Generate the unit test environment class, and the unit test hosting program
   codegen -s  %FILE_STRUCTURES% -ms ^
           -a  %FILE_ALIASES% ^
-		  -fo %FILE_FILES% ^
+          -fo %FILE_FILES% ^
           -t  ODataUnitTestEnvironment ODataUnitTestHost ^
           -i  %SolutionDir%Templates ^
           -o  %SolutionDir%%TestProject% ^
@@ -286,7 +299,7 @@ if DEFINED ENABLE_UNIT_TEST_GENERATION (
   rem Generate the unit test constants properties classes
   codegen -s  %DATA_STRUCTURES% -ms ^
           -a  %DATA_ALIASES% ^
-		  -fo %DATA_FILES% ^
+          -fo %DATA_FILES% ^
           -t  ODataTestConstantsProperties ^
           -i  %SolutionDir%Templates ^
           -o  %SolutionDir%%TestProject% ^
@@ -297,7 +310,7 @@ if DEFINED ENABLE_UNIT_TEST_GENERATION (
   rem Generate unit test constants values class; one time, not replaced
   codegen -s  %DATA_STRUCTURES% -ms ^
           -a  %DATA_ALIASES% ^
-		  -fo %DATA_FILES% ^
+          -fo %DATA_FILES% ^
           -t  ODataTestConstantsValues ^
           -i  %SolutionDir%Templates ^
           -o  %SolutionDir%%TestProject% ^
