@@ -74,7 +74,7 @@ function GetAll<StructureName>s, boolean
 
     </SEGMENT_LOOP_FILTER>
     </PRIMARY_KEY>
-    {xfParameter(name="<StructureName>s",collectionType=xfCollectType.structure,structure="str<StructureName>",dataTable=true)}
+    {xfParameter(name="<StructureName>s",collectionType=xfCollectType.structure,structure="str<StructureName>")}
     required out a<StructureName>s, @ArrayList
 
     endparams
