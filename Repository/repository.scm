@@ -1,8 +1,12 @@
  
 ;  SYNERGY DATA LANGUAGE OUTPUT
 ;
-;  GENERATED      : 23-JUL-2019, 16:20:07
-;                 : Version 10.3.3g
+;  REPOSITORY     : D:\HarmonyCoreDemoXFPL\Repository\bin\Debug\rpsmain.ism
+;                 : D:\HarmonyCoreDemoXFPL\Repository\bin\Debug\rpstext.ism
+;                 : Version 11.1.1c
+;
+;  GENERATED      : 28-MAY-2020, 20:51:28
+;                 : Version 11.1.1c
 ;  EXPORT OPTIONS : [ALL] 
  
  
@@ -11,6 +15,10 @@ Format PHONE   Type NUMERIC   "(XXX) XXX-XXXX"   Justify RIGHT
 Enumeration METHOD_STATUS
    Description "Method return status code"
    Members SUCCESS 0, WARNING 1, ERROR 2, FATAL 3
+ 
+Enumeration TESTENUM
+   Description "Test enumeration"
+   Members ONE, TWO, THREE
  
 Template DATE   Type DATE   Size 8   Stored YYYYMMDD
    Description "YYYYMMDD date"

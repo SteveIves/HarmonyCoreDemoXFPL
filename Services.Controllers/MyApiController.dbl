@@ -46,6 +46,292 @@ namespace Services.Controllers
             _AppSettings = aAppSettings
         endmethod
 
+        {Route("AAA_Alpha")}
+        ;;; <summary>
+        ;;; 
+        ;;; </summary>
+        ;;; <returns></returns>
+        public async method Post_AAA_Alpha, @Task<ActionResult<MyApi.AAA_Alpha_Response>>
+            {FromBody}
+            required in aRequest, @MyApi.AAA_Alpha_Request
+        proc
+            if (!ModelState.IsValid)
+                mreturn BadRequest()
+            mreturn ok(await _MyApiService.AAA_Alpha(aRequest))
+        endmethod
+
+        {Route("AAA_AlphaArray")}
+        ;;; <summary>
+        ;;; 
+        ;;; </summary>
+        ;;; <returns></returns>
+        public async method Post_AAA_AlphaArray, @Task<ActionResult<MyApi.AAA_AlphaArray_Response>>
+            {FromBody}
+            required in aRequest, @MyApi.AAA_AlphaArray_Request
+        proc
+            if (!ModelState.IsValid)
+                mreturn BadRequest()
+            mreturn ok(await _MyApiService.AAA_AlphaArray(aRequest))
+        endmethod
+
+        {Route("AAA_AlphaCollection")}
+        ;;; <summary>
+        ;;; 
+        ;;; </summary>
+        ;;; <returns></returns>
+        public async method Post_AAA_AlphaCollection, @Task<ActionResult<MyApi.AAA_AlphaCollection_Response>>
+            {FromBody}
+            required in aRequest, @MyApi.AAA_AlphaCollection_Request
+        proc
+            if (!ModelState.IsValid)
+                mreturn BadRequest()
+            mreturn ok(await _MyApiService.AAA_AlphaCollection(aRequest))
+        endmethod
+
+        {Route("AAA_BinaryHandle")}
+        ;;; <summary>
+        ;;; 
+        ;;; </summary>
+        ;;; <returns></returns>
+        public async method Post_AAA_BinaryHandle, @Task<ActionResult<MyApi.AAA_BinaryHandle_Response>>
+            {FromBody}
+            required in aRequest, @MyApi.AAA_BinaryHandle_Request
+        proc
+            if (!ModelState.IsValid)
+                mreturn BadRequest()
+            mreturn ok(await _MyApiService.AAA_BinaryHandle(aRequest))
+        endmethod
+
+        {Route("AAA_Decimal")}
+        ;;; <summary>
+        ;;; 
+        ;;; </summary>
+        ;;; <returns></returns>
+        public async method Post_AAA_Decimal, @Task<ActionResult<MyApi.AAA_Decimal_Response>>
+            {FromBody}
+            required in aRequest, @MyApi.AAA_Decimal_Request
+        proc
+            if (!ModelState.IsValid)
+                mreturn BadRequest()
+            mreturn ok(await _MyApiService.AAA_Decimal(aRequest))
+        endmethod
+
+        {Route("AAA_DecimalArray")}
+        ;;; <summary>
+        ;;; 
+        ;;; </summary>
+        ;;; <returns></returns>
+        public async method Post_AAA_DecimalArray, @Task<ActionResult<MyApi.AAA_DecimalArray_Response>>
+            {FromBody}
+            required in aRequest, @MyApi.AAA_DecimalArray_Request
+        proc
+            if (!ModelState.IsValid)
+                mreturn BadRequest()
+            mreturn ok(await _MyApiService.AAA_DecimalArray(aRequest))
+        endmethod
+
+        {Route("AAA_DecimalCollection")}
+        ;;; <summary>
+        ;;; 
+        ;;; </summary>
+        ;;; <returns></returns>
+        public async method Post_AAA_DecimalCollection, @Task<ActionResult<MyApi.AAA_DecimalCollection_Response>>
+            {FromBody}
+            required in aRequest, @MyApi.AAA_DecimalCollection_Request
+        proc
+            if (!ModelState.IsValid)
+                mreturn BadRequest()
+            mreturn ok(await _MyApiService.AAA_DecimalCollection(aRequest))
+        endmethod
+
+        {Route("AAA_Enum")}
+        ;;; <summary>
+        ;;; 
+        ;;; </summary>
+        ;;; <returns></returns>
+        public async method Post_AAA_Enum, @Task<ActionResult<MyApi.AAA_Enum_Response>>
+            {FromBody}
+            required in aRequest, @MyApi.AAA_Enum_Request
+        proc
+            if (!ModelState.IsValid)
+                mreturn BadRequest()
+            mreturn ok(await _MyApiService.AAA_Enum(aRequest))
+        endmethod
+
+        {Route("AAA_Handle")}
+        ;;; <summary>
+        ;;; 
+        ;;; </summary>
+        ;;; <returns></returns>
+        public async method Post_AAA_Handle, @Task<ActionResult<MyApi.AAA_Handle_Response>>
+            {FromBody}
+            required in aRequest, @MyApi.AAA_Handle_Request
+        proc
+            if (!ModelState.IsValid)
+                mreturn BadRequest()
+            mreturn ok(await _MyApiService.AAA_Handle(aRequest))
+        endmethod
+
+        {Route("AAA_HatVal")}
+        ;;; <summary>
+        ;;; 
+        ;;; </summary>
+        ;;; <returns></returns>
+        public async method Get_AAA_HatVal, @Task<ActionResult<MyApi.AAA_HatVal_Response>>
+        proc
+            mreturn ok(await _MyApiService.AAA_HatVal())
+        endmethod
+
+        {Route("AAA_Implied")}
+        ;;; <summary>
+        ;;; 
+        ;;; </summary>
+        ;;; <returns></returns>
+        public async method Post_AAA_Implied, @Task<ActionResult<MyApi.AAA_Implied_Response>>
+            {FromBody}
+            required in aRequest, @MyApi.AAA_Implied_Request
+        proc
+            if (!ModelState.IsValid)
+                mreturn BadRequest()
+            mreturn ok(await _MyApiService.AAA_Implied(aRequest))
+        endmethod
+
+        {Route("AAA_ImpliedArray")}
+        ;;; <summary>
+        ;;; 
+        ;;; </summary>
+        ;;; <returns></returns>
+        public async method Post_AAA_ImpliedArray, @Task<ActionResult<MyApi.AAA_ImpliedArray_Response>>
+            {FromBody}
+            required in aRequest, @MyApi.AAA_ImpliedArray_Request
+        proc
+            if (!ModelState.IsValid)
+                mreturn BadRequest()
+            mreturn ok(await _MyApiService.AAA_ImpliedArray(aRequest))
+        endmethod
+
+        {Route("AAA_ImpliedCollection")}
+        ;;; <summary>
+        ;;; 
+        ;;; </summary>
+        ;;; <returns></returns>
+        public async method Post_AAA_ImpliedCollection, @Task<ActionResult<MyApi.AAA_ImpliedCollection_Response>>
+            {FromBody}
+            required in aRequest, @MyApi.AAA_ImpliedCollection_Request
+        proc
+            if (!ModelState.IsValid)
+                mreturn BadRequest()
+            mreturn ok(await _MyApiService.AAA_ImpliedCollection(aRequest))
+        endmethod
+
+        {Route("AAA_Integer")}
+        ;;; <summary>
+        ;;; 
+        ;;; </summary>
+        ;;; <returns></returns>
+        public async method Post_AAA_Integer, @Task<ActionResult<MyApi.AAA_Integer_Response>>
+            {FromBody}
+            required in aRequest, @MyApi.AAA_Integer_Request
+        proc
+            if (!ModelState.IsValid)
+                mreturn BadRequest()
+            mreturn ok(await _MyApiService.AAA_Integer(aRequest))
+        endmethod
+
+        {Route("AAA_IntegerArray")}
+        ;;; <summary>
+        ;;; 
+        ;;; </summary>
+        ;;; <returns></returns>
+        public async method Post_AAA_IntegerArray, @Task<ActionResult<MyApi.AAA_IntegerArray_Response>>
+            {FromBody}
+            required in aRequest, @MyApi.AAA_IntegerArray_Request
+        proc
+            if (!ModelState.IsValid)
+                mreturn BadRequest()
+            mreturn ok(await _MyApiService.AAA_IntegerArray(aRequest))
+        endmethod
+
+        {Route("AAA_IntegerCollection")}
+        ;;; <summary>
+        ;;; 
+        ;;; </summary>
+        ;;; <returns></returns>
+        public async method Post_AAA_IntegerCollection, @Task<ActionResult<MyApi.AAA_IntegerCollection_Response>>
+            {FromBody}
+            required in aRequest, @MyApi.AAA_IntegerCollection_Request
+        proc
+            if (!ModelState.IsValid)
+                mreturn BadRequest()
+            mreturn ok(await _MyApiService.AAA_IntegerCollection(aRequest))
+        endmethod
+
+        {Route("AAA_String")}
+        ;;; <summary>
+        ;;; 
+        ;;; </summary>
+        ;;; <returns></returns>
+        public async method Post_AAA_String, @Task<ActionResult<MyApi.AAA_String_Response>>
+            {FromBody}
+            required in aRequest, @MyApi.AAA_String_Request
+        proc
+            if (!ModelState.IsValid)
+                mreturn BadRequest()
+            mreturn ok(await _MyApiService.AAA_String(aRequest))
+        endmethod
+
+        {Route("AAA_Structure")}
+        ;;; <summary>
+        ;;; 
+        ;;; </summary>
+        ;;; <returns></returns>
+        public async method Post_AAA_Structure, @Task<ActionResult<MyApi.AAA_Structure_Response>>
+            {FromBody}
+            required in aRequest, @MyApi.AAA_Structure_Request
+        proc
+            if (!ModelState.IsValid)
+                mreturn BadRequest()
+            mreturn ok(await _MyApiService.AAA_Structure(aRequest))
+        endmethod
+
+        {Route("AAA_StructureArray")}
+        ;;; <summary>
+        ;;; 
+        ;;; </summary>
+        ;;; <returns></returns>
+        public async method Post_AAA_StructureArray, @Task<ActionResult<MyApi.AAA_StructureArray_Response>>
+            {FromBody}
+            required in aRequest, @MyApi.AAA_StructureArray_Request
+        proc
+            if (!ModelState.IsValid)
+                mreturn BadRequest()
+            mreturn ok(await _MyApiService.AAA_StructureArray(aRequest))
+        endmethod
+
+        {Route("AAA_StructureCollectionAL")}
+        ;;; <summary>
+        ;;; 
+        ;;; </summary>
+        ;;; <returns></returns>
+        public async method Post_AAA_StructureCollectionAL, @Task<ActionResult<MyApi.AAA_StructureCollectionAL_Response>>
+            {FromBody}
+            required in aRequest, @MyApi.AAA_StructureCollectionAL_Request
+        proc
+            if (!ModelState.IsValid)
+                mreturn BadRequest()
+            mreturn ok(await _MyApiService.AAA_StructureCollectionAL(aRequest))
+        endmethod
+
+        {Route("AAA_StructureCollectionMH")}
+        ;;; <summary>
+        ;;; 
+        ;;; </summary>
+        ;;; <returns></returns>
+        public async method Get_AAA_StructureCollectionMH, @Task<ActionResult<MyApi.AAA_StructureCollectionMH_Response>>
+        proc
+            mreturn ok(await _MyApiService.AAA_StructureCollectionMH())
+        endmethod
+
         {Route("AddCustomer")}
         ;;; <summary>
         ;;; 

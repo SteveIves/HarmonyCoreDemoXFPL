@@ -62,14 +62,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="LoadSMC.bat">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="regenXfplMethods.bat">
-      <SubType>Content</SubType>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
+    <Compile Include="AAA_TestMethods.dbl" />
     <Compile Include="AddCustomer.dbl" />
     <Compile Include="AddItem.dbl" />
     <Compile Include="AddOrder.dbl" />

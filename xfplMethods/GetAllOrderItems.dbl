@@ -26,7 +26,7 @@ function GetAllOrderItems, boolean
     {xfParameter(name="OrderNumber")}
     required in  aOrderNumber, d6
 
-    {xfParameter(name="OrderItems",collectionType=xfCollectType.structure,structure="strOrderItem",dataTable=true)}
+    {xfParameter(name="OrderItems",collectionType=xfCollectType.structure,structure="strOrderItem")}
     required out aOrderItems, @ArrayList
 
     endparams

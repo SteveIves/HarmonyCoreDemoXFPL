@@ -67,13 +67,11 @@
     <Compile Include="Dispatchers\AddTwoNumbersDispatcher.dbl" />
     <Compile Include="Dispatchers\GetEnvironmentDispatcher.dbl" />
     <Compile Include="Dispatchers\GetLogicalNameDispatcher.dbl" />
-    <Compile Include="Dispatchers\MethodDispatcher.dbl" />
     <Compile Include="Dispatchers\MyApiDispatcher.dbl" />
     <Compile Include="Dispatchers\MyApiMethodDispachers.dbl" />
     <Compile Include="Methods\AddTwoNumbers.dbl" />
     <Compile Include="Methods\GetEnvironment.dbl" />
     <Compile Include="Methods\GetLogicalName.dbl" />
-    <Compile Include="Models\AaaDummyModel.dbl" />
     <Compile Include="Models\Customer.dbl" />
     <Compile Include="Models\CustomerMetaData.dbl" />
     <Compile Include="Models\Item.dbl" />

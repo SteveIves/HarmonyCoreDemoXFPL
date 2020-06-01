@@ -23,7 +23,7 @@ import System.Collections
 {xfMethod(interface="MyApi",elb="EXE:xfplMethods")}
 function GetAllItems, boolean
 
-    {xfParameter(name="Items",collectionType=xfCollectType.structure,structure="strItem",dataTable=true)}
+    {xfParameter(name="Items",collectionType=xfCollectType.structure,structure="strItem")}
     required out aItems, @ArrayList
 
     endparams

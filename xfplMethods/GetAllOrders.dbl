@@ -23,7 +23,7 @@ import System.Collections
 {xfMethod(interface="MyApi",elb="EXE:xfplMethods")}
 function GetAllOrders, boolean
 
-    {xfParameter(name="Orders",collectionType=xfCollectType.structure,structure="strOrder",dataTable=true)}
+    {xfParameter(name="Orders",collectionType=xfCollectType.structure,structure="strOrder")}
     required out aOrders, @ArrayList
 
     endparams

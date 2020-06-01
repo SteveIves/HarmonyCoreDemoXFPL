@@ -276,44 +276,6 @@ namespace Services.Models
             mreturn new Object[10]
         endmethod
 
-        ;;; <summary>
-        ;;; Validate data for one-to-one relations
-        ;;; </summary>
-        ;;; <param name="type">Validation type (create, update or delete)</param>
-        ;;; <param name="sp">Serices provider</param>
-        public override method Validate, void
-            required in vType, ValidationType
-            required in sp, @IServiceProvider
-
-            ;;From key for REL_Items
-            record rel1FromKey
-              vendor_number, d6
-            endrecord
-        proc
-            ;;No relation validation if the record is being deleted
-            if (vType == ValidationType.Delete)
-                mreturn
-
-            ;;Get an instance of IDataObjectProvider
-            data doProvider, @IDataObjectProvider, sp.GetService<IDataObjectProvider>()
-
-            ;;--------------------------------------------------------------------------------
-            ;;Validate data for relation 1 (REL_Items)
-
-            ;;This relation does not REQUIRE a match in the target file.
-
-
-            ;;If we have a ValidateCustom method, call it
-            ValidateCustom(vType,sp)
-
-        endmethod
-
-
-        private partial method ValidateCustom, void
-            required in vType, ValidationType
-            required in sp, @IServiceProvider
-        endmethod
-
 .endregion
 
 .region "Relationships to other entities"
@@ -326,7 +288,30 @@ namespace Services.Models
 
 .endregion
 
+.region "Relation validation"
+
+        ;;; <summary>
+        ;;; Validate data
+        ;;; </summary>
+        ;;; <param name="type">Validation type (create, update or delete)</param>
+        ;;; <param name="sp">Serices provider</param>
+        public override method Validate, void
+            required in vType, ValidationType
+            required in sp, @IServiceProvider
+        proc
+            ;;If we have a ValidateCustom method, call it
+            ValidateCustom(vType,sp)
+        endmethod
+
+        private partial method ValidateCustom, void
+            required in vType, ValidationType
+            required in sp, @IServiceProvider
+        endmethod
+
+.endregion
+
 .region "Properties to represent keys"
+
         ;;Access keys
 
         private _KEY_VENDOR_NUMBER, string, ""
@@ -341,9 +326,8 @@ namespace Services.Models
         private _KEY_PAYMENT_TERMS, string, ""
         public readonly property KEY_PAYMENT_TERMS, string, ""
 
-
 .endregion
 
-endclass
+    endclass
 
 endnamespace

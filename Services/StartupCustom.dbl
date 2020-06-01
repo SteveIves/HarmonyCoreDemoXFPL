@@ -86,57 +86,64 @@ namespace Services
             ;;-----------------------------------------------------------------
             ;; Add a custom "file spec resolver" service
 
-;            services.AddSingleton<IFileChannelManager,MyFileSpecResolver>()
+            ;            services.AddSingleton<IFileChannelManager,MyFileSpecResolver>()
             
             ;;-----------------------------------------------------------------
             ; Configure "out of process" Traditional Bridge to a Linux Server
 
-;;            data targetOs, RemoteTargetOS, RemoteTargetOS.Windows
-;;            data bridgeServer, string, "localhost"
-;;            data bridgeUser, string, "iisBridge"
-;;            data bridgePassword, string, "p@ssw0rd"
-;;            data bridgeCommand, string, "TraditionalBridgeHost.bat"
-;
-;            data targetOs, RemoteTargetOS, RemoteTargetOS.Linux
-;            data bridgeServer, string, "silinux.eastus.cloudapp.azure.com"
-;            data bridgeUser, string, "bridge"
-;            data bridgePassword, string, "p@ssw0rd"
-;            data bridgeCommand, string, "dbs TraditionalBridgeHost.dbr"
-;
-;            .define CALL_TIMEOUT 100000
-;            .define CONNECTION_TIMEOUT 600000
-;            .define ITEMS_IN_POOL 4
-;
-;            data contextPool, @RemoteExternalContextPool<TraditionalBridgeService>
-;
-;            contextPool = new RemoteExternalContextPool<TraditionalBridgeService>
-;            &    (
-;            &    targetOs,
-;            &    bridgeServer,
-;            &    bridgeUser,
-;            &    new Renci.SshNet.PasswordAuthenticationMethod(bridgeUser,bridgePassword),
-;            &    bridgeCommand,
-;            &    ITEMS_IN_POOL,
-;            &    CALL_TIMEOUT,
-;            &    CONNECTION_TIMEOUT
-;            &    ) 
+            ;;            data targetOs, RemoteTargetOS, RemoteTargetOS.Windows
+            ;;            data bridgeServer, string, "localhost"
+            ;;            data bridgeUser, string, "iisBridge"
+            ;;            data bridgePassword, string, "p@ssw0rd"
+            ;;            data bridgeCommand, string, "TraditionalBridgeHost.bat"
+            ;
+            ;            data targetOs, RemoteTargetOS, RemoteTargetOS.Linux
+            ;            data bridgeServer, string, "silinux.eastus.cloudapp.azure.com"
+            ;            data bridgeUser, string, "bridge"
+            ;            data bridgePassword, string, "p@ssw0rd"
+            ;            data bridgeCommand, string, "dbs TraditionalBridgeHost.dbr"
+            ;
+            ;            .define CALL_TIMEOUT 100000
+            ;            .define CONNECTION_TIMEOUT 600000
+            ;            .define ITEMS_IN_POOL 4
+            ;
+            ;            data contextPool, @RemoteExternalContextPool<TraditionalBridgeService>
+            ;
+            ;            contextPool = new RemoteExternalContextPool<TraditionalBridgeService>
+            ;            &    (
+            ;            &    targetOs,
+            ;            &    bridgeServer,
+            ;            &    bridgeUser,
+            ;            &    new Renci.SshNet.PasswordAuthenticationMethod(bridgeUser,bridgePassword),
+            ;            &    bridgeCommand,
+            ;            &    ITEMS_IN_POOL,
+            ;            &    CALL_TIMEOUT,
+            ;            &    CONNECTION_TIMEOUT
+            ;            &    ) 
 
             ;;-----------------------------------------------------------------
             ;; Configure "in process" Traditional Bridge to the local Windows system
 
             data traditionalBridgeDirectory, string
+            data logLevel, string
 
             if (_env.IsDevelopment()) then
             begin
-                traditionalBridgeDirectory = Path.GetFullPath(Path.Combine(Path.GetDirectoryName(^typeof(Startup).Assembly.Location),"..\..\..\..\TraditionalBridge\bin\Debug\x64"))
+                traditionalBridgeDirectory=Environment.GetEnvironmentVariable("EXE")
+                if (String.IsNullOrWhiteSpace(traditionalBridgeDirectory))
+                begin
+                    throw new ApplicationException("Logical name EXE is not set. It must point to the TraditionalBridge host application.")
+                end
+                logLevel = "6"
             end
             else
             begin
                 traditionalBridgeDirectory = Path.GetFullPath(Path.GetDirectoryName(^typeof(Startup).Assembly.Location))
+                logLevel = "2"
             end
 
             data launchCommand, string, Path.Combine(traditionalBridgeDirectory,"launch.bat")
-            data environmentVariables, @Dictionary<string,string>,new Dictionary<string,string>(){{"HARMONY_LOG_LEVEL","6"}}
+            data environmentVariables, @Dictionary<string,string>,new Dictionary<string,string>(){{"HARMONY_LOG_LEVEL",logLevel}}
             
             ;Create a context pool for 'TraditionalBridgeService'
             data contextPool1, @ExternalContextPool<TraditionalBridgeService>, new ExternalContextPool<TraditionalBridgeService>
@@ -166,10 +173,10 @@ namespace Services
             services.AddSingleton<IContextFactory<MyApiService>>(contextPool2)
             services.AddContextPool<MyApiService>()
 
-;            ;;-----------------------------------------------------------------
-;            ;; Enable "SignalR" support
-;
-;            services.AddSignalR()
+            ;            ;;-----------------------------------------------------------------
+            ;            ;; Enable "SignalR" support
+            ;
+            ;            services.AddSignalR()
 
         endmethod
 

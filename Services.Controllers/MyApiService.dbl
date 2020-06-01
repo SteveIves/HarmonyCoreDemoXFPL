@@ -33,6 +33,48 @@ namespace Services.Controllers
 
     public partial class MyApiService extends DynamicCallProvider
 
+        static IsInitialized, boolean
+        static method MyApiService
+        proc
+            DataObjectMetadataBase.LookupType(^typeof(Customer))
+            DataObjectMetadataBase.LookupType(^typeof(Customer))
+            DataObjectMetadataBase.LookupType(^typeof(Customer))
+            DataObjectMetadataBase.LookupType(^typeof(Customer))
+            DataObjectMetadataBase.LookupType(^typeof(Customer))
+            DataObjectMetadataBase.LookupType(^typeof(Customer))
+            DataObjectMetadataBase.LookupType(^typeof(Customer))
+            DataObjectMetadataBase.LookupType(^typeof(Customer))
+            DataObjectMetadataBase.LookupType(^typeof(Customer))
+            DataObjectMetadataBase.LookupType(^typeof(Customer))
+            DataObjectMetadataBase.LookupType(^typeof(Customer))
+            DataObjectMetadataBase.LookupType(^typeof(Customer))
+            DataObjectMetadataBase.LookupType(^typeof(Item))
+            DataObjectMetadataBase.LookupType(^typeof(Order))
+            DataObjectMetadataBase.LookupType(^typeof(OrderItem))
+            DataObjectMetadataBase.LookupType(^typeof(Vendor))
+            DataObjectMetadataBase.LookupType(^typeof(Customer))
+            DataObjectMetadataBase.LookupType(^typeof(Item))
+            DataObjectMetadataBase.LookupType(^typeof(OrderItem))
+            DataObjectMetadataBase.LookupType(^typeof(Order))
+            DataObjectMetadataBase.LookupType(^typeof(Vendor))
+            DataObjectMetadataBase.LookupType(^typeof(Customer))
+            DataObjectMetadataBase.LookupType(^typeof(Item))
+            DataObjectMetadataBase.LookupType(^typeof(Order))
+            DataObjectMetadataBase.LookupType(^typeof(OrderItem))
+            DataObjectMetadataBase.LookupType(^typeof(Vendor))
+            DataObjectMetadataBase.LookupType(^typeof(Customer))
+            DataObjectMetadataBase.LookupType(^typeof(Item))
+            DataObjectMetadataBase.LookupType(^typeof(Order))
+            DataObjectMetadataBase.LookupType(^typeof(OrderItem))
+            DataObjectMetadataBase.LookupType(^typeof(Vendor))
+            DataObjectMetadataBase.LookupType(^typeof(Customer))
+            DataObjectMetadataBase.LookupType(^typeof(Item))
+            DataObjectMetadataBase.LookupType(^typeof(Order))
+            DataObjectMetadataBase.LookupType(^typeof(OrderItem))
+            DataObjectMetadataBase.LookupType(^typeof(Vendor))
+            IsInitialized = true
+        endmethod
+
         ;;; <summary>
         ;;; Constructor
         ;;; </summary>
@@ -41,7 +83,582 @@ namespace Services.Controllers
             endparams
             parent(connection)
         proc
-            
+            if(!IsInitialized)
+                throw new Exception("cctor missing")
+        endmethod
+
+        ;;; <summary>
+        ;;; No description found in method catalog
+        ;;; </summary>
+        public async method AAA_Alpha, @Task<MyApi.AAA_Alpha_Response>
+            required in args, @MyApi.AAA_Alpha_Request
+        proc
+            ;;Prepare the response object
+            data response = new MyApi.AAA_Alpha_Response()
+
+            ;;Make the JSON-RPC call the traditional Synergy routine
+            data resultTuple = await CallMethod("AAA_Alpha"
+            &   ,args.p1
+            &   ,response.p2
+            &   ,args.p3
+            &   )
+
+             ;;Set the return value in the return data
+            ArgumentHelper.Argument(0, resultTuple, response.ReturnValue)
+
+            ArgumentHelper.Argument(2, resultTuple, response.p2)
+            ArgumentHelper.Argument(3, resultTuple, response.p3)
+
+            ;;Return the response
+            mreturn response
+
+        endmethod
+
+        ;;; <summary>
+        ;;; No description found in method catalog
+        ;;; </summary>
+        public async method AAA_AlphaArray, @Task<MyApi.AAA_AlphaArray_Response>
+            required in args, @MyApi.AAA_AlphaArray_Request
+        proc
+            ;;Prepare the response object
+            data response = new MyApi.AAA_AlphaArray_Response()
+
+            ;;Make the JSON-RPC call the traditional Synergy routine
+            data resultTuple = await CallMethod("AAA_AlphaArray"
+            &   ,args.p1
+            &   ,response.p2
+            &   ,args.p3
+            &   )
+
+            ArgumentHelper.Argument(2, resultTuple, response.p2)
+            ArgumentHelper.Argument(3, resultTuple, response.p3)
+
+            ;;Return the response
+            mreturn response
+
+        endmethod
+
+        ;;; <summary>
+        ;;; No description found in method catalog
+        ;;; </summary>
+        public async method AAA_AlphaCollection, @Task<MyApi.AAA_AlphaCollection_Response>
+            required in args, @MyApi.AAA_AlphaCollection_Request
+        proc
+            ;;Prepare the response object
+            data response = new MyApi.AAA_AlphaCollection_Response()
+
+            ;;Make the JSON-RPC call the traditional Synergy routine
+            data resultTuple = await CallMethod("AAA_AlphaCollection"
+            &   ,args.p1
+            &   ,response.p2
+            &   )
+
+            ArgumentHelper.Argument(2, resultTuple, response.p2)
+
+            ;;Return the response
+            mreturn response
+
+        endmethod
+
+        ;;; <summary>
+        ;;; No description found in method catalog
+        ;;; </summary>
+        public async method AAA_BinaryHandle, @Task<MyApi.AAA_BinaryHandle_Response>
+            required in args, @MyApi.AAA_BinaryHandle_Request
+        proc
+            ;;Prepare the response object
+            data response = new MyApi.AAA_BinaryHandle_Response()
+
+            ;;Make the JSON-RPC call the traditional Synergy routine
+            data resultTuple = await CallMethod("AAA_BinaryHandle"
+            &   ,args.p1
+            &   ,response.p2
+            &   ,args.p3
+            &   )
+
+            ArgumentHelper.Argument(2, resultTuple, response.p2)
+            ArgumentHelper.Argument(3, resultTuple, response.p3)
+
+            ;;Return the response
+            mreturn response
+
+        endmethod
+
+        ;;; <summary>
+        ;;; No description found in method catalog
+        ;;; </summary>
+        public async method AAA_Decimal, @Task<MyApi.AAA_Decimal_Response>
+            required in args, @MyApi.AAA_Decimal_Request
+        proc
+            ;;Prepare the response object
+            data response = new MyApi.AAA_Decimal_Response()
+
+            ;;Make the JSON-RPC call the traditional Synergy routine
+            data resultTuple = await CallMethod("AAA_Decimal"
+            &   ,args.p1
+            &   ,response.p2
+            &   ,args.p3
+            &   ,args.p4
+            &   ,response.p5
+            &   ,args.p6
+            &   ,args.p7
+            &   ,response.p8
+            &   ,args.p9
+            &   ,args.p10
+            &   ,response.p11
+            &   ,args.p12
+            &   ,args.p13
+            &   ,response.p14
+            &   ,args.p15
+            &   ,args.p16
+            &   ,response.p17
+            &   ,args.p18
+            &   ,args.p19
+            &   ,response.p20
+            &   ,args.p21
+            &   ,args.p22
+            &   ,response.p23
+            &   ,args.p24
+            &   ,args.p25
+            &   ,response.p26
+            &   ,args.p27
+            &   ,args.p28
+            &   ,response.p29
+            &   ,args.p30
+            &   ,args.p31
+            &   ,response.p32
+            &   ,args.p33
+            &   ,args.p34
+            &   ,response.p35
+            &   ,args.p36
+            &   ,args.p37
+            &   ,response.p38
+            &   ,args.p39
+            &   ,args.p40
+            &   ,response.p41
+            &   ,args.p42
+            &   )
+
+             ;;Set the return value in the return data
+            ArgumentHelper.Argument(0, resultTuple, response.ReturnValue)
+
+            ArgumentHelper.Argument(2, resultTuple, response.p2)
+            ArgumentHelper.Argument(3, resultTuple, response.p3)
+            ArgumentHelper.Argument(5, resultTuple, response.p5)
+            ArgumentHelper.Argument(6, resultTuple, response.p6)
+            ArgumentHelper.Argument(8, resultTuple, response.p8)
+            ArgumentHelper.Argument(9, resultTuple, response.p9)
+            ArgumentHelper.Argument(11, resultTuple, response.p11)
+            ArgumentHelper.Argument(12, resultTuple, response.p12)
+            ArgumentHelper.Argument(14, resultTuple, response.p14)
+            ArgumentHelper.Argument(15, resultTuple, response.p15)
+            ArgumentHelper.Argument(17, resultTuple, response.p17)
+            ArgumentHelper.Argument(18, resultTuple, response.p18)
+            ArgumentHelper.Argument(20, resultTuple, response.p20)
+            ArgumentHelper.Argument(21, resultTuple, response.p21)
+            ArgumentHelper.Argument(23, resultTuple, response.p23)
+            ArgumentHelper.Argument(24, resultTuple, response.p24)
+            ArgumentHelper.Argument(26, resultTuple, response.p26)
+            ArgumentHelper.Argument(27, resultTuple, response.p27)
+            ArgumentHelper.Argument(29, resultTuple, response.p29)
+            ArgumentHelper.Argument(30, resultTuple, response.p30)
+            ArgumentHelper.Argument(32, resultTuple, response.p32)
+            ArgumentHelper.Argument(33, resultTuple, response.p33)
+            ArgumentHelper.Argument(35, resultTuple, response.p35)
+            ArgumentHelper.Argument(36, resultTuple, response.p36)
+            ArgumentHelper.Argument(38, resultTuple, response.p38)
+            ArgumentHelper.Argument(39, resultTuple, response.p39)
+            ArgumentHelper.Argument(41, resultTuple, response.p41)
+            ArgumentHelper.Argument(42, resultTuple, response.p42)
+
+            ;;Return the response
+            mreturn response
+
+        endmethod
+
+        ;;; <summary>
+        ;;; No description found in method catalog
+        ;;; </summary>
+        public async method AAA_DecimalArray, @Task<MyApi.AAA_DecimalArray_Response>
+            required in args, @MyApi.AAA_DecimalArray_Request
+        proc
+            ;;Prepare the response object
+            data response = new MyApi.AAA_DecimalArray_Response()
+
+            ;;Make the JSON-RPC call the traditional Synergy routine
+            data resultTuple = await CallMethod("AAA_DecimalArray"
+            &   ,args.p1
+            &   ,response.p2
+            &   ,args.p3
+            &   )
+
+            ArgumentHelper.Argument(2, resultTuple, response.p2)
+            ArgumentHelper.Argument(3, resultTuple, response.p3)
+
+            ;;Return the response
+            mreturn response
+
+        endmethod
+
+        ;;; <summary>
+        ;;; No description found in method catalog
+        ;;; </summary>
+        public async method AAA_DecimalCollection, @Task<MyApi.AAA_DecimalCollection_Response>
+            required in args, @MyApi.AAA_DecimalCollection_Request
+        proc
+            ;;Prepare the response object
+            data response = new MyApi.AAA_DecimalCollection_Response()
+
+            ;;Make the JSON-RPC call the traditional Synergy routine
+            data resultTuple = await CallMethod("AAA_DecimalCollection"
+            &   ,args.p1
+            &   ,response.p2
+            &   )
+
+            ArgumentHelper.Argument(2, resultTuple, response.p2)
+
+            ;;Return the response
+            mreturn response
+
+        endmethod
+
+        ;;; <summary>
+        ;;; No description found in method catalog
+        ;;; </summary>
+        public async method AAA_Enum, @Task<MyApi.AAA_Enum_Response>
+            required in args, @MyApi.AAA_Enum_Request
+        proc
+            ;;Prepare the response object
+            data response = new MyApi.AAA_Enum_Response()
+
+            ;;Make the JSON-RPC call the traditional Synergy routine
+            data resultTuple = await CallMethod("AAA_Enum"
+            &   ,args.p1
+            &   ,response.p2
+            &   ,args.p3
+            &   )
+
+             ;;Set the return value in the return data
+            ArgumentHelper.Argument(0, resultTuple, response.ReturnValue)
+
+            ArgumentHelper.Argument(2, resultTuple, response.p2)
+            ArgumentHelper.Argument(3, resultTuple, response.p3)
+
+            ;;Return the response
+            mreturn response
+
+        endmethod
+
+        ;;; <summary>
+        ;;; No description found in method catalog
+        ;;; </summary>
+        public async method AAA_Handle, @Task<MyApi.AAA_Handle_Response>
+            required in args, @MyApi.AAA_Handle_Request
+        proc
+            ;;Prepare the response object
+            data response = new MyApi.AAA_Handle_Response()
+
+            ;;Make the JSON-RPC call the traditional Synergy routine
+            data resultTuple = await CallMethod("AAA_Handle"
+            &   ,args.p1
+            &   ,response.p2
+            &   ,args.p3
+            &   )
+
+            ArgumentHelper.Argument(2, resultTuple, response.p2)
+            ArgumentHelper.Argument(3, resultTuple, response.p3)
+
+            ;;Return the response
+            mreturn response
+
+        endmethod
+
+        ;;; <summary>
+        ;;; No description found in method catalog
+        ;;; </summary>
+        public async method AAA_HatVal, @Task<MyApi.AAA_HatVal_Response>
+        proc
+            ;;Prepare the response object
+            data response = new MyApi.AAA_HatVal_Response()
+
+            ;;Make the JSON-RPC call the traditional Synergy routine
+            data resultTuple = await CallMethod("AAA_HatVal"
+            &   )
+
+             ;;Set the return value in the return data
+            ArgumentHelper.Argument(0, resultTuple, response.ReturnValue)
+
+
+            ;;Return the response
+            mreturn response
+
+        endmethod
+
+        ;;; <summary>
+        ;;; No description found in method catalog
+        ;;; </summary>
+        public async method AAA_Implied, @Task<MyApi.AAA_Implied_Response>
+            required in args, @MyApi.AAA_Implied_Request
+        proc
+            ;;Prepare the response object
+            data response = new MyApi.AAA_Implied_Response()
+
+            ;;Make the JSON-RPC call the traditional Synergy routine
+            data resultTuple = await CallMethod("AAA_Implied"
+            &   ,args.p1
+            &   ,response.p2
+            &   ,args.p3
+            &   )
+
+             ;;Set the return value in the return data
+            ArgumentHelper.Argument(0, resultTuple, response.ReturnValue)
+
+            ArgumentHelper.Argument(2, resultTuple, response.p2)
+            ArgumentHelper.Argument(3, resultTuple, response.p3)
+
+            ;;Return the response
+            mreturn response
+
+        endmethod
+
+        ;;; <summary>
+        ;;; No description found in method catalog
+        ;;; </summary>
+        public async method AAA_ImpliedArray, @Task<MyApi.AAA_ImpliedArray_Response>
+            required in args, @MyApi.AAA_ImpliedArray_Request
+        proc
+            ;;Prepare the response object
+            data response = new MyApi.AAA_ImpliedArray_Response()
+
+            ;;Make the JSON-RPC call the traditional Synergy routine
+            data resultTuple = await CallMethod("AAA_ImpliedArray"
+            &   ,args.p1
+            &   ,response.p2
+            &   ,args.p3
+            &   )
+
+            ArgumentHelper.Argument(2, resultTuple, response.p2)
+            ArgumentHelper.Argument(3, resultTuple, response.p3)
+
+            ;;Return the response
+            mreturn response
+
+        endmethod
+
+        ;;; <summary>
+        ;;; No description found in method catalog
+        ;;; </summary>
+        public async method AAA_ImpliedCollection, @Task<MyApi.AAA_ImpliedCollection_Response>
+            required in args, @MyApi.AAA_ImpliedCollection_Request
+        proc
+            ;;Prepare the response object
+            data response = new MyApi.AAA_ImpliedCollection_Response()
+
+            ;;Make the JSON-RPC call the traditional Synergy routine
+            data resultTuple = await CallMethod("AAA_ImpliedCollection"
+            &   ,args.p1
+            &   ,response.p2
+            &   )
+
+            ArgumentHelper.Argument(2, resultTuple, response.p2)
+
+            ;;Return the response
+            mreturn response
+
+        endmethod
+
+        ;;; <summary>
+        ;;; No description found in method catalog
+        ;;; </summary>
+        public async method AAA_Integer, @Task<MyApi.AAA_Integer_Response>
+            required in args, @MyApi.AAA_Integer_Request
+        proc
+            ;;Prepare the response object
+            data response = new MyApi.AAA_Integer_Response()
+
+            ;;Make the JSON-RPC call the traditional Synergy routine
+            data resultTuple = await CallMethod("AAA_Integer"
+            &   ,args.p1
+            &   ,response.p2
+            &   ,args.p3
+            &   )
+
+             ;;Set the return value in the return data
+            ArgumentHelper.Argument(0, resultTuple, response.ReturnValue)
+
+            ArgumentHelper.Argument(2, resultTuple, response.p2)
+            ArgumentHelper.Argument(3, resultTuple, response.p3)
+
+            ;;Return the response
+            mreturn response
+
+        endmethod
+
+        ;;; <summary>
+        ;;; No description found in method catalog
+        ;;; </summary>
+        public async method AAA_IntegerArray, @Task<MyApi.AAA_IntegerArray_Response>
+            required in args, @MyApi.AAA_IntegerArray_Request
+        proc
+            ;;Prepare the response object
+            data response = new MyApi.AAA_IntegerArray_Response()
+
+            ;;Make the JSON-RPC call the traditional Synergy routine
+            data resultTuple = await CallMethod("AAA_IntegerArray"
+            &   ,args.p1
+            &   ,response.p2
+            &   ,args.p3
+            &   )
+
+            ArgumentHelper.Argument(2, resultTuple, response.p2)
+            ArgumentHelper.Argument(3, resultTuple, response.p3)
+
+            ;;Return the response
+            mreturn response
+
+        endmethod
+
+        ;;; <summary>
+        ;;; No description found in method catalog
+        ;;; </summary>
+        public async method AAA_IntegerCollection, @Task<MyApi.AAA_IntegerCollection_Response>
+            required in args, @MyApi.AAA_IntegerCollection_Request
+        proc
+            ;;Prepare the response object
+            data response = new MyApi.AAA_IntegerCollection_Response()
+
+            ;;Make the JSON-RPC call the traditional Synergy routine
+            data resultTuple = await CallMethod("AAA_IntegerCollection"
+            &   ,args.p1
+            &   ,response.p2
+            &   )
+
+            ArgumentHelper.Argument(2, resultTuple, response.p2)
+
+            ;;Return the response
+            mreturn response
+
+        endmethod
+
+        ;;; <summary>
+        ;;; No description found in method catalog
+        ;;; </summary>
+        public async method AAA_String, @Task<MyApi.AAA_String_Response>
+            required in args, @MyApi.AAA_String_Request
+        proc
+            ;;Prepare the response object
+            data response = new MyApi.AAA_String_Response()
+
+            ;;Make the JSON-RPC call the traditional Synergy routine
+            data resultTuple = await CallMethod("AAA_String"
+            &   ,args.p1
+            &   ,response.p2
+            &   ,args.p3
+            &   )
+
+             ;;Set the return value in the return data
+            ArgumentHelper.Argument(0, resultTuple, response.ReturnValue)
+
+            ArgumentHelper.Argument(2, resultTuple, response.p2)
+            ArgumentHelper.Argument(3, resultTuple, response.p3)
+
+            ;;Return the response
+            mreturn response
+
+        endmethod
+
+        ;;; <summary>
+        ;;; No description found in method catalog
+        ;;; </summary>
+        public async method AAA_Structure, @Task<MyApi.AAA_Structure_Response>
+            required in args, @MyApi.AAA_Structure_Request
+        proc
+            ;;Prepare the response object
+            data response = new MyApi.AAA_Structure_Response()
+
+            ;;Make the JSON-RPC call the traditional Synergy routine
+            data resultTuple = await CallMethod("AAA_Structure"
+            &   ,args.p1
+            &   ,ArgumentHelper.MaybeNull(response.p2)
+            &   ,args.p3
+            &   )
+
+            ArgumentHelper.Argument(2, resultTuple, response.p2)
+            ArgumentHelper.Argument(3, resultTuple, response.p3)
+
+            ;;Return the response
+            mreturn response
+
+        endmethod
+
+        ;;; <summary>
+        ;;; No description found in method catalog
+        ;;; </summary>
+        public async method AAA_StructureArray, @Task<MyApi.AAA_StructureArray_Response>
+            required in args, @MyApi.AAA_StructureArray_Request
+        proc
+            ;;Prepare the response object
+            data response = new MyApi.AAA_StructureArray_Response()
+
+            ;;Make the JSON-RPC call the traditional Synergy routine
+            data resultTuple = await CallMethod("AAA_StructureArray"
+            &   ,args.p1
+            &   ,ArgumentHelper.MaybeNull(response.p2)
+            &   ,args.p3
+            &   )
+
+            ArgumentHelper.Argument(2, resultTuple, response.p2)
+            ArgumentHelper.Argument(3, resultTuple, response.p3)
+
+            ;;Return the response
+            mreturn response
+
+        endmethod
+
+        ;;; <summary>
+        ;;; No description found in method catalog
+        ;;; </summary>
+        public async method AAA_StructureCollectionAL, @Task<MyApi.AAA_StructureCollectionAL_Response>
+            required in args, @MyApi.AAA_StructureCollectionAL_Request
+        proc
+            ;;Prepare the response object
+            data response = new MyApi.AAA_StructureCollectionAL_Response()
+
+            ;;Make the JSON-RPC call the traditional Synergy routine
+            data resultTuple = await CallMethod("AAA_StructureCollectionAL"
+            &   ,args.p1
+            &   ,ArgumentHelper.MaybeNull(response.p2)
+            &   )
+
+            ArgumentHelper.Argument(2, resultTuple, response.p2)
+
+            ;;Return the response
+            mreturn response
+
+        endmethod
+
+        ;;; <summary>
+        ;;; No description found in method catalog
+        ;;; </summary>
+        public async method AAA_StructureCollectionMH, @Task<MyApi.AAA_StructureCollectionMH_Response>
+        proc
+            ;;Prepare the response object
+            data response = new MyApi.AAA_StructureCollectionMH_Response()
+
+            ;;Make the JSON-RPC call the traditional Synergy routine
+            data resultTuple = await CallMethod("AAA_StructureCollectionMH"
+            &   ,ArgumentHelper.MaybeNull(response.p1)
+            &   ,ArgumentHelper.MaybeNull(response.p2)
+            &   ,ArgumentHelper.MaybeNull(response.p3)
+            &   )
+
+            ArgumentHelper.Argument(1, resultTuple, response.p1)
+            ArgumentHelper.Argument(2, resultTuple, response.p2)
+            ArgumentHelper.Argument(3, resultTuple, response.p3)
+
+            ;;Return the response
+            mreturn response
+
         endmethod
 
         ;;; <summary>
@@ -58,11 +675,9 @@ namespace Services.Controllers
             &   ,args.Customer
             &   )
 
-            ;;Get the returned information
-            data returnToken = (@JToken)(resultTuple.Item1)
+             ;;Set the return value in the return data
+            ArgumentHelper.Argument(0, resultTuple, response.ReturnValue)
 
-            ;;Set the return value in the return data
-            response.ReturnValue = returnToken.ToObject<boolean>()
 
             ;;Return the response
             mreturn response
@@ -83,11 +698,9 @@ namespace Services.Controllers
             &   ,args.Item
             &   )
 
-            ;;Get the returned information
-            data returnToken = (@JToken)(resultTuple.Item1)
+             ;;Set the return value in the return data
+            ArgumentHelper.Argument(0, resultTuple, response.ReturnValue)
 
-            ;;Set the return value in the return data
-            response.ReturnValue = returnToken.ToObject<boolean>()
 
             ;;Return the response
             mreturn response
@@ -108,11 +721,9 @@ namespace Services.Controllers
             &   ,args.Order
             &   )
 
-            ;;Get the returned information
-            data returnToken = (@JToken)(resultTuple.Item1)
+             ;;Set the return value in the return data
+            ArgumentHelper.Argument(0, resultTuple, response.ReturnValue)
 
-            ;;Set the return value in the return data
-            response.ReturnValue = returnToken.ToObject<boolean>()
 
             ;;Return the response
             mreturn response
@@ -133,11 +744,9 @@ namespace Services.Controllers
             &   ,args.OrderItem
             &   )
 
-            ;;Get the returned information
-            data returnToken = (@JToken)(resultTuple.Item1)
+             ;;Set the return value in the return data
+            ArgumentHelper.Argument(0, resultTuple, response.ReturnValue)
 
-            ;;Set the return value in the return data
-            response.ReturnValue = returnToken.ToObject<boolean>()
 
             ;;Return the response
             mreturn response
@@ -158,11 +767,9 @@ namespace Services.Controllers
             &   ,args.Vendor
             &   )
 
-            ;;Get the returned information
-            data returnToken = (@JToken)(resultTuple.Item1)
+             ;;Set the return value in the return data
+            ArgumentHelper.Argument(0, resultTuple, response.ReturnValue)
 
-            ;;Set the return value in the return data
-            response.ReturnValue = returnToken.ToObject<boolean>()
 
             ;;Return the response
             mreturn response
@@ -183,11 +790,9 @@ namespace Services.Controllers
             &   ,args.CustomerNumber
             &   )
 
-            ;;Get the returned information
-            data returnToken = (@JToken)(resultTuple.Item1)
+             ;;Set the return value in the return data
+            ArgumentHelper.Argument(0, resultTuple, response.ReturnValue)
 
-            ;;Set the return value in the return data
-            response.ReturnValue = returnToken.ToObject<boolean>()
 
             ;;Return the response
             mreturn response
@@ -208,11 +813,9 @@ namespace Services.Controllers
             &   ,args.ItemNumber
             &   )
 
-            ;;Get the returned information
-            data returnToken = (@JToken)(resultTuple.Item1)
+             ;;Set the return value in the return data
+            ArgumentHelper.Argument(0, resultTuple, response.ReturnValue)
 
-            ;;Set the return value in the return data
-            response.ReturnValue = returnToken.ToObject<boolean>()
 
             ;;Return the response
             mreturn response
@@ -233,11 +836,9 @@ namespace Services.Controllers
             &   ,args.OrderNumber
             &   )
 
-            ;;Get the returned information
-            data returnToken = (@JToken)(resultTuple.Item1)
+             ;;Set the return value in the return data
+            ArgumentHelper.Argument(0, resultTuple, response.ReturnValue)
 
-            ;;Set the return value in the return data
-            response.ReturnValue = returnToken.ToObject<boolean>()
 
             ;;Return the response
             mreturn response
@@ -259,11 +860,9 @@ namespace Services.Controllers
             &   ,args.ItemNumber
             &   )
 
-            ;;Get the returned information
-            data returnToken = (@JToken)(resultTuple.Item1)
+             ;;Set the return value in the return data
+            ArgumentHelper.Argument(0, resultTuple, response.ReturnValue)
 
-            ;;Set the return value in the return data
-            response.ReturnValue = returnToken.ToObject<boolean>()
 
             ;;Return the response
             mreturn response
@@ -284,11 +883,9 @@ namespace Services.Controllers
             &   ,args.VendorNumber
             &   )
 
-            ;;Get the returned information
-            data returnToken = (@JToken)(resultTuple.Item1)
+             ;;Set the return value in the return data
+            ArgumentHelper.Argument(0, resultTuple, response.ReturnValue)
 
-            ;;Set the return value in the return data
-            response.ReturnValue = returnToken.ToObject<boolean>()
 
             ;;Return the response
             mreturn response
@@ -309,11 +906,9 @@ namespace Services.Controllers
             &   ,args.CustomerNumber
             &   )
 
-            ;;Get the returned information
-            data returnToken = (@JToken)(resultTuple.Item1)
+             ;;Set the return value in the return data
+            ArgumentHelper.Argument(0, resultTuple, response.ReturnValue)
 
-            ;;Set the return value in the return data
-            response.ReturnValue = returnToken.ToObject<boolean>()
 
             ;;Return the response
             mreturn response
@@ -334,11 +929,9 @@ namespace Services.Controllers
             &   ,args.ItemNumber
             &   )
 
-            ;;Get the returned information
-            data returnToken = (@JToken)(resultTuple.Item1)
+             ;;Set the return value in the return data
+            ArgumentHelper.Argument(0, resultTuple, response.ReturnValue)
 
-            ;;Set the return value in the return data
-            response.ReturnValue = returnToken.ToObject<boolean>()
 
             ;;Return the response
             mreturn response
@@ -359,11 +952,9 @@ namespace Services.Controllers
             &   ,args.OrderNumber
             &   )
 
-            ;;Get the returned information
-            data returnToken = (@JToken)(resultTuple.Item1)
+             ;;Set the return value in the return data
+            ArgumentHelper.Argument(0, resultTuple, response.ReturnValue)
 
-            ;;Set the return value in the return data
-            response.ReturnValue = returnToken.ToObject<boolean>()
 
             ;;Return the response
             mreturn response
@@ -385,11 +976,9 @@ namespace Services.Controllers
             &   ,args.ItemNumber
             &   )
 
-            ;;Get the returned information
-            data returnToken = (@JToken)(resultTuple.Item1)
+             ;;Set the return value in the return data
+            ArgumentHelper.Argument(0, resultTuple, response.ReturnValue)
 
-            ;;Set the return value in the return data
-            response.ReturnValue = returnToken.ToObject<boolean>()
 
             ;;Return the response
             mreturn response
@@ -410,11 +999,9 @@ namespace Services.Controllers
             &   ,args.VendorNumber
             &   )
 
-            ;;Get the returned information
-            data returnToken = (@JToken)(resultTuple.Item1)
+             ;;Set the return value in the return data
+            ArgumentHelper.Argument(0, resultTuple, response.ReturnValue)
 
-            ;;Set the return value in the return data
-            response.ReturnValue = returnToken.ToObject<boolean>()
 
             ;;Return the response
             mreturn response
@@ -431,18 +1018,13 @@ namespace Services.Controllers
 
             ;;Make the JSON-RPC call the traditional Synergy routine
             data resultTuple = await CallMethod("GetAllCustomers"
-            &   ,response.Customers
+            &   ,ArgumentHelper.MaybeNull(response.Customers)
             &   )
 
-            ;;Get the returned information
-            data returnToken = (@JToken)(resultTuple.Item1)
+             ;;Set the return value in the return data
+            ArgumentHelper.Argument(0, resultTuple, response.ReturnValue)
 
-            ;;Set the return value in the return data
-            response.ReturnValue = returnToken.ToObject<boolean>()
-
-            ;;Set returned values for OUT or INOUT parameters
-            data resultList, @List<Object>, resultTuple.Item2.ToList()
-            response.Customers = (@Customer)resultList[1 - 1]
+            ArgumentHelper.Argument(1, resultTuple, response.Customers)
 
             ;;Return the response
             mreturn response
@@ -459,18 +1041,13 @@ namespace Services.Controllers
 
             ;;Make the JSON-RPC call the traditional Synergy routine
             data resultTuple = await CallMethod("GetAllItems"
-            &   ,response.Items
+            &   ,ArgumentHelper.MaybeNull(response.Items)
             &   )
 
-            ;;Get the returned information
-            data returnToken = (@JToken)(resultTuple.Item1)
+             ;;Set the return value in the return data
+            ArgumentHelper.Argument(0, resultTuple, response.ReturnValue)
 
-            ;;Set the return value in the return data
-            response.ReturnValue = returnToken.ToObject<boolean>()
-
-            ;;Set returned values for OUT or INOUT parameters
-            data resultList, @List<Object>, resultTuple.Item2.ToList()
-            response.Items = (@Item)resultList[1 - 1]
+            ArgumentHelper.Argument(1, resultTuple, response.Items)
 
             ;;Return the response
             mreturn response
@@ -489,18 +1066,13 @@ namespace Services.Controllers
             ;;Make the JSON-RPC call the traditional Synergy routine
             data resultTuple = await CallMethod("GetAllOrderItems"
             &   ,args.OrderNumber
-            &   ,response.OrderItems
+            &   ,ArgumentHelper.MaybeNull(response.OrderItems)
             &   )
 
-            ;;Get the returned information
-            data returnToken = (@JToken)(resultTuple.Item1)
+             ;;Set the return value in the return data
+            ArgumentHelper.Argument(0, resultTuple, response.ReturnValue)
 
-            ;;Set the return value in the return data
-            response.ReturnValue = returnToken.ToObject<boolean>()
-
-            ;;Set returned values for OUT or INOUT parameters
-            data resultList, @List<Object>, resultTuple.Item2.ToList()
-            response.OrderItems = (@OrderItem)resultList[2 - 1]
+            ArgumentHelper.Argument(2, resultTuple, response.OrderItems)
 
             ;;Return the response
             mreturn response
@@ -517,18 +1089,13 @@ namespace Services.Controllers
 
             ;;Make the JSON-RPC call the traditional Synergy routine
             data resultTuple = await CallMethod("GetAllOrders"
-            &   ,response.Orders
+            &   ,ArgumentHelper.MaybeNull(response.Orders)
             &   )
 
-            ;;Get the returned information
-            data returnToken = (@JToken)(resultTuple.Item1)
+             ;;Set the return value in the return data
+            ArgumentHelper.Argument(0, resultTuple, response.ReturnValue)
 
-            ;;Set the return value in the return data
-            response.ReturnValue = returnToken.ToObject<boolean>()
-
-            ;;Set returned values for OUT or INOUT parameters
-            data resultList, @List<Object>, resultTuple.Item2.ToList()
-            response.Orders = (@Order)resultList[1 - 1]
+            ArgumentHelper.Argument(1, resultTuple, response.Orders)
 
             ;;Return the response
             mreturn response
@@ -545,18 +1112,13 @@ namespace Services.Controllers
 
             ;;Make the JSON-RPC call the traditional Synergy routine
             data resultTuple = await CallMethod("GetAllVendors"
-            &   ,response.Vendors
+            &   ,ArgumentHelper.MaybeNull(response.Vendors)
             &   )
 
-            ;;Get the returned information
-            data returnToken = (@JToken)(resultTuple.Item1)
+             ;;Set the return value in the return data
+            ArgumentHelper.Argument(0, resultTuple, response.ReturnValue)
 
-            ;;Set the return value in the return data
-            response.ReturnValue = returnToken.ToObject<boolean>()
-
-            ;;Set returned values for OUT or INOUT parameters
-            data resultList, @List<Object>, resultTuple.Item2.ToList()
-            response.Vendors = (@Vendor)resultList[1 - 1]
+            ArgumentHelper.Argument(1, resultTuple, response.Vendors)
 
             ;;Return the response
             mreturn response
@@ -575,18 +1137,13 @@ namespace Services.Controllers
             ;;Make the JSON-RPC call the traditional Synergy routine
             data resultTuple = await CallMethod("GetCustomer"
             &   ,args.CustomerNumber
-            &   ,response.Customer
+            &   ,ArgumentHelper.MaybeNull(response.Customer)
             &   )
 
-            ;;Get the returned information
-            data returnToken = (@JToken)(resultTuple.Item1)
+             ;;Set the return value in the return data
+            ArgumentHelper.Argument(0, resultTuple, response.ReturnValue)
 
-            ;;Set the return value in the return data
-            response.ReturnValue = returnToken.ToObject<boolean>()
-
-            ;;Set returned values for OUT or INOUT parameters
-            data resultList, @List<Object>, resultTuple.Item2.ToList()
-            response.Customer = (@Customer)resultList[2 - 1]
+            ArgumentHelper.Argument(2, resultTuple, response.Customer)
 
             ;;Return the response
             mreturn response
@@ -605,18 +1162,13 @@ namespace Services.Controllers
             ;;Make the JSON-RPC call the traditional Synergy routine
             data resultTuple = await CallMethod("GetItem"
             &   ,args.ItemNumber
-            &   ,response.Item
+            &   ,ArgumentHelper.MaybeNull(response.Item)
             &   )
 
-            ;;Get the returned information
-            data returnToken = (@JToken)(resultTuple.Item1)
+             ;;Set the return value in the return data
+            ArgumentHelper.Argument(0, resultTuple, response.ReturnValue)
 
-            ;;Set the return value in the return data
-            response.ReturnValue = returnToken.ToObject<boolean>()
-
-            ;;Set returned values for OUT or INOUT parameters
-            data resultList, @List<Object>, resultTuple.Item2.ToList()
-            response.Item = (@Item)resultList[2 - 1]
+            ArgumentHelper.Argument(2, resultTuple, response.Item)
 
             ;;Return the response
             mreturn response
@@ -635,18 +1187,13 @@ namespace Services.Controllers
             ;;Make the JSON-RPC call the traditional Synergy routine
             data resultTuple = await CallMethod("GetOrder"
             &   ,args.OrderNumber
-            &   ,response.Order
+            &   ,ArgumentHelper.MaybeNull(response.Order)
             &   )
 
-            ;;Get the returned information
-            data returnToken = (@JToken)(resultTuple.Item1)
+             ;;Set the return value in the return data
+            ArgumentHelper.Argument(0, resultTuple, response.ReturnValue)
 
-            ;;Set the return value in the return data
-            response.ReturnValue = returnToken.ToObject<boolean>()
-
-            ;;Set returned values for OUT or INOUT parameters
-            data resultList, @List<Object>, resultTuple.Item2.ToList()
-            response.Order = (@Order)resultList[2 - 1]
+            ArgumentHelper.Argument(2, resultTuple, response.Order)
 
             ;;Return the response
             mreturn response
@@ -666,18 +1213,13 @@ namespace Services.Controllers
             data resultTuple = await CallMethod("GetOrderItem"
             &   ,args.OrderNumber
             &   ,args.ItemNumber
-            &   ,response.OrderItem
+            &   ,ArgumentHelper.MaybeNull(response.OrderItem)
             &   )
 
-            ;;Get the returned information
-            data returnToken = (@JToken)(resultTuple.Item1)
+             ;;Set the return value in the return data
+            ArgumentHelper.Argument(0, resultTuple, response.ReturnValue)
 
-            ;;Set the return value in the return data
-            response.ReturnValue = returnToken.ToObject<boolean>()
-
-            ;;Set returned values for OUT or INOUT parameters
-            data resultList, @List<Object>, resultTuple.Item2.ToList()
-            response.OrderItem = (@OrderItem)resultList[3 - 1]
+            ArgumentHelper.Argument(3, resultTuple, response.OrderItem)
 
             ;;Return the response
             mreturn response
@@ -696,18 +1238,13 @@ namespace Services.Controllers
             ;;Make the JSON-RPC call the traditional Synergy routine
             data resultTuple = await CallMethod("GetVendor"
             &   ,args.VendorNumber
-            &   ,response.Vendor
+            &   ,ArgumentHelper.MaybeNull(response.Vendor)
             &   )
 
-            ;;Get the returned information
-            data returnToken = (@JToken)(resultTuple.Item1)
+             ;;Set the return value in the return data
+            ArgumentHelper.Argument(0, resultTuple, response.ReturnValue)
 
-            ;;Set the return value in the return data
-            response.ReturnValue = returnToken.ToObject<boolean>()
-
-            ;;Set returned values for OUT or INOUT parameters
-            data resultList, @List<Object>, resultTuple.Item2.ToList()
-            response.Vendor = (@Vendor)resultList[2 - 1]
+            ArgumentHelper.Argument(2, resultTuple, response.Vendor)
 
             ;;Return the response
             mreturn response
@@ -728,11 +1265,9 @@ namespace Services.Controllers
             &   ,args.Customer
             &   )
 
-            ;;Get the returned information
-            data returnToken = (@JToken)(resultTuple.Item1)
+             ;;Set the return value in the return data
+            ArgumentHelper.Argument(0, resultTuple, response.ReturnValue)
 
-            ;;Set the return value in the return data
-            response.ReturnValue = returnToken.ToObject<boolean>()
 
             ;;Return the response
             mreturn response
@@ -753,11 +1288,9 @@ namespace Services.Controllers
             &   ,args.Item
             &   )
 
-            ;;Get the returned information
-            data returnToken = (@JToken)(resultTuple.Item1)
+             ;;Set the return value in the return data
+            ArgumentHelper.Argument(0, resultTuple, response.ReturnValue)
 
-            ;;Set the return value in the return data
-            response.ReturnValue = returnToken.ToObject<boolean>()
 
             ;;Return the response
             mreturn response
@@ -778,11 +1311,9 @@ namespace Services.Controllers
             &   ,args.Order
             &   )
 
-            ;;Get the returned information
-            data returnToken = (@JToken)(resultTuple.Item1)
+             ;;Set the return value in the return data
+            ArgumentHelper.Argument(0, resultTuple, response.ReturnValue)
 
-            ;;Set the return value in the return data
-            response.ReturnValue = returnToken.ToObject<boolean>()
 
             ;;Return the response
             mreturn response
@@ -803,11 +1334,9 @@ namespace Services.Controllers
             &   ,args.OrderItem
             &   )
 
-            ;;Get the returned information
-            data returnToken = (@JToken)(resultTuple.Item1)
+             ;;Set the return value in the return data
+            ArgumentHelper.Argument(0, resultTuple, response.ReturnValue)
 
-            ;;Set the return value in the return data
-            response.ReturnValue = returnToken.ToObject<boolean>()
 
             ;;Return the response
             mreturn response
@@ -828,11 +1357,9 @@ namespace Services.Controllers
             &   ,args.Vendor
             &   )
 
-            ;;Get the returned information
-            data returnToken = (@JToken)(resultTuple.Item1)
+             ;;Set the return value in the return data
+            ArgumentHelper.Argument(0, resultTuple, response.ReturnValue)
 
-            ;;Set the return value in the return data
-            response.ReturnValue = returnToken.ToObject<boolean>()
 
             ;;Return the response
             mreturn response
@@ -853,15 +1380,10 @@ namespace Services.Controllers
             &   ,args.Customer
             &   )
 
-            ;;Get the returned information
-            data returnToken = (@JToken)(resultTuple.Item1)
+             ;;Set the return value in the return data
+            ArgumentHelper.Argument(0, resultTuple, response.ReturnValue)
 
-            ;;Set the return value in the return data
-            response.ReturnValue = returnToken.ToObject<boolean>()
-
-            ;;Set returned values for OUT or INOUT parameters
-            data resultList, @List<Object>, resultTuple.Item2.ToList()
-            response.Customer = (@Customer)resultList[1 - 1]
+            ArgumentHelper.Argument(1, resultTuple, response.Customer)
 
             ;;Return the response
             mreturn response
@@ -882,15 +1404,10 @@ namespace Services.Controllers
             &   ,args.Item
             &   )
 
-            ;;Get the returned information
-            data returnToken = (@JToken)(resultTuple.Item1)
+             ;;Set the return value in the return data
+            ArgumentHelper.Argument(0, resultTuple, response.ReturnValue)
 
-            ;;Set the return value in the return data
-            response.ReturnValue = returnToken.ToObject<boolean>()
-
-            ;;Set returned values for OUT or INOUT parameters
-            data resultList, @List<Object>, resultTuple.Item2.ToList()
-            response.Item = (@Item)resultList[1 - 1]
+            ArgumentHelper.Argument(1, resultTuple, response.Item)
 
             ;;Return the response
             mreturn response
@@ -911,15 +1428,10 @@ namespace Services.Controllers
             &   ,args.Order
             &   )
 
-            ;;Get the returned information
-            data returnToken = (@JToken)(resultTuple.Item1)
+             ;;Set the return value in the return data
+            ArgumentHelper.Argument(0, resultTuple, response.ReturnValue)
 
-            ;;Set the return value in the return data
-            response.ReturnValue = returnToken.ToObject<boolean>()
-
-            ;;Set returned values for OUT or INOUT parameters
-            data resultList, @List<Object>, resultTuple.Item2.ToList()
-            response.Order = (@Order)resultList[1 - 1]
+            ArgumentHelper.Argument(1, resultTuple, response.Order)
 
             ;;Return the response
             mreturn response
@@ -940,15 +1452,10 @@ namespace Services.Controllers
             &   ,args.OrderItem
             &   )
 
-            ;;Get the returned information
-            data returnToken = (@JToken)(resultTuple.Item1)
+             ;;Set the return value in the return data
+            ArgumentHelper.Argument(0, resultTuple, response.ReturnValue)
 
-            ;;Set the return value in the return data
-            response.ReturnValue = returnToken.ToObject<boolean>()
-
-            ;;Set returned values for OUT or INOUT parameters
-            data resultList, @List<Object>, resultTuple.Item2.ToList()
-            response.OrderItem = (@OrderItem)resultList[1 - 1]
+            ArgumentHelper.Argument(1, resultTuple, response.OrderItem)
 
             ;;Return the response
             mreturn response
@@ -969,15 +1476,10 @@ namespace Services.Controllers
             &   ,args.Vendor
             &   )
 
-            ;;Get the returned information
-            data returnToken = (@JToken)(resultTuple.Item1)
+             ;;Set the return value in the return data
+            ArgumentHelper.Argument(0, resultTuple, response.ReturnValue)
 
-            ;;Set the return value in the return data
-            response.ReturnValue = returnToken.ToObject<boolean>()
-
-            ;;Set returned values for OUT or INOUT parameters
-            data resultList, @List<Object>, resultTuple.Item2.ToList()
-            response.Vendor = (@Vendor)resultList[1 - 1]
+            ArgumentHelper.Argument(1, resultTuple, response.Vendor)
 
             ;;Return the response
             mreturn response

@@ -27,6 +27,1738 @@ namespace TraditionalBridge.Dispatchers.MyApi
 
     ;;-------------------------------------------------------------------------
     ;;; <summary>
+    ;;; Dispatcher for method MyApi.AAA_Alpha
+    ;;; </summary>
+    public class AAA_Alpha_Dispatcher extends RoutineStub
+
+
+        public method AAA_Alpha_Dispatcher
+        proc
+            ;;Initialize the meta data for any data objects that are used by parameters to the method
+        endmethod
+
+        protected override method DispatchInternal, void
+            required in name,       string
+            required in callFrame,  JSON_ELEMENT
+            required in serializer, @DispatchSerializer
+            required in dispatcher, @RoutineDispatcher
+            record
+                requestId,          int
+                arguments,          JSON_ELEMENT
+                argumentDefinition, @ArgumentDataDefinition
+
+                ;;Argument 1 (REQUIRED IN p1 A10)
+                arg1,               a10
+                ;;Argument 2 (REQUIRED OUT p2 A10)
+                arg2,               a10
+                ;;Argument 3 (REQUIRED INOUT p3 A10)
+                arg3,               a10
+                returnValue,         A10
+            endrecord
+
+
+        proc
+
+            ;;------------------------------------------------------------
+            ;;Process inbound arguments
+
+            arguments = callFrame.GetProperty("params")
+
+            ;;Argument 1 (REQUIRED IN p1 A10)
+            arg1 = dispatcher.GetText(arguments[1])
+
+            ;;Argument 3 (REQUIRED INOUT p3 A10)
+            arg3 = dispatcher.GetText(arguments[3])
+
+            ;;------------------------------------------------------------
+            ;; Call the underlying routine
+
+            returnValue = %AAA_Alpha(arg1,arg2,arg3)
+
+            ;;Function return value
+            serializer.ArgumentData(0,returnValue,FieldDataType.AlphaField,10,0,true)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 2 (REQUIRED OUT p2 A10)
+            
+            serializer.ArgumentData(2,%atrim(arg2),FieldDataType.AlphaField,10,0,false)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 3 (REQUIRED INOUT p3 A10)
+            
+            serializer.ArgumentData(3,%atrim(arg3),FieldDataType.AlphaField,10,0,false)
+        endmethod
+
+    endclass
+
+    ;;-------------------------------------------------------------------------
+    ;;; <summary>
+    ;;; Dispatcher for method MyApi.AAA_AlphaArray
+    ;;; </summary>
+    public class AAA_AlphaArray_Dispatcher extends RoutineStub
+
+
+        public method AAA_AlphaArray_Dispatcher
+        proc
+            ;;Initialize the meta data for any data objects that are used by parameters to the method
+        endmethod
+
+        protected override method DispatchInternal, void
+            required in name,       string
+            required in callFrame,  JSON_ELEMENT
+            required in serializer, @DispatchSerializer
+            required in dispatcher, @RoutineDispatcher
+            record
+                requestId,          int
+                arguments,          JSON_ELEMENT
+                argumentDefinition, @ArgumentDataDefinition
+
+                ;;Argument 1 (REQUIRED IN p1 [*]A10)
+                arg1Array,          JSON_ELEMENT
+                arg1Handle,         D_HANDLE
+                arg1HandlePos,      int
+                ;;Argument 2 (REQUIRED OUT p2 [*]A10)
+                arg2Handle,         D_HANDLE
+                arg2HandlePos,      int
+                ;;Argument 3 (REQUIRED INOUT p3 [*]A10)
+                arg3Array,          JSON_ELEMENT
+                arg3Handle,         D_HANDLE
+                arg3HandlePos,      int
+            endrecord
+
+            ;;Temp structure tempstr1
+            structure tempstr1
+                arry, [1]A10
+            endstructure
+
+            ;;Temp structure tempstr2
+            structure tempstr2
+                arry, [1]A10
+            endstructure
+
+            ;;Temp structure tempstr3
+            structure tempstr3
+                arry, [1]A10
+            endstructure
+
+
+        proc
+
+            ;;------------------------------------------------------------
+            ;;Process inbound arguments
+
+            arguments = callFrame.GetProperty("params")
+
+            ;;Argument 1 (REQUIRED IN p1 [*]A10)
+            argumentDefinition = dispatcher.GetArgumentDataDefForCollection(arguments[1],10)
+            arg1Array = arguments[1].GetProperty("PassedValue")
+            arg1Handle = %mem_proc(DM_ALLOC,argumentDefinition.ElementSize*arg1Array.GetArrayLength())
+            arg1HandlePos = 1
+            dispatcher.UnwrapObjectCollection(^m(arg1Handle),argumentDefinition,arg1HandlePos,arg1Array)
+
+            ;;Argument 3 (REQUIRED INOUT p3 [*]A10)
+            argumentDefinition = dispatcher.GetArgumentDataDefForCollection(arguments[3],10)
+            arg3Array = arguments[3].GetProperty("PassedValue")
+            arg3Handle = %mem_proc(DM_ALLOC,argumentDefinition.ElementSize*arg3Array.GetArrayLength())
+            arg3HandlePos = 1
+            dispatcher.UnwrapObjectCollection(^m(arg3Handle),argumentDefinition,arg3HandlePos,arg3Array)
+
+            ;;------------------------------------------------------------
+            ;; Call the underlying routine
+
+            xcall AAA_AlphaArray(^m(tempstr1.arry,arg1Handle),^m(tempstr2.arry,arg2Handle),^m(tempstr3.arry,arg3Handle))
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 2 (REQUIRED OUT p2 [*]A10)
+            
+			serializer.ArgumentHandleData(2,arg2Handle,FieldDataType.AlphaArrayField,10,0,%mem_proc(DM_GETSIZE,arg2Handle)/10,false)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 3 (REQUIRED INOUT p3 [*]A10)
+            
+			serializer.ArgumentHandleData(3,arg3Handle,FieldDataType.AlphaArrayField,10,0,%mem_proc(DM_GETSIZE,arg3Handle)/10,false)
+        endmethod
+
+    endclass
+
+    ;;-------------------------------------------------------------------------
+    ;;; <summary>
+    ;;; Dispatcher for method MyApi.AAA_AlphaCollection
+    ;;; </summary>
+    public class AAA_AlphaCollection_Dispatcher extends RoutineStub
+
+
+        public method AAA_AlphaCollection_Dispatcher
+        proc
+            ;;Initialize the meta data for any data objects that are used by parameters to the method
+        endmethod
+
+        protected override method DispatchInternal, void
+            required in name,       string
+            required in callFrame,  JSON_ELEMENT
+            required in serializer, @DispatchSerializer
+            required in dispatcher, @RoutineDispatcher
+            record
+                requestId,          int
+                arguments,          JSON_ELEMENT
+                argumentDefinition, @ArgumentDataDefinition
+
+                ;;Argument 1 (REQUIRED IN p1 ArrayList collection of A10)
+                arg1Array,          JSON_ELEMENT
+                arg1,               @ArrayList
+                ;;Argument 2 (REQUIRED OUT p2 ArrayList collection of A10)
+                arg2,               @ArrayList
+            endrecord
+
+
+        proc
+
+            ;;------------------------------------------------------------
+            ;;Process inbound arguments
+
+            arguments = callFrame.GetProperty("params")
+
+            ;;Argument 1 (REQUIRED IN p1 ArrayList collection of A10)
+            argumentDefinition = dispatcher.GetArgumentDataDefForCollection(arguments[1],10)
+            arg1Array = arguments[1].GetProperty("PassedValue")
+            arg1 = new ArrayList()
+            dispatcher.UnwrapObjectCollection(argumentDefinition,arg1Array,arg1)
+
+            ;;------------------------------------------------------------
+            ;; Call the underlying routine
+
+            xcall AAA_AlphaCollection(arg1,arg2)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 2 (REQUIRED OUT p2 ArrayList collection of A10)
+            
+            serializer.ArgumentData(2,arg2,FieldDataType.AlphaArrayField,10,0,false)
+        endmethod
+
+    endclass
+
+    ;;-------------------------------------------------------------------------
+    ;;; <summary>
+    ;;; Dispatcher for method MyApi.AAA_BinaryHandle
+    ;;; </summary>
+    public class AAA_BinaryHandle_Dispatcher extends RoutineStub
+
+
+        public method AAA_BinaryHandle_Dispatcher
+        proc
+            ;;Initialize the meta data for any data objects that are used by parameters to the method
+        endmethod
+
+        protected override method DispatchInternal, void
+            required in name,       string
+            required in callFrame,  JSON_ELEMENT
+            required in serializer, @DispatchSerializer
+            required in dispatcher, @RoutineDispatcher
+            record
+                requestId,          int
+                arguments,          JSON_ELEMENT
+                argumentDefinition, @ArgumentDataDefinition
+
+                ;;Argument 1 (REQUIRED IN p1 D_HANDLE)
+                arg1,               d_handle
+                ;;Argument 2 (REQUIRED OUT p2 D_HANDLE)
+                arg2,               d_handle
+                ;;Argument 3 (REQUIRED INOUT p3 D_HANDLE)
+                arg3,               d_handle
+            endrecord
+
+
+        proc
+
+            ;;------------------------------------------------------------
+            ;;Process inbound arguments
+
+            arguments = callFrame.GetProperty("params")
+
+            ;;Argument 1 (REQUIRED IN p1 D_HANDLE)
+            ;TODO: Template needs code for BINARY HANDLE arguments!
+            arg1 =
+
+            ;;Argument 3 (REQUIRED INOUT p3 D_HANDLE)
+            ;TODO: Template needs code for BINARY HANDLE arguments!
+            arg3 =
+
+            ;;------------------------------------------------------------
+            ;; Call the underlying routine
+
+            xcall AAA_BinaryHandle(arg1,arg2,arg3)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 2 (REQUIRED OUT p2 D_HANDLE)
+            
+            ;TODO: Binary Handle support is incomplete and will FAIL!!!
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 3 (REQUIRED INOUT p3 D_HANDLE)
+            
+            ;TODO: Binary Handle support is incomplete and will FAIL!!!
+        endmethod
+
+    endclass
+
+    ;;-------------------------------------------------------------------------
+    ;;; <summary>
+    ;;; Dispatcher for method MyApi.AAA_Decimal
+    ;;; </summary>
+    public class AAA_Decimal_Dispatcher extends RoutineStub
+
+
+        public method AAA_Decimal_Dispatcher
+        proc
+            ;;Initialize the meta data for any data objects that are used by parameters to the method
+        endmethod
+
+        protected override method DispatchInternal, void
+            required in name,       string
+            required in callFrame,  JSON_ELEMENT
+            required in serializer, @DispatchSerializer
+            required in dispatcher, @RoutineDispatcher
+            record
+                requestId,          int
+                arguments,          JSON_ELEMENT
+                argumentDefinition, @ArgumentDataDefinition
+
+                ;;Argument 1 (REQUIRED IN p1 D8)
+                arg1,               d8
+                ;;Argument 2 (REQUIRED OUT p2 D8)
+                arg2,               d8
+                ;;Argument 3 (REQUIRED INOUT p3 D8)
+                arg3,               d8
+                ;;Argument 4 (REQUIRED IN p4 D3)
+                arg4,               d3
+                ;;Argument 5 (REQUIRED OUT p5 D3)
+                arg5,               d3
+                ;;Argument 6 (REQUIRED INOUT p6 D3)
+                arg6,               d3
+                ;;Argument 7 (REQUIRED IN p7 D5)
+                arg7,               d5
+                ;;Argument 8 (REQUIRED OUT p8 D5)
+                arg8,               d5
+                ;;Argument 9 (REQUIRED INOUT p9 D5)
+                arg9,               d5
+                ;;Argument 10 (REQUIRED IN p10 D8)
+                arg10,               d8
+                ;;Argument 11 (REQUIRED OUT p11 D8)
+                arg11,               d8
+                ;;Argument 12 (REQUIRED INOUT p12 D8)
+                arg12,               d8
+                ;;Argument 13 (REQUIRED IN p13 D8)
+                arg13,               d8
+                ;;Argument 14 (REQUIRED OUT p14 D8)
+                arg14,               d8
+                ;;Argument 15 (REQUIRED INOUT p15 D8)
+                arg15,               d8
+                ;;Argument 16 (REQUIRED IN p16 D1)
+                arg16,               d1
+                ;;Argument 17 (REQUIRED OUT p17 D1)
+                arg17,               d1
+                ;;Argument 18 (REQUIRED INOUT p18 D1)
+                arg18,               d1
+                ;;Argument 19 (REQUIRED IN p19 D5)
+                arg19,               d5
+                ;;Argument 20 (REQUIRED OUT p20 D5)
+                arg20,               d5
+                ;;Argument 21 (REQUIRED INOUT p21 D5)
+                arg21,               d5
+                ;;Argument 22 (REQUIRED IN p22 D8)
+                arg22,               d8
+                ;;Argument 23 (REQUIRED OUT p23 D8)
+                arg23,               d8
+                ;;Argument 24 (REQUIRED INOUT p24 D8)
+                arg24,               d8
+                ;;Argument 25 (REQUIRED IN p25 D8)
+                arg25,               d8
+                ;;Argument 26 (REQUIRED OUT p26 D8)
+                arg26,               d8
+                ;;Argument 27 (REQUIRED INOUT p27 D8)
+                arg27,               d8
+                ;;Argument 28 (REQUIRED IN p28 D1)
+                arg28,               d1
+                ;;Argument 29 (REQUIRED OUT p29 D1)
+                arg29,               d1
+                ;;Argument 30 (REQUIRED INOUT p30 D1)
+                arg30,               d1
+                ;;Argument 31 (REQUIRED IN p31 D8 YYYYMMDD date)
+                arg31,               d8
+                ;;Argument 32 (REQUIRED OUT p32 D8 YYYYMMDD date)
+                arg32,               d8
+                ;;Argument 33 (REQUIRED INOUT p33 D8 YYYYMMDD date)
+                arg33,               d8
+                ;;Argument 34 (REQUIRED IN p34 D8 YYYYMMDD date)
+                arg34,               d8
+                ;;Argument 35 (REQUIRED OUT p35 D8 YYYYMMDD date)
+                arg35,               d8
+                ;;Argument 36 (REQUIRED INOUT p36 D8 YYYYMMDD date)
+                arg36,               d8
+                ;;Argument 37 (REQUIRED IN p37 D8)
+                arg37,               d8
+                ;;Argument 38 (REQUIRED OUT p38 D8)
+                arg38,               d8
+                ;;Argument 39 (REQUIRED INOUT p39 D8)
+                arg39,               d8
+                ;;Argument 40 (REQUIRED IN p40 D8)
+                arg40,               d8
+                ;;Argument 41 (REQUIRED OUT p41 D8)
+                arg41,               d8
+                ;;Argument 42 (REQUIRED INOUT p42 D8)
+                arg42,               d8
+                returnValue,         D8
+            endrecord
+
+
+        proc
+
+            ;;------------------------------------------------------------
+            ;;Process inbound arguments
+
+            arguments = callFrame.GetProperty("params")
+
+            ;;Argument 1 (REQUIRED IN p1 D8)
+            arg1 = dispatcher.GetDecimal(arguments[1])
+
+            ;;Argument 3 (REQUIRED INOUT p3 D8)
+            arg3 = dispatcher.GetDecimal(arguments[3])
+
+            ;;Argument 4 (REQUIRED IN p4 D3)
+            arg4 = dispatcher.GetDecimal(arguments[4])
+
+            ;;Argument 6 (REQUIRED INOUT p6 D3)
+            arg6 = dispatcher.GetDecimal(arguments[6])
+
+            ;;Argument 7 (REQUIRED IN p7 D5)
+            arg7 = dispatcher.GetDecimal(arguments[7])
+
+            ;;Argument 9 (REQUIRED INOUT p9 D5)
+            arg9 = dispatcher.GetDecimal(arguments[9])
+
+            ;;Argument 10 (REQUIRED IN p10 D8)
+            arg10 = dispatcher.GetDecimal(arguments[10])
+
+            ;;Argument 12 (REQUIRED INOUT p12 D8)
+            arg12 = dispatcher.GetDecimal(arguments[12])
+
+            ;;Argument 13 (REQUIRED IN p13 D8)
+            arg13 = dispatcher.GetDecimal(arguments[13])
+
+            ;;Argument 15 (REQUIRED INOUT p15 D8)
+            arg15 = dispatcher.GetDecimal(arguments[15])
+
+            ;;Argument 16 (REQUIRED IN p16 D1)
+            arg16 = dispatcher.GetDecimal(arguments[16])
+
+            ;;Argument 18 (REQUIRED INOUT p18 D1)
+            arg18 = dispatcher.GetDecimal(arguments[18])
+
+            ;;Argument 19 (REQUIRED IN p19 D5)
+            arg19 = dispatcher.GetDecimal(arguments[19])
+
+            ;;Argument 21 (REQUIRED INOUT p21 D5)
+            arg21 = dispatcher.GetDecimal(arguments[21])
+
+            ;;Argument 22 (REQUIRED IN p22 D8)
+            arg22 = dispatcher.GetDecimal(arguments[22])
+
+            ;;Argument 24 (REQUIRED INOUT p24 D8)
+            arg24 = dispatcher.GetDecimal(arguments[24])
+
+            ;;Argument 25 (REQUIRED IN p25 D8)
+            arg25 = dispatcher.GetDecimal(arguments[25])
+
+            ;;Argument 27 (REQUIRED INOUT p27 D8)
+            arg27 = dispatcher.GetDecimal(arguments[27])
+
+            ;;Argument 28 (REQUIRED IN p28 D1)
+            arg28 = dispatcher.GetDecimal(arguments[28])
+
+            ;;Argument 30 (REQUIRED INOUT p30 D1)
+            arg30 = dispatcher.GetDecimal(arguments[30])
+
+            ;;Argument 31 (REQUIRED IN p31 D8 YYYYMMDD date)
+            arg31 = dispatcher.GetDecimal(arguments[31])
+
+            ;;Argument 33 (REQUIRED INOUT p33 D8 YYYYMMDD date)
+            arg33 = dispatcher.GetDecimal(arguments[33])
+
+            ;;Argument 34 (REQUIRED IN p34 D8 YYYYMMDD date)
+            arg34 = dispatcher.GetDecimal(arguments[34])
+
+            ;;Argument 36 (REQUIRED INOUT p36 D8 YYYYMMDD date)
+            arg36 = dispatcher.GetDecimal(arguments[36])
+
+            ;;Argument 37 (REQUIRED IN p37 D8)
+            arg37 = dispatcher.GetDecimal(arguments[37])
+
+            ;;Argument 39 (REQUIRED INOUT p39 D8)
+            arg39 = dispatcher.GetDecimal(arguments[39])
+
+            ;;Argument 40 (REQUIRED IN p40 D8)
+            arg40 = dispatcher.GetDecimal(arguments[40])
+
+            ;;Argument 42 (REQUIRED INOUT p42 D8)
+            arg42 = dispatcher.GetDecimal(arguments[42])
+
+            ;;------------------------------------------------------------
+            ;; Call the underlying routine
+
+            returnValue = %AAA_Decimal(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10,arg11,arg12,arg13,arg14,arg15,arg16,arg17,arg18,arg19,arg20,arg21,arg22,arg23,arg24,arg25,arg26,arg27,arg28,arg29,arg30,arg31,arg32,arg33,arg34,arg35,arg36,arg37,arg38,arg39,arg40,arg41,arg42)
+
+            ;;Function return value
+            serializer.ArgumentData(0,returnValue,FieldDataType.DecimalField,8,0,false)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 2 (REQUIRED OUT p2 D8)
+            
+            serializer.ArgumentData(2,arg2,FieldDataType.DecimalField,8,0,false)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 3 (REQUIRED INOUT p3 D8)
+            
+            serializer.ArgumentData(3,arg3,FieldDataType.DecimalField,8,0,false)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 5 (REQUIRED OUT p5 D3)
+            
+            serializer.ArgumentData(5,arg5,FieldDataType.DecimalField,3,0,false)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 6 (REQUIRED INOUT p6 D3)
+            
+            serializer.ArgumentData(6,arg6,FieldDataType.DecimalField,3,0,false)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 8 (REQUIRED OUT p8 D5)
+            
+            serializer.ArgumentData(8,arg8,FieldDataType.DecimalField,5,0,false)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 9 (REQUIRED INOUT p9 D5)
+            
+            serializer.ArgumentData(9,arg9,FieldDataType.DecimalField,5,0,false)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 11 (REQUIRED OUT p11 D8)
+            
+            serializer.ArgumentData(11,arg11,FieldDataType.DecimalField,8,0,false)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 12 (REQUIRED INOUT p12 D8)
+            
+            serializer.ArgumentData(12,arg12,FieldDataType.DecimalField,8,0,false)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 14 (REQUIRED OUT p14 D8)
+            
+            serializer.ArgumentData(14,arg14,FieldDataType.DecimalField,8,0,false)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 15 (REQUIRED INOUT p15 D8)
+            
+            serializer.ArgumentData(15,arg15,FieldDataType.DecimalField,8,0,false)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 17 (REQUIRED OUT p17 D1)
+            
+            serializer.ArgumentData(17,arg17,FieldDataType.DecimalField,1,0,false)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 18 (REQUIRED INOUT p18 D1)
+            
+            serializer.ArgumentData(18,arg18,FieldDataType.DecimalField,1,0,false)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 20 (REQUIRED OUT p20 D5)
+            
+            serializer.ArgumentData(20,arg20,FieldDataType.DecimalField,5,0,false)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 21 (REQUIRED INOUT p21 D5)
+            
+            serializer.ArgumentData(21,arg21,FieldDataType.DecimalField,5,0,false)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 23 (REQUIRED OUT p23 D8)
+            
+            serializer.ArgumentData(23,arg23,FieldDataType.DecimalField,8,0,false)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 24 (REQUIRED INOUT p24 D8)
+            
+            serializer.ArgumentData(24,arg24,FieldDataType.DecimalField,8,0,false)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 26 (REQUIRED OUT p26 D8)
+            
+            serializer.ArgumentData(26,arg26,FieldDataType.DecimalField,8,0,false)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 27 (REQUIRED INOUT p27 D8)
+            
+            serializer.ArgumentData(27,arg27,FieldDataType.DecimalField,8,0,false)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 29 (REQUIRED OUT p29 D1)
+            
+            serializer.ArgumentData(29,arg29,FieldDataType.DecimalField,1,0,false)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 30 (REQUIRED INOUT p30 D1)
+            
+            serializer.ArgumentData(30,arg30,FieldDataType.DecimalField,1,0,false)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 32 (REQUIRED OUT p32 D8 YYYYMMDD date)
+            
+            serializer.ArgumentData(32,arg32,FieldDataType.DecimalField,8,0,false)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 33 (REQUIRED INOUT p33 D8 YYYYMMDD date)
+            
+            serializer.ArgumentData(33,arg33,FieldDataType.DecimalField,8,0,false)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 35 (REQUIRED OUT p35 D8 YYYYMMDD date)
+            
+            serializer.ArgumentData(35,arg35,FieldDataType.DecimalField,8,0,false)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 36 (REQUIRED INOUT p36 D8 YYYYMMDD date)
+            
+            serializer.ArgumentData(36,arg36,FieldDataType.DecimalField,8,0,false)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 38 (REQUIRED OUT p38 D8)
+            
+            serializer.ArgumentData(38,arg38,FieldDataType.DecimalField,8,0,false)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 39 (REQUIRED INOUT p39 D8)
+            
+            serializer.ArgumentData(39,arg39,FieldDataType.DecimalField,8,0,false)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 41 (REQUIRED OUT p41 D8)
+            
+            serializer.ArgumentData(41,arg41,FieldDataType.DecimalField,8,0,false)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 42 (REQUIRED INOUT p42 D8)
+            
+            serializer.ArgumentData(42,arg42,FieldDataType.DecimalField,8,0,false)
+        endmethod
+
+    endclass
+
+    ;;-------------------------------------------------------------------------
+    ;;; <summary>
+    ;;; Dispatcher for method MyApi.AAA_DecimalArray
+    ;;; </summary>
+    public class AAA_DecimalArray_Dispatcher extends RoutineStub
+
+
+        public method AAA_DecimalArray_Dispatcher
+        proc
+            ;;Initialize the meta data for any data objects that are used by parameters to the method
+        endmethod
+
+        protected override method DispatchInternal, void
+            required in name,       string
+            required in callFrame,  JSON_ELEMENT
+            required in serializer, @DispatchSerializer
+            required in dispatcher, @RoutineDispatcher
+            record
+                requestId,          int
+                arguments,          JSON_ELEMENT
+                argumentDefinition, @ArgumentDataDefinition
+
+                ;;Argument 1 (REQUIRED IN p1 [*]D8)
+                arg1Array,          JSON_ELEMENT
+                arg1Handle,         D_HANDLE
+                arg1HandlePos,      int
+                ;;Argument 2 (REQUIRED OUT p2 [*]D8)
+                arg2Handle,         D_HANDLE
+                arg2HandlePos,      int
+                ;;Argument 3 (REQUIRED INOUT p3 [*]D8)
+                arg3Array,          JSON_ELEMENT
+                arg3Handle,         D_HANDLE
+                arg3HandlePos,      int
+            endrecord
+
+            ;;Temp structure tempstr1
+            structure tempstr1
+                arry, [1]D8
+            endstructure
+
+            ;;Temp structure tempstr2
+            structure tempstr2
+                arry, [1]D8
+            endstructure
+
+            ;;Temp structure tempstr3
+            structure tempstr3
+                arry, [1]D8
+            endstructure
+
+
+        proc
+
+            ;;------------------------------------------------------------
+            ;;Process inbound arguments
+
+            arguments = callFrame.GetProperty("params")
+
+            ;;Argument 1 (REQUIRED IN p1 [*]D8)
+            argumentDefinition = dispatcher.GetArgumentDataDefForCollection(arguments[1],8)
+            arg1Array = arguments[1].GetProperty("PassedValue")
+            arg1Handle = %mem_proc(DM_ALLOC,argumentDefinition.ElementSize*arg1Array.GetArrayLength())
+            arg1HandlePos = 1
+            dispatcher.UnwrapObjectCollection(^m(arg1Handle),argumentDefinition,arg1HandlePos,arg1Array)
+
+            ;;Argument 3 (REQUIRED INOUT p3 [*]D8)
+            argumentDefinition = dispatcher.GetArgumentDataDefForCollection(arguments[3],8)
+            arg3Array = arguments[3].GetProperty("PassedValue")
+            arg3Handle = %mem_proc(DM_ALLOC,argumentDefinition.ElementSize*arg3Array.GetArrayLength())
+            arg3HandlePos = 1
+            dispatcher.UnwrapObjectCollection(^m(arg3Handle),argumentDefinition,arg3HandlePos,arg3Array)
+
+            ;;------------------------------------------------------------
+            ;; Call the underlying routine
+
+            xcall AAA_DecimalArray(^m(tempstr1.arry,arg1Handle),^m(tempstr2.arry,arg2Handle),^m(tempstr3.arry,arg3Handle))
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 2 (REQUIRED OUT p2 [*]D8)
+            
+            serializer.ArgumentHandleData(2,arg2Handle,FieldDataType.DecimalArrayField,8,0,%mem_proc(DM_GETSIZE,arg2Handle)/8,false)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 3 (REQUIRED INOUT p3 [*]D8)
+            
+            serializer.ArgumentHandleData(3,arg3Handle,FieldDataType.DecimalArrayField,8,0,%mem_proc(DM_GETSIZE,arg3Handle)/8,false)
+        endmethod
+
+    endclass
+
+    ;;-------------------------------------------------------------------------
+    ;;; <summary>
+    ;;; Dispatcher for method MyApi.AAA_DecimalCollection
+    ;;; </summary>
+    public class AAA_DecimalCollection_Dispatcher extends RoutineStub
+
+
+        public method AAA_DecimalCollection_Dispatcher
+        proc
+            ;;Initialize the meta data for any data objects that are used by parameters to the method
+        endmethod
+
+        protected override method DispatchInternal, void
+            required in name,       string
+            required in callFrame,  JSON_ELEMENT
+            required in serializer, @DispatchSerializer
+            required in dispatcher, @RoutineDispatcher
+            record
+                requestId,          int
+                arguments,          JSON_ELEMENT
+                argumentDefinition, @ArgumentDataDefinition
+
+                ;;Argument 1 (REQUIRED IN p1 ArrayList collection of D10)
+                arg1Array,          JSON_ELEMENT
+                arg1,               @ArrayList
+                ;;Argument 2 (REQUIRED OUT p2 ArrayList collection of D10)
+                arg2,               @ArrayList
+            endrecord
+
+
+        proc
+
+            ;;------------------------------------------------------------
+            ;;Process inbound arguments
+
+            arguments = callFrame.GetProperty("params")
+
+            ;;Argument 1 (REQUIRED IN p1 ArrayList collection of D10)
+            argumentDefinition = dispatcher.GetArgumentDataDefForCollection(arguments[1],10)
+            arg1Array = arguments[1].GetProperty("PassedValue")
+            arg1 = new ArrayList()
+            dispatcher.UnwrapObjectCollection(argumentDefinition,arg1Array,arg1)
+
+            ;;------------------------------------------------------------
+            ;; Call the underlying routine
+
+            xcall AAA_DecimalCollection(arg1,arg2)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 2 (REQUIRED OUT p2 ArrayList collection of D10)
+            
+            serializer.ArgumentData(2,arg2,FieldDataType.DecimalArrayField,10,0,false)
+        endmethod
+
+    endclass
+
+    ;;-------------------------------------------------------------------------
+    ;;; <summary>
+    ;;; Dispatcher for method MyApi.AAA_Enum
+    ;;; </summary>
+    public class AAA_Enum_Dispatcher extends RoutineStub
+
+
+        public method AAA_Enum_Dispatcher
+        proc
+            ;;Initialize the meta data for any data objects that are used by parameters to the method
+        endmethod
+
+        protected override method DispatchInternal, void
+            required in name,       string
+            required in callFrame,  JSON_ELEMENT
+            required in serializer, @DispatchSerializer
+            required in dispatcher, @RoutineDispatcher
+            record
+                requestId,          int
+                arguments,          JSON_ELEMENT
+                argumentDefinition, @ArgumentDataDefinition
+
+                ;;Argument 1 (REQUIRED IN p1 enum TESTENUM)
+                arg1,               testenum
+                ;;Argument 2 (REQUIRED OUT p2 enum TESTENUM)
+                arg2,               testenum
+                ;;Argument 3 (REQUIRED INOUT p3 enum TESTENUM)
+                arg3,               testenum
+                returnValue,         TESTENUM
+            endrecord
+
+
+        proc
+
+            ;;------------------------------------------------------------
+            ;;Process inbound arguments
+
+            arguments = callFrame.GetProperty("params")
+
+            ;;Argument 1 (REQUIRED IN p1 enum TESTENUM)
+            arg1 = (TESTENUM)dispatcher.GetInt(arguments[1])
+
+            ;;Argument 3 (REQUIRED INOUT p3 enum TESTENUM)
+            arg3 = (TESTENUM)dispatcher.GetInt(arguments[3])
+
+            ;;------------------------------------------------------------
+            ;; Call the underlying routine
+
+            returnValue = %AAA_Enum(arg1,arg2,arg3)
+
+            ;;Function return value
+            serializer.ArgumentData(0,returnValue,FieldDataType.EnumField,4,0,false)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 2 (REQUIRED OUT p2 enum TESTENUM)
+            
+            ;TODO: Do we need custom processing for enum fields beyond the integer value?
+            serializer.ArgumentData(2,arg2,FieldDataType.IntegerField,4,0,false)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 3 (REQUIRED INOUT p3 enum TESTENUM)
+            
+            ;TODO: Do we need custom processing for enum fields beyond the integer value?
+            serializer.ArgumentData(3,arg3,FieldDataType.IntegerField,4,0,false)
+        endmethod
+
+    endclass
+
+    ;;-------------------------------------------------------------------------
+    ;;; <summary>
+    ;;; Dispatcher for method MyApi.AAA_Handle
+    ;;; </summary>
+    public class AAA_Handle_Dispatcher extends RoutineStub
+
+
+        public method AAA_Handle_Dispatcher
+        proc
+            ;;Initialize the meta data for any data objects that are used by parameters to the method
+        endmethod
+
+        protected override method DispatchInternal, void
+            required in name,       string
+            required in callFrame,  JSON_ELEMENT
+            required in serializer, @DispatchSerializer
+            required in dispatcher, @RoutineDispatcher
+            record
+                requestId,          int
+                arguments,          JSON_ELEMENT
+                argumentDefinition, @ArgumentDataDefinition
+
+                ;;Argument 1 (REQUIRED IN p1 D_HANDLE)
+                arg1,               d_handle
+                ;;Argument 2 (REQUIRED OUT p2 D_HANDLE)
+                arg2,               d_handle
+                ;;Argument 3 (REQUIRED INOUT p3 D_HANDLE)
+                arg3,               d_handle
+            endrecord
+
+
+        proc
+
+            ;;------------------------------------------------------------
+            ;;Process inbound arguments
+
+            arguments = callFrame.GetProperty("params")
+
+            ;;Argument 1 (REQUIRED IN p1 D_HANDLE)
+            ;TODO: Template needs code for HANDLE arguments!
+            arg1 = 
+
+            ;;Argument 3 (REQUIRED INOUT p3 D_HANDLE)
+            ;TODO: Template needs code for HANDLE arguments!
+            arg3 = 
+
+            ;;------------------------------------------------------------
+            ;; Call the underlying routine
+
+            xcall AAA_Handle(arg1,arg2,arg3)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 2 (REQUIRED OUT p2 D_HANDLE)
+            
+            ;TODO: Handle support is incomplete and will FAIL!!!
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 3 (REQUIRED INOUT p3 D_HANDLE)
+            
+            ;TODO: Handle support is incomplete and will FAIL!!!
+        endmethod
+
+    endclass
+
+    ;;-------------------------------------------------------------------------
+    ;;; <summary>
+    ;;; Dispatcher for method MyApi.AAA_HatVal
+    ;;; </summary>
+    public class AAA_HatVal_Dispatcher extends RoutineStub
+
+
+        public method AAA_HatVal_Dispatcher
+        proc
+            ;;Initialize the meta data for any data objects that are used by parameters to the method
+        endmethod
+
+        protected override method DispatchInternal, void
+            required in name,       string
+            required in callFrame,  JSON_ELEMENT
+            required in serializer, @DispatchSerializer
+            required in dispatcher, @RoutineDispatcher
+            record
+                requestId,          int
+                arguments,          JSON_ELEMENT
+                argumentDefinition, @ArgumentDataDefinition
+
+                returnValue,         i4
+            endrecord
+
+
+        proc
+
+            ;;------------------------------------------------------------
+            ;;Process inbound arguments
+
+            ;;There are no inbound arguments to process
+
+            ;;------------------------------------------------------------
+            ;; Call the underlying routine
+
+            returnValue = %AAA_HatVal()
+
+            ;;Function return value
+            serializer.ArgumentData(0,returnValue,FieldDataType.IntegerField,4,0,false)
+        endmethod
+
+    endclass
+
+    ;;-------------------------------------------------------------------------
+    ;;; <summary>
+    ;;; Dispatcher for method MyApi.AAA_Implied
+    ;;; </summary>
+    public class AAA_Implied_Dispatcher extends RoutineStub
+
+
+        public method AAA_Implied_Dispatcher
+        proc
+            ;;Initialize the meta data for any data objects that are used by parameters to the method
+        endmethod
+
+        protected override method DispatchInternal, void
+            required in name,       string
+            required in callFrame,  JSON_ELEMENT
+            required in serializer, @DispatchSerializer
+            required in dispatcher, @RoutineDispatcher
+            record
+                requestId,          int
+                arguments,          JSON_ELEMENT
+                argumentDefinition, @ArgumentDataDefinition
+
+                ;;Argument 1 (REQUIRED IN p1 D8.2)
+                arg1,               d8.2
+                ;;Argument 2 (REQUIRED OUT p2 D8.2)
+                arg2,               d8.2
+                ;;Argument 3 (REQUIRED INOUT p3 D8.2)
+                arg3,               d8.2
+                returnValue,         D8.2
+            endrecord
+
+
+        proc
+
+            ;;------------------------------------------------------------
+            ;;Process inbound arguments
+
+            arguments = callFrame.GetProperty("params")
+
+            ;;Argument 1 (REQUIRED IN p1 D8.2)
+            arg1 = dispatcher.GetImplied(arguments[1])
+
+            ;;Argument 3 (REQUIRED INOUT p3 D8.2)
+            arg3 = dispatcher.GetImplied(arguments[3])
+
+            ;;------------------------------------------------------------
+            ;; Call the underlying routine
+
+            returnValue = %AAA_Implied(arg1,arg2,arg3)
+
+            ;;Function return value
+            serializer.ArgumentData(0,returnValue,FieldDataType.ImpliedDecimalField,8,2,false)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 2 (REQUIRED OUT p2 D8.2)
+            
+            serializer.ArgumentData(2,arg2,FieldDataType.ImpliedDecimalField,8,2,false)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 3 (REQUIRED INOUT p3 D8.2)
+            
+            serializer.ArgumentData(3,arg3,FieldDataType.ImpliedDecimalField,8,2,false)
+        endmethod
+
+    endclass
+
+    ;;-------------------------------------------------------------------------
+    ;;; <summary>
+    ;;; Dispatcher for method MyApi.AAA_ImpliedArray
+    ;;; </summary>
+    public class AAA_ImpliedArray_Dispatcher extends RoutineStub
+
+
+        public method AAA_ImpliedArray_Dispatcher
+        proc
+            ;;Initialize the meta data for any data objects that are used by parameters to the method
+        endmethod
+
+        protected override method DispatchInternal, void
+            required in name,       string
+            required in callFrame,  JSON_ELEMENT
+            required in serializer, @DispatchSerializer
+            required in dispatcher, @RoutineDispatcher
+            record
+                requestId,          int
+                arguments,          JSON_ELEMENT
+                argumentDefinition, @ArgumentDataDefinition
+
+                ;;Argument 1 (REQUIRED IN p1 [*]D8.2)
+                arg1Array,          JSON_ELEMENT
+                arg1Handle,         D_HANDLE
+                arg1HandlePos,      int
+                ;;Argument 2 (REQUIRED OUT p2 [*]D8.2)
+                arg2Handle,         D_HANDLE
+                arg2HandlePos,      int
+                ;;Argument 3 (REQUIRED INOUT p3 [*]D8.2)
+                arg3Array,          JSON_ELEMENT
+                arg3Handle,         D_HANDLE
+                arg3HandlePos,      int
+            endrecord
+
+            ;;Temp structure tempstr1
+            structure tempstr1
+                arry, [1]D8.2
+            endstructure
+
+            ;;Temp structure tempstr2
+            structure tempstr2
+                arry, [1]D8.2
+            endstructure
+
+            ;;Temp structure tempstr3
+            structure tempstr3
+                arry, [1]D8.2
+            endstructure
+
+
+        proc
+
+            ;;------------------------------------------------------------
+            ;;Process inbound arguments
+
+            arguments = callFrame.GetProperty("params")
+
+            ;;Argument 1 (REQUIRED IN p1 [*]D8.2)
+            argumentDefinition = dispatcher.GetArgumentDataDefForCollection(arguments[1],8)
+            arg1Array = arguments[1].GetProperty("PassedValue")
+            arg1Handle = %mem_proc(DM_ALLOC,argumentDefinition.ElementSize*arg1Array.GetArrayLength())
+            arg1HandlePos = 1
+            dispatcher.UnwrapObjectCollection(^m(arg1Handle),argumentDefinition,arg1HandlePos,arg1Array)
+
+            ;;Argument 3 (REQUIRED INOUT p3 [*]D8.2)
+            argumentDefinition = dispatcher.GetArgumentDataDefForCollection(arguments[3],8)
+            arg3Array = arguments[3].GetProperty("PassedValue")
+            arg3Handle = %mem_proc(DM_ALLOC,argumentDefinition.ElementSize*arg3Array.GetArrayLength())
+            arg3HandlePos = 1
+            dispatcher.UnwrapObjectCollection(^m(arg3Handle),argumentDefinition,arg3HandlePos,arg3Array)
+
+            ;;------------------------------------------------------------
+            ;; Call the underlying routine
+
+            xcall AAA_ImpliedArray(^m(tempstr1.arry,arg1Handle),^m(tempstr2.arry,arg2Handle),^m(tempstr3.arry,arg3Handle))
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 2 (REQUIRED OUT p2 [*]D8.2)
+            
+            serializer.ArgumentHandleData(2,arg2Handle,FieldDataType.ImpliedDecimalArrayField,8,2,%mem_proc(DM_GETSIZE,arg2Handle)/8,false)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 3 (REQUIRED INOUT p3 [*]D8.2)
+            
+            serializer.ArgumentHandleData(3,arg3Handle,FieldDataType.ImpliedDecimalArrayField,8,2,%mem_proc(DM_GETSIZE,arg3Handle)/8,false)
+        endmethod
+
+    endclass
+
+    ;;-------------------------------------------------------------------------
+    ;;; <summary>
+    ;;; Dispatcher for method MyApi.AAA_ImpliedCollection
+    ;;; </summary>
+    public class AAA_ImpliedCollection_Dispatcher extends RoutineStub
+
+
+        public method AAA_ImpliedCollection_Dispatcher
+        proc
+            ;;Initialize the meta data for any data objects that are used by parameters to the method
+        endmethod
+
+        protected override method DispatchInternal, void
+            required in name,       string
+            required in callFrame,  JSON_ELEMENT
+            required in serializer, @DispatchSerializer
+            required in dispatcher, @RoutineDispatcher
+            record
+                requestId,          int
+                arguments,          JSON_ELEMENT
+                argumentDefinition, @ArgumentDataDefinition
+
+                ;;Argument 1 (REQUIRED IN p1 ArrayList collection of D10.2)
+                arg1Array,          JSON_ELEMENT
+                arg1,               @ArrayList
+                ;;Argument 2 (REQUIRED OUT p2 ArrayList collection of D10.2)
+                arg2,               @ArrayList
+            endrecord
+
+
+        proc
+
+            ;;------------------------------------------------------------
+            ;;Process inbound arguments
+
+            arguments = callFrame.GetProperty("params")
+
+            ;;Argument 1 (REQUIRED IN p1 ArrayList collection of D10.2)
+            argumentDefinition = dispatcher.GetArgumentDataDefForCollection(arguments[1],10)
+            arg1Array = arguments[1].GetProperty("PassedValue")
+            arg1 = new ArrayList()
+            dispatcher.UnwrapObjectCollection(argumentDefinition,arg1Array,arg1)
+
+            ;;------------------------------------------------------------
+            ;; Call the underlying routine
+
+            xcall AAA_ImpliedCollection(arg1,arg2)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 2 (REQUIRED OUT p2 ArrayList collection of D10.2)
+            
+            serializer.ArgumentData(2,arg2,FieldDataType.ImpliedDecimalArrayField,10,2,false)
+        endmethod
+
+    endclass
+
+    ;;-------------------------------------------------------------------------
+    ;;; <summary>
+    ;;; Dispatcher for method MyApi.AAA_Integer
+    ;;; </summary>
+    public class AAA_Integer_Dispatcher extends RoutineStub
+
+
+        public method AAA_Integer_Dispatcher
+        proc
+            ;;Initialize the meta data for any data objects that are used by parameters to the method
+        endmethod
+
+        protected override method DispatchInternal, void
+            required in name,       string
+            required in callFrame,  JSON_ELEMENT
+            required in serializer, @DispatchSerializer
+            required in dispatcher, @RoutineDispatcher
+            record
+                requestId,          int
+                arguments,          JSON_ELEMENT
+                argumentDefinition, @ArgumentDataDefinition
+
+                ;;Argument 1 (REQUIRED IN p1 I4)
+                arg1,               i4
+                ;;Argument 2 (REQUIRED OUT p2 I4)
+                arg2,               i4
+                ;;Argument 3 (REQUIRED INOUT p3 I4)
+                arg3,               i4
+                returnValue,         I4
+            endrecord
+
+
+        proc
+
+            ;;------------------------------------------------------------
+            ;;Process inbound arguments
+
+            arguments = callFrame.GetProperty("params")
+
+            ;;Argument 1 (REQUIRED IN p1 I4)
+            arg1 = dispatcher.GetInt(arguments[1])
+
+            ;;Argument 3 (REQUIRED INOUT p3 I4)
+            arg3 = dispatcher.GetInt(arguments[3])
+
+            ;;------------------------------------------------------------
+            ;; Call the underlying routine
+
+            returnValue = %AAA_Integer(arg1,arg2,arg3)
+
+            ;;Function return value
+            serializer.ArgumentData(0,returnValue,FieldDataType.IntegerField,4,0,false)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 2 (REQUIRED OUT p2 I4)
+            
+            serializer.ArgumentData(2,arg2,FieldDataType.IntegerField,4,0,false)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 3 (REQUIRED INOUT p3 I4)
+            
+            serializer.ArgumentData(3,arg3,FieldDataType.IntegerField,4,0,false)
+        endmethod
+
+    endclass
+
+    ;;-------------------------------------------------------------------------
+    ;;; <summary>
+    ;;; Dispatcher for method MyApi.AAA_IntegerArray
+    ;;; </summary>
+    public class AAA_IntegerArray_Dispatcher extends RoutineStub
+
+
+        public method AAA_IntegerArray_Dispatcher
+        proc
+            ;;Initialize the meta data for any data objects that are used by parameters to the method
+        endmethod
+
+        protected override method DispatchInternal, void
+            required in name,       string
+            required in callFrame,  JSON_ELEMENT
+            required in serializer, @DispatchSerializer
+            required in dispatcher, @RoutineDispatcher
+            record
+                requestId,          int
+                arguments,          JSON_ELEMENT
+                argumentDefinition, @ArgumentDataDefinition
+
+                ;;Argument 1 (REQUIRED IN p1 [*]I4)
+                arg1Array,          JSON_ELEMENT
+                arg1Handle,         D_HANDLE
+                arg1HandlePos,      int
+                ;;Argument 2 (REQUIRED OUT p2 [*]I4)
+                arg2Handle,         D_HANDLE
+                arg2HandlePos,      int
+                ;;Argument 3 (REQUIRED INOUT p3 [*]I4)
+                arg3Array,          JSON_ELEMENT
+                arg3Handle,         D_HANDLE
+                arg3HandlePos,      int
+            endrecord
+
+            ;;Temp structure tempstr1
+            structure tempstr1
+                arry, [1]I4
+            endstructure
+
+            ;;Temp structure tempstr2
+            structure tempstr2
+                arry, [1]I4
+            endstructure
+
+            ;;Temp structure tempstr3
+            structure tempstr3
+                arry, [1]I4
+            endstructure
+
+
+        proc
+
+            ;;------------------------------------------------------------
+            ;;Process inbound arguments
+
+            arguments = callFrame.GetProperty("params")
+
+            ;;Argument 1 (REQUIRED IN p1 [*]I4)
+            argumentDefinition = dispatcher.GetArgumentDataDefForCollection(arguments[1],4)
+            arg1Array = arguments[1].GetProperty("PassedValue")
+            arg1Handle = %mem_proc(DM_ALLOC,argumentDefinition.ElementSize*arg1Array.GetArrayLength())
+            arg1HandlePos = 1
+            dispatcher.UnwrapObjectCollection(^m(arg1Handle),argumentDefinition,arg1HandlePos,arg1Array)
+
+            ;;Argument 3 (REQUIRED INOUT p3 [*]I4)
+            argumentDefinition = dispatcher.GetArgumentDataDefForCollection(arguments[3],4)
+            arg3Array = arguments[3].GetProperty("PassedValue")
+            arg3Handle = %mem_proc(DM_ALLOC,argumentDefinition.ElementSize*arg3Array.GetArrayLength())
+            arg3HandlePos = 1
+            dispatcher.UnwrapObjectCollection(^m(arg3Handle),argumentDefinition,arg3HandlePos,arg3Array)
+
+            ;;------------------------------------------------------------
+            ;; Call the underlying routine
+
+            xcall AAA_IntegerArray(^m(tempstr1.arry,arg1Handle),^m(tempstr2.arry,arg2Handle),^m(tempstr3.arry,arg3Handle))
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 2 (REQUIRED OUT p2 [*]I4)
+            
+            serializer.ArgumentHandleData(2,arg2Handle,FieldDataType.IntegerArrayField,4,0,%mem_proc(DM_GETSIZE,arg2Handle)/4,false)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 3 (REQUIRED INOUT p3 [*]I4)
+            
+            serializer.ArgumentHandleData(3,arg3Handle,FieldDataType.IntegerArrayField,4,0,%mem_proc(DM_GETSIZE,arg3Handle)/4,false)
+        endmethod
+
+    endclass
+
+    ;;-------------------------------------------------------------------------
+    ;;; <summary>
+    ;;; Dispatcher for method MyApi.AAA_IntegerCollection
+    ;;; </summary>
+    public class AAA_IntegerCollection_Dispatcher extends RoutineStub
+
+
+        public method AAA_IntegerCollection_Dispatcher
+        proc
+            ;;Initialize the meta data for any data objects that are used by parameters to the method
+        endmethod
+
+        protected override method DispatchInternal, void
+            required in name,       string
+            required in callFrame,  JSON_ELEMENT
+            required in serializer, @DispatchSerializer
+            required in dispatcher, @RoutineDispatcher
+            record
+                requestId,          int
+                arguments,          JSON_ELEMENT
+                argumentDefinition, @ArgumentDataDefinition
+
+                ;;Argument 1 (REQUIRED IN p1 ArrayList collection of I4)
+                arg1Array,          JSON_ELEMENT
+                arg1,               @ArrayList
+                ;;Argument 2 (REQUIRED OUT p2 ArrayList collection of I4)
+                arg2,               @ArrayList
+            endrecord
+
+
+        proc
+
+            ;;------------------------------------------------------------
+            ;;Process inbound arguments
+
+            arguments = callFrame.GetProperty("params")
+
+            ;;Argument 1 (REQUIRED IN p1 ArrayList collection of I4)
+            argumentDefinition = dispatcher.GetArgumentDataDefForCollection(arguments[1],4)
+            arg1Array = arguments[1].GetProperty("PassedValue")
+            arg1 = new ArrayList()
+            dispatcher.UnwrapObjectCollection(argumentDefinition,arg1Array,arg1)
+
+            ;;------------------------------------------------------------
+            ;; Call the underlying routine
+
+            xcall AAA_IntegerCollection(arg1,arg2)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 2 (REQUIRED OUT p2 ArrayList collection of I4)
+            
+            serializer.ArgumentData(2,arg2,FieldDataType.IntegerArrayField,4,0,false)
+        endmethod
+
+    endclass
+
+    ;;-------------------------------------------------------------------------
+    ;;; <summary>
+    ;;; Dispatcher for method MyApi.AAA_String
+    ;;; </summary>
+    public class AAA_String_Dispatcher extends RoutineStub
+
+
+        public method AAA_String_Dispatcher
+        proc
+            ;;Initialize the meta data for any data objects that are used by parameters to the method
+        endmethod
+
+        protected override method DispatchInternal, void
+            required in name,       string
+            required in callFrame,  JSON_ELEMENT
+            required in serializer, @DispatchSerializer
+            required in dispatcher, @RoutineDispatcher
+            record
+                requestId,          int
+                arguments,          JSON_ELEMENT
+                argumentDefinition, @ArgumentDataDefinition
+
+                ;;Argument 1 (REQUIRED IN p1 STRING)
+                arg1,               string
+                ;;Argument 2 (REQUIRED OUT p2 STRING)
+                arg2,               string
+                ;;Argument 3 (REQUIRED INOUT p3 STRING)
+                arg3,               string
+                returnValue,         STRING
+            endrecord
+
+
+        proc
+
+            ;;------------------------------------------------------------
+            ;;Process inbound arguments
+
+            arguments = callFrame.GetProperty("params")
+
+            ;;Argument 1 (REQUIRED IN p1 STRING)
+            arg1 = dispatcher.GetText(arguments[1])
+
+            ;;Argument 3 (REQUIRED INOUT p3 STRING)
+            arg3 = dispatcher.GetText(arguments[3])
+
+            ;;------------------------------------------------------------
+            ;; Call the underlying routine
+
+            returnValue = %AAA_String(arg1,arg2,arg3)
+
+            ;;Function return value
+            serializer.ArgumentData(0,returnValue,FieldDataType.StringField,,0,false)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 2 (REQUIRED OUT p2 STRING)
+            
+            serializer.ArgumentData(2,arg2,FieldDataType.StringField,0,0,false)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 3 (REQUIRED INOUT p3 STRING)
+            
+            serializer.ArgumentData(3,arg3,FieldDataType.StringField,0,0,false)
+        endmethod
+
+    endclass
+
+    ;;-------------------------------------------------------------------------
+    ;;; <summary>
+    ;;; Dispatcher for method MyApi.AAA_Structure
+    ;;; </summary>
+    public class AAA_Structure_Dispatcher extends RoutineStub
+
+        private mCustomerMetadata, @DataObjectMetadataBase
+
+        public method AAA_Structure_Dispatcher
+        proc
+            ;;Initialize the meta data for any data objects that are used by parameters to the method
+            mCustomerMetadata = DataObjectMetadataBase.LookupType("Customer")
+        endmethod
+
+        protected override method DispatchInternal, void
+            required in name,       string
+            required in callFrame,  JSON_ELEMENT
+            required in serializer, @DispatchSerializer
+            required in dispatcher, @RoutineDispatcher
+            record
+                requestId,          int
+                arguments,          JSON_ELEMENT
+                argumentDefinition, @ArgumentDataDefinition
+
+                ;;Argument 1 (REQUIRED IN p1 structure @Customer)
+                arg1DataObject,     @DataObjectBase
+                arg1,               strCustomer
+                ;;Argument 2 (REQUIRED OUT p2 structure @Customer)
+                arg2DataObject,     @DataObjectBase
+                arg2,               strCustomer
+                ;;Argument 3 (REQUIRED INOUT p3 structure @Customer)
+                arg3DataObject,     @DataObjectBase
+                arg3,               strCustomer
+            endrecord
+
+
+        proc
+
+            ;;------------------------------------------------------------
+            ;;Process inbound arguments
+
+            arguments = callFrame.GetProperty("params")
+
+            ;;Argument 1 (REQUIRED IN p1 structure @Customer)
+            ;;Structure argument. Get the data object then get the record from it
+            arg1DataObject = dispatcher.DeserializeObject(arguments[1],mCustomerMetadata)
+            arg1 = arg1DataObject.SynergyRecord
+
+            ;;Argument 3 (REQUIRED INOUT p3 structure @Customer)
+            ;;Structure argument. Get the data object then get the record from it
+            arg3DataObject = dispatcher.DeserializeObject(arguments[3],mCustomerMetadata)
+            arg3 = arg3DataObject.SynergyRecord
+
+            ;;------------------------------------------------------------
+            ;; Call the underlying routine
+
+            xcall AAA_Structure(arg1,arg2,arg3)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 2 (REQUIRED OUT p2 structure @Customer)
+            
+            ;;Argument 2: Single Customer record
+            serializer.ArgumentData(2,arg2,FieldDataType.DataObjectField,161,"CUSTOMERS",false)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 3 (REQUIRED INOUT p3 structure @Customer)
+            
+            ;;Argument 3: Single Customer record
+            serializer.ArgumentData(3,arg3,FieldDataType.DataObjectField,161,"CUSTOMERS",false)
+        endmethod
+
+    endclass
+
+    ;;-------------------------------------------------------------------------
+    ;;; <summary>
+    ;;; Dispatcher for method MyApi.AAA_StructureArray
+    ;;; </summary>
+    public class AAA_StructureArray_Dispatcher extends RoutineStub
+
+        private mCustomerMetadata, @DataObjectMetadataBase
+
+        public method AAA_StructureArray_Dispatcher
+        proc
+            ;;Initialize the meta data for any data objects that are used by parameters to the method
+            mCustomerMetadata = DataObjectMetadataBase.LookupType("Customer")
+        endmethod
+
+        protected override method DispatchInternal, void
+            required in name,       string
+            required in callFrame,  JSON_ELEMENT
+            required in serializer, @DispatchSerializer
+            required in dispatcher, @RoutineDispatcher
+            record
+                requestId,          int
+                arguments,          JSON_ELEMENT
+                argumentDefinition, @ArgumentDataDefinition
+
+                ;;Argument 1 (REQUIRED IN p1 [*]structure @Customer)
+                arg1Array,          JSON_ELEMENT
+                arg1Handle,         D_HANDLE
+                arg1HandlePos,      int
+                ;;Argument 2 (REQUIRED OUT p2 [*]structure @Customer)
+                arg2Handle,         D_HANDLE
+                arg2HandlePos,      int
+                ;;Argument 3 (REQUIRED INOUT p3 [*]structure @Customer)
+                arg3Array,          JSON_ELEMENT
+                arg3Handle,         D_HANDLE
+                arg3HandlePos,      int
+            endrecord
+
+            ;;Temp structure tempstr1
+            structure tempstr1
+                arry, @Customer
+            endstructure
+
+            ;;Temp structure tempstr2
+            structure tempstr2
+                arry, @Customer
+            endstructure
+
+            ;;Temp structure tempstr3
+            structure tempstr3
+                arry, @Customer
+            endstructure
+
+
+        proc
+
+            ;;------------------------------------------------------------
+            ;;Process inbound arguments
+
+            arguments = callFrame.GetProperty("params")
+
+            ;;Argument 1 (REQUIRED IN p1 [*]structure @Customer)
+            argumentDefinition = dispatcher.GetArgumentDataDefForCollection(arguments[1],161)
+            arg1Array = arguments[1].GetProperty("PassedValue")
+            arg1Handle = %mem_proc(DM_ALLOC,argumentDefinition.ElementSize*arg1Array.GetArrayLength())
+            arg1HandlePos = 1
+            dispatcher.UnwrapObjectCollection(^m(arg1Handle),argumentDefinition,arg1HandlePos,arg1Array)
+
+            ;;Argument 3 (REQUIRED INOUT p3 [*]structure @Customer)
+            argumentDefinition = dispatcher.GetArgumentDataDefForCollection(arguments[3],161)
+            arg3Array = arguments[3].GetProperty("PassedValue")
+            arg3Handle = %mem_proc(DM_ALLOC,argumentDefinition.ElementSize*arg3Array.GetArrayLength())
+            arg3HandlePos = 1
+            dispatcher.UnwrapObjectCollection(^m(arg3Handle),argumentDefinition,arg3HandlePos,arg3Array)
+
+            ;;------------------------------------------------------------
+            ;; Call the underlying routine
+
+            xcall AAA_StructureArray(^m(strCustomer,arg1Handle),^m(strCustomer,arg2Handle),^m(strCustomer,arg3Handle))
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 2 (REQUIRED OUT p2 [*]structure @Customer)
+            
+            serializer.ArgumentHandleData(2,arg2Handle,FieldDataType.DataObjectCollectionField,161,"CUSTOMERS",%mem_proc(DM_GETSIZE,arg2Handle)/161,false)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 3 (REQUIRED INOUT p3 [*]structure @Customer)
+            
+            serializer.ArgumentHandleData(3,arg3Handle,FieldDataType.DataObjectCollectionField,161,"CUSTOMERS",%mem_proc(DM_GETSIZE,arg3Handle)/161,false)
+        endmethod
+
+    endclass
+
+    ;;-------------------------------------------------------------------------
+    ;;; <summary>
+    ;;; Dispatcher for method MyApi.AAA_StructureCollectionAL
+    ;;; </summary>
+    public class AAA_StructureCollectionAL_Dispatcher extends RoutineStub
+
+        private mCustomerMetadata, @DataObjectMetadataBase
+
+        public method AAA_StructureCollectionAL_Dispatcher
+        proc
+            ;;Initialize the meta data for any data objects that are used by parameters to the method
+            mCustomerMetadata = DataObjectMetadataBase.LookupType("Customer")
+        endmethod
+
+        protected override method DispatchInternal, void
+            required in name,       string
+            required in callFrame,  JSON_ELEMENT
+            required in serializer, @DispatchSerializer
+            required in dispatcher, @RoutineDispatcher
+            record
+                requestId,          int
+                arguments,          JSON_ELEMENT
+                argumentDefinition, @ArgumentDataDefinition
+
+                ;;Argument 1 (REQUIRED IN p1 ArrayList collection of structure @Customer)
+                arg1Array,          JSON_ELEMENT
+                arg1,               @ArrayList
+                ;;Argument 2 (REQUIRED OUT p2 ArrayList collection of structure @Customer)
+                arg2,               @ArrayList
+            endrecord
+
+
+        proc
+
+            ;;------------------------------------------------------------
+            ;;Process inbound arguments
+
+            arguments = callFrame.GetProperty("params")
+
+            ;;Argument 1 (REQUIRED IN p1 ArrayList collection of structure @Customer)
+            argumentDefinition = dispatcher.GetArgumentDataDefForCollection(arguments[1],161)
+            arg1Array = arguments[1].GetProperty("PassedValue")
+            arg1 = new ArrayList()
+            dispatcher.UnwrapObjectCollection(argumentDefinition,arg1Array,arg1)
+
+            ;;------------------------------------------------------------
+            ;; Call the underlying routine
+
+            xcall AAA_StructureCollectionAL(arg1,arg2)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 2 (REQUIRED OUT p2 ArrayList collection of structure @Customer)
+            
+            serializer.ArgumentData(2,arg2,FieldDataType.DataObjectCollectionField,161,"CUSTOMERS",false)
+        endmethod
+
+    endclass
+
+    ;;-------------------------------------------------------------------------
+    ;;; <summary>
+    ;;; Dispatcher for method MyApi.AAA_StructureCollectionMH
+    ;;; </summary>
+    public class AAA_StructureCollectionMH_Dispatcher extends RoutineStub
+
+        private mCustomerMetadata, @DataObjectMetadataBase
+
+        public method AAA_StructureCollectionMH_Dispatcher
+        proc
+            ;;Initialize the meta data for any data objects that are used by parameters to the method
+            mCustomerMetadata = DataObjectMetadataBase.LookupType("Customer")
+        endmethod
+
+        protected override method DispatchInternal, void
+            required in name,       string
+            required in callFrame,  JSON_ELEMENT
+            required in serializer, @DispatchSerializer
+            required in dispatcher, @RoutineDispatcher
+            record
+                requestId,          int
+                arguments,          JSON_ELEMENT
+                argumentDefinition, @ArgumentDataDefinition
+
+                ;;Argument 1 (REQUIRED OUT p1 memory handle collection of structure @Customer)
+                arg1Handle,         D_HANDLE
+                arg1HandlePos,      int
+                ;;Argument 2 (REQUIRED OUT p2 memory handle collection of structure @Customer)
+                arg2Handle,         D_HANDLE
+                arg2HandlePos,      int
+                ;;Argument 3 (REQUIRED OUT p3 memory handle collection of structure @Customer)
+                arg3Handle,         D_HANDLE
+                arg3HandlePos,      int
+            endrecord
+
+
+        proc
+
+            ;;------------------------------------------------------------
+            ;;Process inbound arguments
+
+            ;;There are no inbound arguments to process
+            arg1Handle = %mem_proc(DM_ALLOC,1)
+            arg2Handle = %mem_proc(DM_ALLOC,1)
+            arg3Handle = %mem_proc(DM_ALLOC,1)
+
+            ;;------------------------------------------------------------
+            ;; Call the underlying routine
+
+            xcall AAA_StructureCollectionMH(arg1Handle,arg2Handle,arg3Handle)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 1 (REQUIRED OUT p1 memory handle collection of structure @Customer)
+            
+            serializer.ArgumentHandleData(1,arg1Handle,FieldDataType.DataObjectCollectionField,161,"CUSTOMERS",%mem_proc(DM_GETSIZE,arg1Handle)/161,false)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 2 (REQUIRED OUT p2 memory handle collection of structure @Customer)
+            
+            serializer.ArgumentHandleData(2,arg2Handle,FieldDataType.DataObjectCollectionField,161,"CUSTOMERS",%mem_proc(DM_GETSIZE,arg2Handle)/161,false)
+
+            ;;--------------------------------------------------------------------------------
+            ;;Argument 3 (REQUIRED OUT p3 memory handle collection of structure @Customer)
+            
+            serializer.ArgumentHandleData(3,arg3Handle,FieldDataType.DataObjectCollectionField,161,"CUSTOMERS",%mem_proc(DM_GETSIZE,arg3Handle)/161,false)
+        endmethod
+
+    endclass
+
+    ;;-------------------------------------------------------------------------
+    ;;; <summary>
     ;;; Dispatcher for method MyApi.AddCustomer
     ;;; </summary>
     public class AddCustomer_Dispatcher extends RoutineStub
@@ -74,7 +1806,7 @@ namespace TraditionalBridge.Dispatchers.MyApi
             returnValue = %AddCustomer(arg1)
 
             ;;Function return value
-            serializer.ArgumentData(0, returnValue)
+            serializer.ArgumentData(0,returnValue,FieldDataType.IntegerField,4,0,false)
         endmethod
 
     endclass
@@ -128,7 +1860,7 @@ namespace TraditionalBridge.Dispatchers.MyApi
             returnValue = %AddItem(arg1)
 
             ;;Function return value
-            serializer.ArgumentData(0, returnValue)
+            serializer.ArgumentData(0,returnValue,FieldDataType.IntegerField,4,0,false)
         endmethod
 
     endclass
@@ -182,7 +1914,7 @@ namespace TraditionalBridge.Dispatchers.MyApi
             returnValue = %AddOrder(arg1)
 
             ;;Function return value
-            serializer.ArgumentData(0, returnValue)
+            serializer.ArgumentData(0,returnValue,FieldDataType.IntegerField,4,0,false)
         endmethod
 
     endclass
@@ -236,7 +1968,7 @@ namespace TraditionalBridge.Dispatchers.MyApi
             returnValue = %AddOrderItem(arg1)
 
             ;;Function return value
-            serializer.ArgumentData(0, returnValue)
+            serializer.ArgumentData(0,returnValue,FieldDataType.IntegerField,4,0,false)
         endmethod
 
     endclass
@@ -290,7 +2022,7 @@ namespace TraditionalBridge.Dispatchers.MyApi
             returnValue = %AddVendor(arg1)
 
             ;;Function return value
-            serializer.ArgumentData(0, returnValue)
+            serializer.ArgumentData(0,returnValue,FieldDataType.IntegerField,4,0,false)
         endmethod
 
     endclass
@@ -339,7 +2071,7 @@ namespace TraditionalBridge.Dispatchers.MyApi
             returnValue = %CanDeleteCustomer(arg1)
 
             ;;Function return value
-            serializer.ArgumentData(0, returnValue)
+            serializer.ArgumentData(0,returnValue,FieldDataType.IntegerField,4,0,false)
         endmethod
 
     endclass
@@ -388,7 +2120,7 @@ namespace TraditionalBridge.Dispatchers.MyApi
             returnValue = %CanDeleteItem(arg1)
 
             ;;Function return value
-            serializer.ArgumentData(0, returnValue)
+            serializer.ArgumentData(0,returnValue,FieldDataType.IntegerField,4,0,false)
         endmethod
 
     endclass
@@ -437,7 +2169,7 @@ namespace TraditionalBridge.Dispatchers.MyApi
             returnValue = %CanDeleteOrder(arg1)
 
             ;;Function return value
-            serializer.ArgumentData(0, returnValue)
+            serializer.ArgumentData(0,returnValue,FieldDataType.IntegerField,4,0,false)
         endmethod
 
     endclass
@@ -491,7 +2223,7 @@ namespace TraditionalBridge.Dispatchers.MyApi
             returnValue = %CanDeleteOrderItem(arg1,arg2)
 
             ;;Function return value
-            serializer.ArgumentData(0, returnValue)
+            serializer.ArgumentData(0,returnValue,FieldDataType.IntegerField,4,0,false)
         endmethod
 
     endclass
@@ -540,7 +2272,7 @@ namespace TraditionalBridge.Dispatchers.MyApi
             returnValue = %CanDeleteVendor(arg1)
 
             ;;Function return value
-            serializer.ArgumentData(0, returnValue)
+            serializer.ArgumentData(0,returnValue,FieldDataType.IntegerField,4,0,false)
         endmethod
 
     endclass
@@ -589,7 +2321,7 @@ namespace TraditionalBridge.Dispatchers.MyApi
             returnValue = %DeleteCustomer(arg1)
 
             ;;Function return value
-            serializer.ArgumentData(0, returnValue)
+            serializer.ArgumentData(0,returnValue,FieldDataType.IntegerField,4,0,false)
         endmethod
 
     endclass
@@ -638,7 +2370,7 @@ namespace TraditionalBridge.Dispatchers.MyApi
             returnValue = %DeleteItem(arg1)
 
             ;;Function return value
-            serializer.ArgumentData(0, returnValue)
+            serializer.ArgumentData(0,returnValue,FieldDataType.IntegerField,4,0,false)
         endmethod
 
     endclass
@@ -687,7 +2419,7 @@ namespace TraditionalBridge.Dispatchers.MyApi
             returnValue = %DeleteOrder(arg1)
 
             ;;Function return value
-            serializer.ArgumentData(0, returnValue)
+            serializer.ArgumentData(0,returnValue,FieldDataType.IntegerField,4,0,false)
         endmethod
 
     endclass
@@ -741,7 +2473,7 @@ namespace TraditionalBridge.Dispatchers.MyApi
             returnValue = %DeleteOrderItem(arg1,arg2)
 
             ;;Function return value
-            serializer.ArgumentData(0, returnValue)
+            serializer.ArgumentData(0,returnValue,FieldDataType.IntegerField,4,0,false)
         endmethod
 
     endclass
@@ -790,7 +2522,7 @@ namespace TraditionalBridge.Dispatchers.MyApi
             returnValue = %DeleteVendor(arg1)
 
             ;;Function return value
-            serializer.ArgumentData(0, returnValue)
+            serializer.ArgumentData(0,returnValue,FieldDataType.IntegerField,4,0,false)
         endmethod
 
     endclass
@@ -819,7 +2551,7 @@ namespace TraditionalBridge.Dispatchers.MyApi
                 arguments,          JSON_ELEMENT
                 argumentDefinition, @ArgumentDataDefinition
 
-                ;;Argument 1 (REQUIRED OUT Customers ArrayList collection of structure @Customer returned as DataTable)
+                ;;Argument 1 (REQUIRED OUT Customers ArrayList collection of structure @Customer)
                 arg1,               @ArrayList
                 returnValue,         I4
             endrecord
@@ -838,12 +2570,12 @@ namespace TraditionalBridge.Dispatchers.MyApi
             returnValue = %GetAllCustomers(arg1)
 
             ;;Function return value
-            serializer.ArgumentData(0, returnValue)
+            serializer.ArgumentData(0,returnValue,FieldDataType.IntegerField,4,0,false)
 
             ;;--------------------------------------------------------------------------------
-            ;;Argument 1 (REQUIRED OUT Customers ArrayList collection of structure @Customer returned as DataTable)
+            ;;Argument 1 (REQUIRED OUT Customers ArrayList collection of structure @Customer)
             
-            serializer.ArgumentData(1, arg1, FieldDataType.DataObjectCollectionField, 161, "CUSTOMERS", false)
+            serializer.ArgumentData(1,arg1,FieldDataType.DataObjectCollectionField,161,"CUSTOMERS",false)
         endmethod
 
     endclass
@@ -872,7 +2604,7 @@ namespace TraditionalBridge.Dispatchers.MyApi
                 arguments,          JSON_ELEMENT
                 argumentDefinition, @ArgumentDataDefinition
 
-                ;;Argument 1 (REQUIRED OUT Items ArrayList collection of structure @Item returned as DataTable)
+                ;;Argument 1 (REQUIRED OUT Items ArrayList collection of structure @Item)
                 arg1,               @ArrayList
                 returnValue,         I4
             endrecord
@@ -891,12 +2623,12 @@ namespace TraditionalBridge.Dispatchers.MyApi
             returnValue = %GetAllItems(arg1)
 
             ;;Function return value
-            serializer.ArgumentData(0, returnValue)
+            serializer.ArgumentData(0,returnValue,FieldDataType.IntegerField,4,0,false)
 
             ;;--------------------------------------------------------------------------------
-            ;;Argument 1 (REQUIRED OUT Items ArrayList collection of structure @Item returned as DataTable)
+            ;;Argument 1 (REQUIRED OUT Items ArrayList collection of structure @Item)
             
-            serializer.ArgumentData(1, arg1, FieldDataType.DataObjectCollectionField, 151, "ITEMS", false)
+            serializer.ArgumentData(1,arg1,FieldDataType.DataObjectCollectionField,151,"ITEMS",false)
         endmethod
 
     endclass
@@ -927,7 +2659,7 @@ namespace TraditionalBridge.Dispatchers.MyApi
 
                 ;;Argument 1 (REQUIRED IN OrderNumber D6)
                 arg1,               d6
-                ;;Argument 2 (REQUIRED OUT OrderItems ArrayList collection of structure @OrderItem returned as DataTable)
+                ;;Argument 2 (REQUIRED OUT OrderItems ArrayList collection of structure @OrderItem)
                 arg2,               @ArrayList
                 returnValue,         I4
             endrecord
@@ -949,12 +2681,12 @@ namespace TraditionalBridge.Dispatchers.MyApi
             returnValue = %GetAllOrderItems(arg1,arg2)
 
             ;;Function return value
-            serializer.ArgumentData(0, returnValue)
+            serializer.ArgumentData(0,returnValue,FieldDataType.IntegerField,4,0,false)
 
             ;;--------------------------------------------------------------------------------
-            ;;Argument 2 (REQUIRED OUT OrderItems ArrayList collection of structure @OrderItem returned as DataTable)
+            ;;Argument 2 (REQUIRED OUT OrderItems ArrayList collection of structure @OrderItem)
             
-            serializer.ArgumentData(2, arg2, FieldDataType.DataObjectCollectionField, 100, "ORDER_ITEMS", false)
+            serializer.ArgumentData(2,arg2,FieldDataType.DataObjectCollectionField,100,"ORDER_ITEMS",false)
         endmethod
 
     endclass
@@ -983,7 +2715,7 @@ namespace TraditionalBridge.Dispatchers.MyApi
                 arguments,          JSON_ELEMENT
                 argumentDefinition, @ArgumentDataDefinition
 
-                ;;Argument 1 (REQUIRED OUT Orders ArrayList collection of structure @Order returned as DataTable)
+                ;;Argument 1 (REQUIRED OUT Orders ArrayList collection of structure @Order)
                 arg1,               @ArrayList
                 returnValue,         I4
             endrecord
@@ -1002,12 +2734,12 @@ namespace TraditionalBridge.Dispatchers.MyApi
             returnValue = %GetAllOrders(arg1)
 
             ;;Function return value
-            serializer.ArgumentData(0, returnValue)
+            serializer.ArgumentData(0,returnValue,FieldDataType.IntegerField,4,0,false)
 
             ;;--------------------------------------------------------------------------------
-            ;;Argument 1 (REQUIRED OUT Orders ArrayList collection of structure @Order returned as DataTable)
+            ;;Argument 1 (REQUIRED OUT Orders ArrayList collection of structure @Order)
             
-            serializer.ArgumentData(1, arg1, FieldDataType.DataObjectCollectionField, 100, "ORDERS", false)
+            serializer.ArgumentData(1,arg1,FieldDataType.DataObjectCollectionField,100,"ORDERS",false)
         endmethod
 
     endclass
@@ -1036,7 +2768,7 @@ namespace TraditionalBridge.Dispatchers.MyApi
                 arguments,          JSON_ELEMENT
                 argumentDefinition, @ArgumentDataDefinition
 
-                ;;Argument 1 (REQUIRED OUT Vendors ArrayList collection of structure @Vendor returned as DataTable)
+                ;;Argument 1 (REQUIRED OUT Vendors ArrayList collection of structure @Vendor)
                 arg1,               @ArrayList
                 returnValue,         I4
             endrecord
@@ -1055,12 +2787,12 @@ namespace TraditionalBridge.Dispatchers.MyApi
             returnValue = %GetAllVendors(arg1)
 
             ;;Function return value
-            serializer.ArgumentData(0, returnValue)
+            serializer.ArgumentData(0,returnValue,FieldDataType.IntegerField,4,0,false)
 
             ;;--------------------------------------------------------------------------------
-            ;;Argument 1 (REQUIRED OUT Vendors ArrayList collection of structure @Vendor returned as DataTable)
+            ;;Argument 1 (REQUIRED OUT Vendors ArrayList collection of structure @Vendor)
             
-            serializer.ArgumentData(1, arg1, FieldDataType.DataObjectCollectionField, 135, "VENDORS", false)
+            serializer.ArgumentData(1,arg1,FieldDataType.DataObjectCollectionField,135,"VENDORS",false)
         endmethod
 
     endclass
@@ -1114,13 +2846,13 @@ namespace TraditionalBridge.Dispatchers.MyApi
             returnValue = %GetCustomer(arg1,arg2)
 
             ;;Function return value
-            serializer.ArgumentData(0, returnValue)
+            serializer.ArgumentData(0,returnValue,FieldDataType.IntegerField,4,0,false)
 
             ;;--------------------------------------------------------------------------------
             ;;Argument 2 (REQUIRED OUT Customer structure @Customer)
             
             ;;Argument 2: Single Customer record
-            serializer.ArgumentData(2, arg2, FieldDataType.DataObjectField, 161, "CUSTOMERS", false)
+            serializer.ArgumentData(2,arg2,FieldDataType.DataObjectField,161,"CUSTOMERS",false)
         endmethod
 
     endclass
@@ -1174,13 +2906,13 @@ namespace TraditionalBridge.Dispatchers.MyApi
             returnValue = %GetItem(arg1,arg2)
 
             ;;Function return value
-            serializer.ArgumentData(0, returnValue)
+            serializer.ArgumentData(0,returnValue,FieldDataType.IntegerField,4,0,false)
 
             ;;--------------------------------------------------------------------------------
             ;;Argument 2 (REQUIRED OUT Item structure @Item)
             
             ;;Argument 2: Single Item record
-            serializer.ArgumentData(2, arg2, FieldDataType.DataObjectField, 151, "ITEMS", false)
+            serializer.ArgumentData(2,arg2,FieldDataType.DataObjectField,151,"ITEMS",false)
         endmethod
 
     endclass
@@ -1234,13 +2966,13 @@ namespace TraditionalBridge.Dispatchers.MyApi
             returnValue = %GetOrder(arg1,arg2)
 
             ;;Function return value
-            serializer.ArgumentData(0, returnValue)
+            serializer.ArgumentData(0,returnValue,FieldDataType.IntegerField,4,0,false)
 
             ;;--------------------------------------------------------------------------------
             ;;Argument 2 (REQUIRED OUT Order structure @Order)
             
             ;;Argument 2: Single Order record
-            serializer.ArgumentData(2, arg2, FieldDataType.DataObjectField, 100, "ORDERS", false)
+            serializer.ArgumentData(2,arg2,FieldDataType.DataObjectField,100,"ORDERS",false)
         endmethod
 
     endclass
@@ -1299,13 +3031,13 @@ namespace TraditionalBridge.Dispatchers.MyApi
             returnValue = %GetOrderItem(arg1,arg2,arg3)
 
             ;;Function return value
-            serializer.ArgumentData(0, returnValue)
+            serializer.ArgumentData(0,returnValue,FieldDataType.IntegerField,4,0,false)
 
             ;;--------------------------------------------------------------------------------
             ;;Argument 3 (REQUIRED OUT OrderItem structure @OrderItem)
             
             ;;Argument 3: Single OrderItem record
-            serializer.ArgumentData(3, arg3, FieldDataType.DataObjectField, 100, "ORDER_ITEMS", false)
+            serializer.ArgumentData(3,arg3,FieldDataType.DataObjectField,100,"ORDER_ITEMS",false)
         endmethod
 
     endclass
@@ -1359,13 +3091,13 @@ namespace TraditionalBridge.Dispatchers.MyApi
             returnValue = %GetVendor(arg1,arg2)
 
             ;;Function return value
-            serializer.ArgumentData(0, returnValue)
+            serializer.ArgumentData(0,returnValue,FieldDataType.IntegerField,4,0,false)
 
             ;;--------------------------------------------------------------------------------
             ;;Argument 2 (REQUIRED OUT Vendor structure @Vendor)
             
             ;;Argument 2: Single Vendor record
-            serializer.ArgumentData(2, arg2, FieldDataType.DataObjectField, 135, "VENDORS", false)
+            serializer.ArgumentData(2,arg2,FieldDataType.DataObjectField,135,"VENDORS",false)
         endmethod
 
     endclass
@@ -1419,7 +3151,7 @@ namespace TraditionalBridge.Dispatchers.MyApi
             returnValue = %UpdateCustomer(arg1)
 
             ;;Function return value
-            serializer.ArgumentData(0, returnValue)
+            serializer.ArgumentData(0,returnValue,FieldDataType.IntegerField,4,0,false)
         endmethod
 
     endclass
@@ -1473,7 +3205,7 @@ namespace TraditionalBridge.Dispatchers.MyApi
             returnValue = %UpdateItem(arg1)
 
             ;;Function return value
-            serializer.ArgumentData(0, returnValue)
+            serializer.ArgumentData(0,returnValue,FieldDataType.IntegerField,4,0,false)
         endmethod
 
     endclass
@@ -1527,7 +3259,7 @@ namespace TraditionalBridge.Dispatchers.MyApi
             returnValue = %UpdateOrder(arg1)
 
             ;;Function return value
-            serializer.ArgumentData(0, returnValue)
+            serializer.ArgumentData(0,returnValue,FieldDataType.IntegerField,4,0,false)
         endmethod
 
     endclass
@@ -1581,7 +3313,7 @@ namespace TraditionalBridge.Dispatchers.MyApi
             returnValue = %UpdateOrderItem(arg1)
 
             ;;Function return value
-            serializer.ArgumentData(0, returnValue)
+            serializer.ArgumentData(0,returnValue,FieldDataType.IntegerField,4,0,false)
         endmethod
 
     endclass
@@ -1635,7 +3367,7 @@ namespace TraditionalBridge.Dispatchers.MyApi
             returnValue = %UpdateVendor(arg1)
 
             ;;Function return value
-            serializer.ArgumentData(0, returnValue)
+            serializer.ArgumentData(0,returnValue,FieldDataType.IntegerField,4,0,false)
         endmethod
 
     endclass
@@ -1689,13 +3421,13 @@ namespace TraditionalBridge.Dispatchers.MyApi
             returnValue = %ValidateCustomer(arg1)
 
             ;;Function return value
-            serializer.ArgumentData(0, returnValue)
+            serializer.ArgumentData(0,returnValue,FieldDataType.IntegerField,4,0,false)
 
             ;;--------------------------------------------------------------------------------
             ;;Argument 1 (REQUIRED INOUT Customer structure @Customer)
             
             ;;Argument 1: Single Customer record
-            serializer.ArgumentData(1, arg1, FieldDataType.DataObjectField, 161, "CUSTOMERS", false)
+            serializer.ArgumentData(1,arg1,FieldDataType.DataObjectField,161,"CUSTOMERS",false)
         endmethod
 
     endclass
@@ -1749,13 +3481,13 @@ namespace TraditionalBridge.Dispatchers.MyApi
             returnValue = %ValidateItem(arg1)
 
             ;;Function return value
-            serializer.ArgumentData(0, returnValue)
+            serializer.ArgumentData(0,returnValue,FieldDataType.IntegerField,4,0,false)
 
             ;;--------------------------------------------------------------------------------
             ;;Argument 1 (REQUIRED INOUT Item structure @Item)
             
             ;;Argument 1: Single Item record
-            serializer.ArgumentData(1, arg1, FieldDataType.DataObjectField, 151, "ITEMS", false)
+            serializer.ArgumentData(1,arg1,FieldDataType.DataObjectField,151,"ITEMS",false)
         endmethod
 
     endclass
@@ -1809,13 +3541,13 @@ namespace TraditionalBridge.Dispatchers.MyApi
             returnValue = %ValidateOrder(arg1)
 
             ;;Function return value
-            serializer.ArgumentData(0, returnValue)
+            serializer.ArgumentData(0,returnValue,FieldDataType.IntegerField,4,0,false)
 
             ;;--------------------------------------------------------------------------------
             ;;Argument 1 (REQUIRED INOUT Order structure @Order)
             
             ;;Argument 1: Single Order record
-            serializer.ArgumentData(1, arg1, FieldDataType.DataObjectField, 100, "ORDERS", false)
+            serializer.ArgumentData(1,arg1,FieldDataType.DataObjectField,100,"ORDERS",false)
         endmethod
 
     endclass
@@ -1869,13 +3601,13 @@ namespace TraditionalBridge.Dispatchers.MyApi
             returnValue = %ValidateOrderItem(arg1)
 
             ;;Function return value
-            serializer.ArgumentData(0, returnValue)
+            serializer.ArgumentData(0,returnValue,FieldDataType.IntegerField,4,0,false)
 
             ;;--------------------------------------------------------------------------------
             ;;Argument 1 (REQUIRED INOUT OrderItem structure @OrderItem)
             
             ;;Argument 1: Single OrderItem record
-            serializer.ArgumentData(1, arg1, FieldDataType.DataObjectField, 100, "ORDER_ITEMS", false)
+            serializer.ArgumentData(1,arg1,FieldDataType.DataObjectField,100,"ORDER_ITEMS",false)
         endmethod
 
     endclass
@@ -1929,13 +3661,13 @@ namespace TraditionalBridge.Dispatchers.MyApi
             returnValue = %ValidateVendor(arg1)
 
             ;;Function return value
-            serializer.ArgumentData(0, returnValue)
+            serializer.ArgumentData(0,returnValue,FieldDataType.IntegerField,4,0,false)
 
             ;;--------------------------------------------------------------------------------
             ;;Argument 1 (REQUIRED INOUT Vendor structure @Vendor)
             
             ;;Argument 1: Single Vendor record
-            serializer.ArgumentData(1, arg1, FieldDataType.DataObjectField, 135, "VENDORS", false)
+            serializer.ArgumentData(1,arg1,FieldDataType.DataObjectField,135,"VENDORS",false)
         endmethod
 
     endclass

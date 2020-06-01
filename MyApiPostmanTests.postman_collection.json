@@ -26,6 +26,593 @@
 			"response": []
 		},
 		{
+			"name": "AAA_Alpha",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\t\"p1\": \"Z\",\n\t\"p3\": \"Z\" \n}"
+				},
+				"url": {
+					"raw": "{{server}}/MyApi/AAA_Alpha",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"MyApi",
+						"AAA_Alpha"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AAA_AlphaArray",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\t\"p1\": \"Z\",\n\t\"p3\": \"Z\" \n}"
+				},
+				"url": {
+					"raw": "{{server}}/MyApi/AAA_AlphaArray",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"MyApi",
+						"AAA_AlphaArray"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AAA_AlphaCollection",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\t\"p1\": \"Z\" \n}"
+				},
+				"url": {
+					"raw": "{{server}}/MyApi/AAA_AlphaCollection",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"MyApi",
+						"AAA_AlphaCollection"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AAA_BinaryHandle",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\t\"p1\": \"\",\n\t\"p3\": \"\" \n}"
+				},
+				"url": {
+					"raw": "{{server}}/MyApi/AAA_BinaryHandle",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"MyApi",
+						"AAA_BinaryHandle"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AAA_Decimal",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\t\"p1\": 9,\n\t\"p3\": 9,\n\t\"p4\": 9,\n\t\"p6\": 9,\n\t\"p7\": 9,\n\t\"p9\": 9,\n\t\"p10\": 9,\n\t\"p12\": 9,\n\t\"p13\": 9,\n\t\"p15\": 9,\n\t\"p16\": 9,\n\t\"p18\": 9,\n\t\"p19\": 9,\n\t\"p21\": 9,\n\t\"p22\": 9,\n\t\"p24\": 9,\n\t\"p25\": 9,\n\t\"p27\": 9,\n\t\"p28\": 9,\n\t\"p30\": 9,\n\t\"p31\": 9,\n\t\"p33\": 9,\n\t\"p34\": 9,\n\t\"p36\": 9,\n\t\"p37\": 9,\n\t\"p39\": 9,\n\t\"p40\": 9,\n\t\"p42\": 9 \n}"
+				},
+				"url": {
+					"raw": "{{server}}/MyApi/AAA_Decimal",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"MyApi",
+						"AAA_Decimal"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AAA_DecimalArray",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\t\"p1\": 9,\n\t\"p3\": 9 \n}"
+				},
+				"url": {
+					"raw": "{{server}}/MyApi/AAA_DecimalArray",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"MyApi",
+						"AAA_DecimalArray"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AAA_DecimalCollection",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\t\"p1\": 9 \n}"
+				},
+				"url": {
+					"raw": "{{server}}/MyApi/AAA_DecimalCollection",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"MyApi",
+						"AAA_DecimalCollection"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AAA_Enum",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\t\"p1\": \"\",\n\t\"p3\": \"\" \n}"
+				},
+				"url": {
+					"raw": "{{server}}/MyApi/AAA_Enum",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"MyApi",
+						"AAA_Enum"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AAA_Handle",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\t\"p1\": \"\",\n\t\"p3\": \"\" \n}"
+				},
+				"url": {
+					"raw": "{{server}}/MyApi/AAA_Handle",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"MyApi",
+						"AAA_Handle"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AAA_HatVal",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/MyApi/AAA_HatVal",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"MyApi",
+						"AAA_HatVal"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AAA_Implied",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\t\"p1\": 9.9,\n\t\"p3\": 9.9 \n}"
+				},
+				"url": {
+					"raw": "{{server}}/MyApi/AAA_Implied",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"MyApi",
+						"AAA_Implied"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AAA_ImpliedArray",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\t\"p1\": 9.9,\n\t\"p3\": 9.9 \n}"
+				},
+				"url": {
+					"raw": "{{server}}/MyApi/AAA_ImpliedArray",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"MyApi",
+						"AAA_ImpliedArray"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AAA_ImpliedCollection",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\t\"p1\": 9.9 \n}"
+				},
+				"url": {
+					"raw": "{{server}}/MyApi/AAA_ImpliedCollection",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"MyApi",
+						"AAA_ImpliedCollection"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AAA_Integer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\t\"p1\": 9,\n\t\"p3\": 9 \n}"
+				},
+				"url": {
+					"raw": "{{server}}/MyApi/AAA_Integer",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"MyApi",
+						"AAA_Integer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AAA_IntegerArray",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\t\"p1\": 9,\n\t\"p3\": 9 \n}"
+				},
+				"url": {
+					"raw": "{{server}}/MyApi/AAA_IntegerArray",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"MyApi",
+						"AAA_IntegerArray"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AAA_IntegerCollection",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\t\"p1\": 9 \n}"
+				},
+				"url": {
+					"raw": "{{server}}/MyApi/AAA_IntegerCollection",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"MyApi",
+						"AAA_IntegerCollection"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AAA_String",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\t\"p1\": \"Z\",\n\t\"p3\": \"Z\" \n}"
+				},
+				"url": {
+					"raw": "{{server}}/MyApi/AAA_String",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"MyApi",
+						"AAA_String"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AAA_Structure",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\t\"p1\": \"\",\n\t\"p3\": \"\" \n}"
+				},
+				"url": {
+					"raw": "{{server}}/MyApi/AAA_Structure",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"MyApi",
+						"AAA_Structure"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AAA_StructureArray",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\t\"p1\": \"\",\n\t\"p3\": \"\" \n}"
+				},
+				"url": {
+					"raw": "{{server}}/MyApi/AAA_StructureArray",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"MyApi",
+						"AAA_StructureArray"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AAA_StructureCollectionAL",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\t\"p1\": \"\" \n}"
+				},
+				"url": {
+					"raw": "{{server}}/MyApi/AAA_StructureCollectionAL",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"MyApi",
+						"AAA_StructureCollectionAL"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AAA_StructureCollectionMH",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/MyApi/AAA_StructureCollectionMH",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"MyApi",
+						"AAA_StructureCollectionMH"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "AddCustomer",
 			"request": {
 				"method": "POST",

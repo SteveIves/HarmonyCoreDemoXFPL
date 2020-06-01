@@ -23,7 +23,7 @@ import System.Collections
 {xfMethod(interface="MyApi",elb="EXE:xfplMethods")}
 function GetAllVendors, boolean
 
-    {xfParameter(name="Vendors",collectionType=xfCollectType.structure,structure="strVendor",dataTable=true)}
+    {xfParameter(name="Vendors",collectionType=xfCollectType.structure,structure="strVendor")}
     required out aVendors, @ArrayList
 
     endparams

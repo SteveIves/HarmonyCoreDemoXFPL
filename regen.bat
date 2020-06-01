@@ -338,7 +338,7 @@ if DEFINED ENABLE_TRADITIONAL_BRIDGE_GENERATION (
 rem ================================================================================
 rem Generate code for the TraditionalBridge sample environment
 
-set SMC_XML_FILE=xfplMethods\smc.xml
+set SMC_XML_FILE=SMC\smc.xml
 set SMC_INTERFACE=MyApi
 rem set BRIDGE_DISPATCHER_TEMPLATE=InterfaceMethodDispatchers
 set XFPL_SMCPATH=
