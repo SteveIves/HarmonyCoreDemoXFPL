@@ -1,0 +1,443 @@
+
+import System.Collections
+
+.ifndef strCustomer
+.include "CUSTOMERS" repository, structure="strCustomer", end
+.endc
+
+structure strA10
+    ,a10
+endstructure
+
+.include "TESTENUM" repository, enum
+
+.region "Basic parameters"
+
+{xfMethod(interface="MyApi",elb="EXE:xfplMethods")}
+function AAA_Alpha, a10
+    required in    p1, a10
+    required out   p2, a10
+    required inout p3, a10
+proc
+    p2 = "TWO"
+    p3 = "THREE"
+    freturn "ZERO"
+endfunction
+
+{xfMethod(interface="MyApi",elb="EXE:xfplMethods")}
+function AAA_Decimal, d8
+
+    required in    p1, d8
+    required out   p2, d8
+    required inout p3, d8
+
+    ;;Coerce to byte
+    {xfParameter(cType=xfType.byte)}
+    required in    p4, d3
+    {xfParameter(cType=xfType.byte)}
+    required out   p5, d3
+    {xfParameter(cType=xfType.byte)}
+    required inout p6, d3
+
+    ;;Coerce to short
+    {xfParameter(cType=xfType.short)}
+    required in    p7, d5
+    {xfParameter(cType=xfType.short)}
+    required out   p8, d5
+    {xfParameter(cType=xfType.short)}
+    required inout p9, d5
+
+    ;;Coerce to int
+    {xfParameter(cType=xfType.int)}
+    required in    p10, d8
+    {xfParameter(cType=xfType.int)}
+    required out   p11, d8
+    {xfParameter(cType=xfType.int)}
+    required inout p12, d8
+
+    ;;Coerce to long
+    {xfParameter(cType=xfType.long)}
+    required in    p13, d8
+    {xfParameter(cType=xfType.long)}
+    required out   p14, d8
+    {xfParameter(cType=xfType.long)}
+    required inout p15, d8
+
+    ;;Coerce to sbyte
+    {xfParameter(cType=xfType.sbyte)}
+    required in    p16, d1
+    {xfParameter(cType=xfType.sbyte)}
+    required out   p17, d1
+    {xfParameter(cType=xfType.sbyte)}
+    required inout p18, d1
+
+    ;;Coerce to ushort
+    {xfParameter(cType=xfType.ushort)}
+    required in    p19, d5
+    {xfParameter(cType=xfType.ushort)}
+    required out   p20, d5
+    {xfParameter(cType=xfType.ushort)}
+    required inout p21, d5
+
+    ;;Coerce to uint
+    {xfParameter(cType=xfType.uint)}
+    required in    p22, d8
+    {xfParameter(cType=xfType.uint)}
+    required out   p23, d8
+    {xfParameter(cType=xfType.uint)}
+    required inout p24, d8
+
+    ;;Coerce to ulong
+    {xfParameter(cType=xfType.ulong)}
+    required in    p25, d8
+    {xfParameter(cType=xfType.ulong)}
+    required out   p26, d8
+    {xfParameter(cType=xfType.ulong)}
+    required inout p27, d8
+
+    ;;Coerce to boolean
+
+;There's a bug here somewhere!!!    
+;Interface=MyApi Method name=AAA_Decimal Parameter=p28 - This combination of parameter length and coerced type may result in data loss on the client.
+;Interface=MyApi Method name=AAA_Decimal Parameter=p29 - This combination of parameter length and coerced type may result in data loss on the client.
+;Interface=MyApi Method name=AAA_Decimal Parameter=p30 - This combination of parameter length and coerced type may result in data loss on the client.
+;    {xfParameter(cType=xfType.boolean)}
+    required in    p28, d1
+;    {xfParameter(cType=xfType.boolean)}
+    required out   p29, d1
+;    {xfParameter(cType=xfType.boolean)}
+    required inout p30, d1
+
+    ;;Coerce to DateTime
+    {xfParameter(cType=xfType.datetime,Format=xfFormat.YYYYMMDD)}
+    required in    p31, d8
+    {xfParameter(cType=xfType.datetime,Format=xfFormat.YYYYMMDD)}
+    required out   p32, d8
+    {xfParameter(cType=xfType.datetime,Format=xfFormat.YYYYMMDD)}
+    required inout p33, d8
+
+    ;;Coerce to DateTime?
+    {xfParameter(cType=xfType.datetime,Format=xfFormat.YYYYMMDD,nullable=true)}
+    required in    p34, d8
+    {xfParameter(cType=xfType.datetime,Format=xfFormat.YYYYMMDD,nullable=true)}
+    required out   p35, d8
+    {xfParameter(cType=xfType.datetime,Format=xfFormat.YYYYMMDD,nullable=true)}
+    required inout p36, d8
+
+    ;;Coerce to decimal
+    {xfParameter(cType=xfType.decimal)}
+    required in    p37, d8
+    {xfParameter(cType=xfType.decimal)}
+    required out   p38, d8
+    {xfParameter(cType=xfType.decimal)}
+    required inout p39, d8
+
+    ;;Coerce to decimal?
+    {xfParameter(cType=xfType.decimal,nullable=true)}
+    required in    p40, d8
+    {xfParameter(cType=xfType.decimal,nullable=true)}
+    required out   p41, d8
+    {xfParameter(cType=xfType.decimal,nullable=true)}
+    required inout p42, d8
+
+proc
+    p2 = 2
+    p3 = 3
+
+    ;;Coerce to byte
+    p5 = 2
+    p6 = 3
+
+    ;;Coerce to short
+    p8 = 2
+    p9 = 3
+
+    ;;Coerce to int
+    p11 = 2
+    p12 = 3
+
+    ;;Coerce to long
+    p14 = 2
+    p15 = 3
+
+    ;;Coerce to sbyte
+    p17 = 2
+    p18 = 3
+
+    ;;Coerce to ushort
+    p20 = 2
+    p21 = 3
+
+    ;;Coerce to uint
+    p23 = 2
+    p24 = 3
+
+    ;;Coerce to ulong
+    p26 = 2
+    p27 = 3
+
+    ;;Coerce to boolean
+    p29 = 1
+    p30 = 0
+
+    ;;Coerce to DateTime
+    p32 = 20200101
+    p33 = 20201231
+
+    ;;Coerce to DateTime?
+    p35 = 20200101
+    p36 = 20201231
+
+    ;;Coerce to decimal
+    p38 = 2
+    p39 = 3
+
+    ;;Coerce to decimal?
+    p41 = 2
+    p42 = 3
+
+    freturn 0
+endfunction
+
+{xfMethod(interface="MyApi",elb="EXE:xfplMethods")}
+function AAA_Implied, d8.2
+    required in    p1, d8.2
+    required out   p2, d8.2
+    required inout p3, d8.2
+proc
+    p2 = 2.2
+    p3 = 3.3
+    freturn 0.0
+endfunction
+
+{xfMethod(interface="MyApi",elb="EXE:xfplMethods")}
+function AAA_Integer, i4
+    required in    p1, i4
+    required out   p2, i4
+    required inout p3, i4
+proc
+    p2 = 2
+    p3 = 3
+    freturn 0
+endfunction
+
+{xfMethod(interface="MyApi",elb="EXE:xfplMethods")}
+function AAA_HatVal, ^val
+proc
+    freturn 0
+endfunction
+
+{xfMethod(interface="MyApi",elb="EXE:xfplMethods")}
+subroutine AAA_Structure
+    required in    p1, strCustomer
+    required out   p2, strCustomer
+    required inout p3, strCustomer
+proc
+    p2.customer_number = 2
+    p2.name = "TWO"
+    p3.customer_number = 3
+    p3.name = "THREE"
+    xreturn
+endsubroutine
+
+{xfMethod(interface="MyApi",elb="EXE:xfplMethods")}
+subroutine AAA_Handle
+    {xfParameter(type=SynType.handle)}
+    required in    p1, D_HANDLE
+    {xfParameter(type=SynType.handle)}
+    required out   p2, D_HANDLE
+    {xfParameter(type=SynType.handle)}
+    required inout p3, D_HANDLE
+proc
+    p2 = %mem_proc(DM_RESIZ|DM_BLANK,10,p2)
+    ^m(strA10,p2) = "TWO"
+    p3 = %mem_proc(DM_RESIZ|DM_BLANK,10,p3)
+    ^m(strA10,p3) = "THREE"
+    xreturn
+endsubroutine
+
+{xfMethod(interface="MyApi",elb="EXE:xfplMethods")}
+subroutine AAA_BinaryHandle
+    {xfParameter(type=SynType.binaryhandle)}
+    required in    p1, D_HANDLE
+    {xfParameter(type=SynType.binaryhandle)}
+    required out   p2, D_HANDLE
+    {xfParameter(type=SynType.binaryhandle)}
+    required inout p3, D_HANDLE
+proc
+    p2 = %mem_proc(DM_RESIZ|DM_BLANK,10,p2)
+    ^m(strA10,p2) = "TWO"
+    p3 = %mem_proc(DM_RESIZ|DM_BLANK,10,p3)
+    ^m(strA10,p3) = "THREE"
+    xreturn
+endsubroutine
+
+{xfMethod(interface="MyApi",elb="EXE:xfplMethods")}
+function AAA_String, string
+    required in    p1, string
+    required out   p2, string
+    required inout p3, string
+proc
+    p2 = "TWO"
+    p3 = "THREE"
+    freturn "ZERO"
+endfunction
+
+{xfMethod(interface="MyApi",elb="EXE:xfplMethods")}
+function AAA_Enum, TESTENUM
+    required in    p1, TESTENUM
+    required out   p2, TESTENUM
+    required inout p3, TESTENUM
+proc
+    p2 = TESTENUM.TWO
+    p3 = TESTENUM.THREE
+    freturn TESTENUM.ONE
+endfunction
+
+.endregion
+
+.region "Array parameters"
+
+{xfMethod(interface="MyApi",elb="EXE:xfplMethods")}
+subroutine AAA_AlphaArray
+    required in    p1, [*]a10
+    required out   p2, [*]a10
+    required inout p3, [*]a10
+proc
+    ;TODO: How many elements?
+    xreturn
+endsubroutine
+
+{xfMethod(interface="MyApi",elb="EXE:xfplMethods")}
+subroutine AAA_DecimalArray
+    required in    p1, [*]d8
+    required out   p2, [*]d8
+    required inout p3, [*]d8
+proc
+    ;TODO: How many elements?
+    xreturn
+endsubroutine
+
+{xfMethod(interface="MyApi",elb="EXE:xfplMethods")}
+subroutine AAA_ImpliedArray
+    required in    p1, [*]d8.2
+    required out   p2, [*]d8.2
+    required inout p3, [*]d8.2
+proc
+    ;TODO: How many elements?
+    xreturn
+endsubroutine
+
+{xfMethod(interface="MyApi",elb="EXE:xfplMethods")}
+subroutine AAA_IntegerArray
+    required in    p1, [*]i4
+    required out   p2, [*]i4
+    required inout p3, [*]i4
+proc
+    ;TODO: How many elements?
+    xreturn
+endsubroutine
+
+{xfMethod(interface="MyApi",elb="EXE:xfplMethods")}
+subroutine AAA_StructureArray
+    required in    p1, [*]strCustomer
+    required out   p2, [*]strCustomer
+    required inout p3, [*]strCustomer
+proc
+    ;TODO: How many elements?
+    xreturn
+endsubroutine
+
+.endregion
+
+.region "Collections"
+
+{xfMethod(interface="MyApi",elb="EXE:xfplMethods")}
+subroutine AAA_AlphaCollection
+    {xfParameter(collectionType=xfCollectType.ALPHA,length=10)}
+    required in    p1, @ArrayList
+    {xfParameter(collectionType=xfCollectType.ALPHA,length=10)}
+    required out   p2, @ArrayList
+    ;Apparently inout is not supported for ArrayList collections!
+proc
+    p2.Add((@a)"ABC")
+    p2.Add((@a)"BCD")
+    xreturn
+endsubroutine
+
+    {xfMethod(interface="MyApi",elb="EXE:xfplMethods")}
+subroutine AAA_DecimalCollection
+    {xfParameter(collectionType=xfCollectType.DECIMAL,length=10)}
+    required in    p1, @ArrayList
+    {xfParameter(collectionType=xfCollectType.DECIMAL,length=10)}
+    required out   p2, @ArrayList
+    ;Apparently inout is not supported for ArrayList collections!
+proc
+    p2.Add((@d)123)
+    p2.Add((@d)234)
+    xreturn
+endsubroutine
+
+{xfMethod(interface="MyApi",elb="EXE:xfplMethods")}
+subroutine AAA_ImpliedCollection
+    {xfParameter(collectionType=xfCollectType.DECIMAL,length=10,precision=2)}
+    required in    p1, @ArrayList
+    {xfParameter(collectionType=xfCollectType.DECIMAL,length=10,precision=2)}
+    required out   p2, @ArrayList
+    ;Apparently inout is not supported for ArrayList collections!
+proc
+    p2.Add((@d)2.1)
+    p2.Add((@d)2.2)
+    xreturn
+endsubroutine
+    
+{xfMethod(interface="MyApi",elb="EXE:xfplMethods")}
+subroutine AAA_IntegerCollection
+    {xfParameter(collectionType=xfCollectType.INTEGER,length=4)}
+    required in    p1, @ArrayList
+    {xfParameter(collectionType=xfCollectType.INTEGER,length=4)}
+    required out   p2, @ArrayList
+    ;Apparently inout is not supported for ArrayList collections!
+proc
+    p2.Add((@i)2)
+    p2.Add((@i)2)
+    xreturn
+endsubroutine
+    
+{xfMethod(interface="MyApi",elb="EXE:xfplMethods")}
+subroutine AAA_StructureCollectionAL
+    {xfParameter(collectionType=xfCollectType.STRUCTURE,structure="strCustomer")}
+    required in    p1, @ArrayList
+    {xfParameter(collectionType=xfCollectType.STRUCTURE,structure="strCustomer")}
+    required out   p2, @ArrayList
+    ;Apparently inout is not supported for ArrayList collections!
+proc
+    begin
+        data c, strCustomer
+        c.customer_number = 1
+        c.name = "ONE"
+        p2.Add((@strCustomer)c)
+        c.customer_number = 2
+        c.name = "TWO"
+        p2.Add((@strCustomer)c)
+    end
+    xreturn
+endsubroutine
+
+{xfMethod(interface="MyApi",elb="EXE:xfplMethods")}
+subroutine AAA_StructureCollectionMH
+    {xfParameter(collectionType=xfCollectType.STRUCTURE,structure="strCustomer")}
+    required in    p1, D_HANDLE
+    {xfParameter(collectionType=xfCollectType.STRUCTURE,structure="strCustomer")}
+    required out   p2, D_HANDLE
+    {xfParameter(collectionType=xfCollectType.STRUCTURE,structure="strCustomer")}
+    required inout p3, D_HANDLE
+proc
+    p2 = %mem_proc(DM_RESIZ|DM_BLANK,10,p2)
+    ^m(strA10,p2) = "TWO"
+    p3 = %mem_proc(DM_RESIZ|DM_BLANK,10,p3)
+    ^m(strA10,p3) = "THREE"
+    xreturn
+endsubroutine
+
+.endregion
