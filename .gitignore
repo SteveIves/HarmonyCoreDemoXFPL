@@ -273,3 +273,4 @@ __pycache__/
 .vscode/
 /distribution
 *.elb
+/exe

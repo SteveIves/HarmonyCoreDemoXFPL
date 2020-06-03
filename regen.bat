@@ -114,7 +114,7 @@ rem set ENABLE_AUTHENTICATION=-define ENABLE_AUTHENTICATION
 rem set ENABLE_CUSTOM_AUTHENTICATION=-define ENABLE_CUSTOM_AUTHENTICATION
 rem set ENABLE_FIELD_SECURITY=-define ENABLE_FIELD_SECURITY
 rem set ENABLE_SIGNALR=-define ENABLE_SIGNALR
-rem set ENABLE_UNIT_TEST_GENERATION=YES
+set ENABLE_UNIT_TEST_GENERATION=YES
 rem set ENABLE_CASE_SENSITIVE_URL=-define ENABLE_CASE_SENSITIVE_URL
 set ENABLE_CORS=-define ENABLE_CORS
 set ENABLE_IIS_SUPPORT=-define ENABLE_IIS_SUPPORT
@@ -270,17 +270,6 @@ if DEFINED ENABLE_UNIT_TEST_GENERATION (
           -t  ODataClientModel ODataTestDataLoader ODataUnitTests ^
           -i  %SolutionDir%Templates ^
           -o  %SolutionDir%%TestProject% -tf ^
-          -n  %TestProject% ^
-              %STDOPTS%
-  if ERRORLEVEL 1 goto error
-
-  rem Generate the test environment
-  codegen -s  %FILE_STRUCTURES% -ms ^
-          -a  %FILE_ALIASES% ^
-          -fo %FILE_FILES% ^
-          -t  ODataTestEnvironment ^
-          -i  %SolutionDir%Templates ^
-          -o  %SolutionDir%%TestProject% ^
           -n  %TestProject% ^
               %STDOPTS%
   if ERRORLEVEL 1 goto error

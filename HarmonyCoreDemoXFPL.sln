@@ -11,6 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{
 	ProjectSection(SolutionItems) = preProject
 		Templates\HarmonyCoreCustomization.json = Templates\HarmonyCoreCustomization.json
 		Templates\HarmonyCoreCustomization.tpl = Templates\HarmonyCoreCustomization.tpl
+		Templates\TraditionalBridge\InterfaceUnitTests.tpl = Templates\TraditionalBridge\InterfaceUnitTests.tpl
 		Templates\ODataClientModel.tpl = Templates\ODataClientModel.tpl
 		Templates\ODataController.tpl = Templates\ODataController.tpl
 		Templates\ODataControllerPropertyEndpoints.tpl = Templates\ODataControllerPropertyEndpoints.tpl
@@ -31,7 +32,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{
 		Templates\ODataTestDataLoader.tpl = Templates\ODataTestDataLoader.tpl
 		Templates\ODataUnitTestEnvironment.tpl = Templates\ODataUnitTestEnvironment.tpl
 		Templates\ODataUnitTestHost.tpl = Templates\ODataUnitTestHost.tpl
-		Templates\TraditionalBridge\InterfaceUnitTests.tpl = Templates\TraditionalBridge\InterfaceUnitTests.tpl
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{29AEA4C4-62B2-4F46-9B80-5F061D950BE1}"
@@ -90,11 +90,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xfServerPlus", "xfServerPlu
 		Templates\xfServerPlus\xf_net_delete.tpl = Templates\xfServerPlus\xf_net_delete.tpl
 		Templates\xfServerPlus\xf_net_get.tpl = Templates\xfServerPlus\xf_net_get.tpl
 		Templates\xfServerPlus\xf_net_get_all.tpl = Templates\xfServerPlus\xf_net_get_all.tpl
-		Templates\xfServerPlus\xf_net_get_master_detail.tpl = Templates\xfServerPlus\xf_net_get_master_detail.tpl
+		Services\Templates\xfServerPlus\xf_net_get_master_detail.tpl = Services\Templates\xfServerPlus\xf_net_get_master_detail.tpl
 		Templates\xfServerPlus\xf_net_select_all.tpl = Templates\xfServerPlus\xf_net_select_all.tpl
 		Templates\xfServerPlus\xf_net_update.tpl = Templates\xfServerPlus\xf_net_update.tpl
 		Templates\xfServerPlus\xf_net_validate.tpl = Templates\xfServerPlus\xf_net_validate.tpl
 	EndProjectSection
+EndProject
+Project("{BBD0F5D1-1CC4-42FD-BA4C-A96779C64378}") = "Services.Test", "Services.Test\Services.Test.synproj", "{C8907443-F105-4C39-AC5C-C8EFD263C3EF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -202,6 +204,18 @@ Global
 		{D155B547-9757-4874-8721-4AE3D19EA435}.Release|x64.Build.0 = Release|x64
 		{D155B547-9757-4874-8721-4AE3D19EA435}.Release|x86.ActiveCfg = Release|x86
 		{D155B547-9757-4874-8721-4AE3D19EA435}.Release|x86.Build.0 = Release|x86
+		{C8907443-F105-4C39-AC5C-C8EFD263C3EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8907443-F105-4C39-AC5C-C8EFD263C3EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8907443-F105-4C39-AC5C-C8EFD263C3EF}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C8907443-F105-4C39-AC5C-C8EFD263C3EF}.Debug|x64.Build.0 = Debug|Any CPU
+		{C8907443-F105-4C39-AC5C-C8EFD263C3EF}.Debug|x86.ActiveCfg = Debug|x86
+		{C8907443-F105-4C39-AC5C-C8EFD263C3EF}.Debug|x86.Build.0 = Debug|x86
+		{C8907443-F105-4C39-AC5C-C8EFD263C3EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8907443-F105-4C39-AC5C-C8EFD263C3EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8907443-F105-4C39-AC5C-C8EFD263C3EF}.Release|x64.ActiveCfg = Release|Any CPU
+		{C8907443-F105-4C39-AC5C-C8EFD263C3EF}.Release|x64.Build.0 = Release|Any CPU
+		{C8907443-F105-4C39-AC5C-C8EFD263C3EF}.Release|x86.ActiveCfg = Release|x86
+		{C8907443-F105-4C39-AC5C-C8EFD263C3EF}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
