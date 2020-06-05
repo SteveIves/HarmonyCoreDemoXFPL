@@ -1,4 +1,3 @@
-<CODEGEN_FILENAME>AuthenticationController.dbl</CODEGEN_FILENAME>
 ;;*****************************************************************************
 ;;
 ;; Title:       AuthenticationController.dbl
@@ -21,13 +20,13 @@ import System.Linq
 import System.Text
 import System.Threading.Tasks
 
-namespace <NAMESPACE>
+namespace Services.Controllers
 
-    {Route("<CUSTOM_AUTH_CONTROLLER_PATH>")}
+    {Route("Authentication")}
     public class AuthenticationController extends ControllerBase
 
         {AllowAnonymous}
-        {Route("<CUSTOM_AUTH_ENDPOINT_PATH>")}
+        {Route("GetToken")}
         ;;; <summary>
         ;;; 
         ;;; </summary>
@@ -42,7 +41,7 @@ namespace <NAMESPACE>
             end
 
             ;TODO: Authenticate the user login. For now we'll hard code some valid credentials
-            if (aRequest.Username.ToLower().Equals("<CUSTOM_AUTH_USERNAME>") && aRequest.Password.Equals("<CUSTOM_AUTH_PASSWORD>")) then
+            if (aRequest.Username.ToLower().Equals("username") && aRequest.Password.Equals("password")) then
             begin
                 data tokenValidHours, int, 24
                 ;;To add custom claims to the JWT, add parameters to GetToken and pass values here!

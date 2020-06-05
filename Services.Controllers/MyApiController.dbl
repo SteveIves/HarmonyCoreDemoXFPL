@@ -12,6 +12,7 @@
 ;; Any changes you make will be lost of the file is re-generated.
 ;;*****************************************************************************
 
+import Microsoft.AspNetCore.Authorization
 import Microsoft.AspNetCore.Mvc
 import Microsoft.Extensions.Configuration
 import Microsoft.Extensions.Options
@@ -26,6 +27,7 @@ import Services.Controllers
 
 namespace Services.Controllers
 
+	{Authorize}
     {Route("MyApi")}
     public partial class MyApiController extends ControllerBase
 

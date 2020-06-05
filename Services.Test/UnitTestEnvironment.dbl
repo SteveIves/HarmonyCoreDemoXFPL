@@ -29,6 +29,7 @@ namespace Services.Test
     public class UnitTestEnvironment
 
         public static Server, @TestServer
+        public static AccessToken, string
 
         {AssemblyInitialize}
         public static method AssemblyInitialize, void
@@ -57,6 +58,13 @@ namespace Services.Test
 
             ;;Fake out HTTPS
             Server.BaseAddress = new Uri("https://localhost")
+
+            ;;Get the access token from the custom authentication endpoint
+            disposable data client = Server.CreateClient()
+            disposable data requestBody, @StringContent, new StringContent('{"Username":"username","Password":"password"}',Encoding.UTF8,"application/json")
+            disposable data response = client.PostAsync("/Authentication/GetToken",requestBody).Result
+            response.EnsureSuccessStatusCode()
+            AccessToken = response.Content.ReadAsStringAsync().Result
 
         endmethod
 

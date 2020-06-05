@@ -16,6 +16,7 @@ import Newtonsoft.Json
 import System.Collections.Generic
 import System.Net
 import System.Net.Http
+import System.Net.Http.Headers
 import Services
 import Services.Test.Models
 
@@ -32,6 +33,7 @@ namespace Services.Test.UnitTests
         public method GetVendors, void
         proc
             disposable data client = UnitTestEnvironment.Server.CreateClient()
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",UnitTestEnvironment.AccessToken)
             disposable data response = client.GetAsync("/odata/v1/Vendors").Result
             data result = response.Content.ReadAsStringAsync().Result
             response.EnsureSuccessStatusCode()
@@ -48,6 +50,7 @@ namespace Services.Test.UnitTests
         proc
             data uri = "/odata/v1/Vendors?$expand=REL_Items"
             disposable data client = UnitTestEnvironment.Server.CreateClient()
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",UnitTestEnvironment.AccessToken)
             disposable data response = client.GetAsync(uri).Result
             data result = response.Content.ReadAsStringAsync().Result
             response.EnsureSuccessStatusCode()
@@ -62,6 +65,7 @@ namespace Services.Test.UnitTests
         proc
             data uri = "/odata/v1/Vendors?$expand=REL_Items"
             disposable data client = UnitTestEnvironment.Server.CreateClient()
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",UnitTestEnvironment.AccessToken)
             disposable data response = client.GetAsync(uri).Result
             data result = response.Content.ReadAsStringAsync().Result
             response.EnsureSuccessStatusCode()
@@ -75,6 +79,7 @@ namespace Services.Test.UnitTests
         public method GetVendor, void
         proc
             disposable data client = UnitTestEnvironment.Server.CreateClient()
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",UnitTestEnvironment.AccessToken)
             data request = String.Format("/odata/v1/Vendors(VendorNumber={1})","",TestConstants.GetVendor_VendorNumber)
             data response = client.GetAsync(request).Result
             data result = response.Content.ReadAsStringAsync().Result
@@ -90,6 +95,7 @@ namespace Services.Test.UnitTests
         public method GetVendor_Expand_REL_Items, void
         proc
             disposable data client = UnitTestEnvironment.Server.CreateClient()
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",UnitTestEnvironment.AccessToken)
             data request = String.Format("/odata/v1/Vendors(VendorNumber={1})?$expand=REL_Items","",TestConstants.GetVendor_Expand_REL_Items_VendorNumber)
             data response = client.GetAsync(request).Result
             data result = response.Content.ReadAsStringAsync().Result
@@ -105,6 +111,7 @@ namespace Services.Test.UnitTests
         public method GetVendor_Expand_All, void
         proc
             disposable data client = UnitTestEnvironment.Server.CreateClient()
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",UnitTestEnvironment.AccessToken)
             data request = String.Format("/odata/v1/Vendors(VendorNumber={1})?$expand=REL_Items","",TestConstants.GetVendor_Expand_All_VendorNumber)
             data response = client.GetAsync(request).Result
             data result = response.Content.ReadAsStringAsync().Result
@@ -120,6 +127,7 @@ namespace Services.Test.UnitTests
         public method GetVendor_ByAltKey_State, void
         proc
             disposable data client = UnitTestEnvironment.Server.CreateClient()
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",UnitTestEnvironment.AccessToken)
             data request = String.Format("/odata/v1/Vendors(State='{1}')", "", TestConstants.GetVendor_ByAltKey_State_State)
             data response = client.GetAsync(request).Result
             data result = response.Content.ReadAsStringAsync().Result
@@ -135,6 +143,7 @@ namespace Services.Test.UnitTests
         public method GetVendor_ByAltKey_Zip, void
         proc
             disposable data client = UnitTestEnvironment.Server.CreateClient()
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",UnitTestEnvironment.AccessToken)
             data request = String.Format("/odata/v1/Vendors(ZipCode={1})", "", TestConstants.GetVendor_ByAltKey_Zip_ZipCode)
             data response = client.GetAsync(request).Result
             data result = response.Content.ReadAsStringAsync().Result
@@ -150,6 +159,7 @@ namespace Services.Test.UnitTests
         public method GetVendor_ByAltKey_PaymentTerms, void
         proc
             disposable data client = UnitTestEnvironment.Server.CreateClient()
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",UnitTestEnvironment.AccessToken)
             data request = String.Format("/odata/v1/Vendors(PaymentTermsCode='{1}')", "", TestConstants.GetVendor_ByAltKey_PaymentTerms_PaymentTermsCode)
             data response = client.GetAsync(request).Result
             data result = response.Content.ReadAsStringAsync().Result
@@ -165,6 +175,7 @@ namespace Services.Test.UnitTests
         public method UpdateVendor, void
         proc
             disposable data client = UnitTestEnvironment.Server.CreateClient()
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",UnitTestEnvironment.AccessToken)
 
             ;;Get one vendor from the file
             data getRequest = String.Format("/odata/v1/Vendors({1})","",TestConstants.GetVendor_VendorNumber)

@@ -10,12 +10,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{6C9AD151-7DA4-477B-A52C-FB883D9D1057}"
 	ProjectSection(SolutionItems) = preProject
 		Templates\HarmonyCoreCustomization.json = Templates\HarmonyCoreCustomization.json
-		Templates\HarmonyCoreCustomization.tpl = Templates\HarmonyCoreCustomization.tpl
+		Services.Host\Templates\HarmonyCoreCustomization.tpl = Services.Host\Templates\HarmonyCoreCustomization.tpl
 		Templates\TraditionalBridge\InterfaceUnitTests.tpl = Templates\TraditionalBridge\InterfaceUnitTests.tpl
 		Templates\ODataClientModel.tpl = Templates\ODataClientModel.tpl
 		Templates\ODataController.tpl = Templates\ODataController.tpl
 		Templates\ODataControllerPropertyEndpoints.tpl = Templates\ODataControllerPropertyEndpoints.tpl
-		Templates\ODataControllerV2.tpl = Templates\ODataControllerV2.tpl
+		Repository\Templates\ODataControllerV2.tpl = Repository\Templates\ODataControllerV2.tpl
 		Templates\ODataCustomAuthController.tpl = Templates\ODataCustomAuthController.tpl
 		Templates\ODataCustomAuthModels.tpl = Templates\ODataCustomAuthModels.tpl
 		Templates\ODataCustomAuthTools.tpl = Templates\ODataCustomAuthTools.tpl
@@ -32,6 +32,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{
 		Templates\ODataTestDataLoader.tpl = Templates\ODataTestDataLoader.tpl
 		Templates\ODataUnitTestEnvironment.tpl = Templates\ODataUnitTestEnvironment.tpl
 		Templates\ODataUnitTestHost.tpl = Templates\ODataUnitTestHost.tpl
+		Templates\ODataUnitTests.tpl = Templates\ODataUnitTests.tpl
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{29AEA4C4-62B2-4F46-9B80-5F061D950BE1}"
@@ -65,6 +66,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TraditionalBridge", "Tradit
 		Templates\TraditionalBridge\InterfaceServiceModels.tpl = Templates\TraditionalBridge\InterfaceServiceModels.tpl
 		Templates\TraditionalBridge\InterfaceTestResponses.tpl = Templates\TraditionalBridge\InterfaceTestResponses.tpl
 		Templates\TraditionalBridge\InterfaceUnitTests.tpl = Templates\TraditionalBridge\InterfaceUnitTests.tpl
+		Templates\TraditionalBridge\InterfaceUnitTestValues.tpl = Templates\TraditionalBridge\InterfaceUnitTestValues.tpl
 		Templates\TraditionalBridge\ODataActionModels.tpl = Templates\TraditionalBridge\ODataActionModels.tpl
 		Templates\TraditionalBridge\ODataMetaData.tpl = Templates\TraditionalBridge\ODataMetaData.tpl
 		Templates\TraditionalBridge\ODataModel.tpl = Templates\TraditionalBridge\ODataModel.tpl

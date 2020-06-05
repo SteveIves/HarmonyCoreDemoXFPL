@@ -38,7 +38,7 @@ namespace MyApi
         ;;; Parameter 1 (REQUIRED IN A10)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p1, String
+        public p1, String
 
         {Required(ErrorMessage="p3 is required")}
         {StringLength(10,ErrorMessage="p3 is limited to 10 characters")}
@@ -46,7 +46,7 @@ namespace MyApi
         ;;; Parameter 3 (REQUIRED INOUT A10)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p3, String
+        public p3, String
 
     endclass
 
@@ -89,7 +89,7 @@ namespace MyApi
         ;;; Parameter 1 (REQUIRED IN A10)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p1, [#]String
+        public p1, [#]String
 
         {Required(ErrorMessage="p3 is required")}
         {StringLength(10,ErrorMessage="p3 is limited to 10 characters")}
@@ -97,7 +97,7 @@ namespace MyApi
         ;;; Parameter 3 (REQUIRED INOUT A10)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p3, [#]String
+        public p3, [#]String
 
     endclass
 
@@ -135,7 +135,7 @@ namespace MyApi
         ;;; Parameter 1 (REQUIRED IN A10)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p1, [#]String
+        public p1, [#]String
 
     endclass
 
@@ -166,14 +166,14 @@ namespace MyApi
         ;;; Parameter 1 (REQUIRED IN D_HANDLE)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p1, [#]byte
+        public p1, [#]byte
 
         {Required(ErrorMessage="p3 is required")}
         ;;; <summary>
         ;;; Parameter 3 (REQUIRED INOUT D_HANDLE)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p3, [#]byte
+        public p3, [#]byte
 
     endclass
 
@@ -210,196 +210,196 @@ namespace MyApi
         ;;; Parameter 1 (REQUIRED IN D8)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p1, int
+        public p1, int
 
         {Required(ErrorMessage="p3 is required")}
         ;;; <summary>
         ;;; Parameter 3 (REQUIRED INOUT D8)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p3, int
+        public p3, int
 
         {Required(ErrorMessage="p4 is required")}
         ;;; <summary>
         ;;; Parameter 4 (REQUIRED IN D3)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p4, byte
+        public p4, byte
 
         {Required(ErrorMessage="p6 is required")}
         ;;; <summary>
         ;;; Parameter 6 (REQUIRED INOUT D3)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p6, byte
+        public p6, byte
 
         {Required(ErrorMessage="p7 is required")}
         ;;; <summary>
         ;;; Parameter 7 (REQUIRED IN D5)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p7, short
+        public p7, short
 
         {Required(ErrorMessage="p9 is required")}
         ;;; <summary>
         ;;; Parameter 9 (REQUIRED INOUT D5)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p9, short
+        public p9, short
 
         {Required(ErrorMessage="p10 is required")}
         ;;; <summary>
         ;;; Parameter 10 (REQUIRED IN D8)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p10, int
+        public p10, int
 
         {Required(ErrorMessage="p12 is required")}
         ;;; <summary>
         ;;; Parameter 12 (REQUIRED INOUT D8)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p12, int
+        public p12, int
 
         {Required(ErrorMessage="p13 is required")}
         ;;; <summary>
         ;;; Parameter 13 (REQUIRED IN D8)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p13, long
+        public p13, long
 
         {Required(ErrorMessage="p15 is required")}
         ;;; <summary>
         ;;; Parameter 15 (REQUIRED INOUT D8)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p15, long
+        public p15, long
 
         {Required(ErrorMessage="p16 is required")}
         ;;; <summary>
         ;;; Parameter 16 (REQUIRED IN D1)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p16, sbyte
+        public p16, sbyte
 
         {Required(ErrorMessage="p18 is required")}
         ;;; <summary>
         ;;; Parameter 18 (REQUIRED INOUT D1)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p18, sbyte
+        public p18, sbyte
 
         {Required(ErrorMessage="p19 is required")}
         ;;; <summary>
         ;;; Parameter 19 (REQUIRED IN D5)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p19, ushort
+        public p19, ushort
 
         {Required(ErrorMessage="p21 is required")}
         ;;; <summary>
         ;;; Parameter 21 (REQUIRED INOUT D5)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p21, ushort
+        public p21, ushort
 
         {Required(ErrorMessage="p22 is required")}
         ;;; <summary>
         ;;; Parameter 22 (REQUIRED IN D8)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p22, uint
+        public p22, uint
 
         {Required(ErrorMessage="p24 is required")}
         ;;; <summary>
         ;;; Parameter 24 (REQUIRED INOUT D8)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p24, uint
+        public p24, uint
 
         {Required(ErrorMessage="p25 is required")}
         ;;; <summary>
         ;;; Parameter 25 (REQUIRED IN D8)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p25, ulong
+        public p25, ulong
 
         {Required(ErrorMessage="p27 is required")}
         ;;; <summary>
         ;;; Parameter 27 (REQUIRED INOUT D8)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p27, ulong
+        public p27, ulong
 
         {Required(ErrorMessage="p28 is required")}
         ;;; <summary>
         ;;; Parameter 28 (REQUIRED IN D1)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p28, int
+        public p28, int
 
         {Required(ErrorMessage="p30 is required")}
         ;;; <summary>
         ;;; Parameter 30 (REQUIRED INOUT D1)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p30, int
+        public p30, int
 
         {Required(ErrorMessage="p31 is required")}
         ;;; <summary>
         ;;; Parameter 31 (REQUIRED IN D8)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p31, DateTime
+        public p31, DateTime
 
         {Required(ErrorMessage="p33 is required")}
         ;;; <summary>
         ;;; Parameter 33 (REQUIRED INOUT D8)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p33, DateTime
+        public p33, DateTime
 
         {Required(ErrorMessage="p34 is required")}
         ;;; <summary>
         ;;; Parameter 34 (REQUIRED IN D8)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p34, Nullable<Datetime>
+        public p34, Nullable<Datetime>
 
         {Required(ErrorMessage="p36 is required")}
         ;;; <summary>
         ;;; Parameter 36 (REQUIRED INOUT D8)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p36, Nullable<Datetime>
+        public p36, Nullable<Datetime>
 
         {Required(ErrorMessage="p37 is required")}
         ;;; <summary>
         ;;; Parameter 37 (REQUIRED IN D8)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p37, decimal
+        public p37, decimal
 
         {Required(ErrorMessage="p39 is required")}
         ;;; <summary>
         ;;; Parameter 39 (REQUIRED INOUT D8)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p39, decimal
+        public p39, decimal
 
         {Required(ErrorMessage="p40 is required")}
         ;;; <summary>
         ;;; Parameter 40 (REQUIRED IN D8)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p40, Nullable<decimal>
+        public p40, Nullable<decimal>
 
         {Required(ErrorMessage="p42 is required")}
         ;;; <summary>
         ;;; Parameter 42 (REQUIRED INOUT D8)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p42, Nullable<decimal>
+        public p42, Nullable<decimal>
 
     endclass
 
@@ -597,14 +597,14 @@ namespace MyApi
         ;;; Parameter 1 (REQUIRED IN D8)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p1, [#]int
+        public p1, [#]int
 
         {Required(ErrorMessage="p3 is required")}
         ;;; <summary>
         ;;; Parameter 3 (REQUIRED INOUT D8)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p3, [#]int
+        public p3, [#]int
 
     endclass
 
@@ -641,7 +641,7 @@ namespace MyApi
         ;;; Parameter 1 (REQUIRED IN D10)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p1, [#]long
+        public p1, [#]long
 
     endclass
 
@@ -672,14 +672,14 @@ namespace MyApi
         ;;; Parameter 1 (REQUIRED IN TESTENUM)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p1, TESTENUM
+        public p1, TESTENUM
 
         {Required(ErrorMessage="p3 is required")}
         ;;; <summary>
         ;;; Parameter 3 (REQUIRED INOUT TESTENUM)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p3, TESTENUM
+        public p3, TESTENUM
 
     endclass
 
@@ -721,14 +721,14 @@ namespace MyApi
         ;;; Parameter 1 (REQUIRED IN D_HANDLE)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p1, string
+        public p1, string
 
         {Required(ErrorMessage="p3 is required")}
         ;;; <summary>
         ;;; Parameter 3 (REQUIRED INOUT D_HANDLE)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p3, string
+        public p3, string
 
     endclass
 
@@ -754,6 +754,7 @@ namespace MyApi
 
 ;;--------------------------------------------------------------------------------
 ;; AAA_HatVal
+    ;; This metho has no in parameters
 
     ;;; <summary>
     ;;; Represents OUT parameters and return value for method MyApi.AAA_HatVal.
@@ -781,14 +782,14 @@ namespace MyApi
         ;;; Parameter 1 (REQUIRED IN D8.2)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p1, decimal
+        public p1, decimal
 
         {Required(ErrorMessage="p3 is required")}
         ;;; <summary>
         ;;; Parameter 3 (REQUIRED INOUT D8.2)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p3, decimal
+        public p3, decimal
 
     endclass
 
@@ -830,14 +831,14 @@ namespace MyApi
         ;;; Parameter 1 (REQUIRED IN D8.2)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p1, [#]decimal
+        public p1, [#]decimal
 
         {Required(ErrorMessage="p3 is required")}
         ;;; <summary>
         ;;; Parameter 3 (REQUIRED INOUT D8.2)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p3, [#]decimal
+        public p3, [#]decimal
 
     endclass
 
@@ -874,7 +875,7 @@ namespace MyApi
         ;;; Parameter 1 (REQUIRED IN D10.2)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p1, [#]decimal
+        public p1, [#]decimal
 
     endclass
 
@@ -905,14 +906,14 @@ namespace MyApi
         ;;; Parameter 1 (REQUIRED IN I4)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p1, int
+        public p1, int
 
         {Required(ErrorMessage="p3 is required")}
         ;;; <summary>
         ;;; Parameter 3 (REQUIRED INOUT I4)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p3, int
+        public p3, int
 
     endclass
 
@@ -954,14 +955,14 @@ namespace MyApi
         ;;; Parameter 1 (REQUIRED IN I4)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p1, [#]int
+        public p1, [#]int
 
         {Required(ErrorMessage="p3 is required")}
         ;;; <summary>
         ;;; Parameter 3 (REQUIRED INOUT I4)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p3, [#]int
+        public p3, [#]int
 
     endclass
 
@@ -998,7 +999,7 @@ namespace MyApi
         ;;; Parameter 1 (REQUIRED IN I4)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p1, [#]int
+        public p1, [#]int
 
     endclass
 
@@ -1029,14 +1030,14 @@ namespace MyApi
         ;;; Parameter 1 (REQUIRED IN STRING)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p1, string
+        public p1, string
 
         {Required(ErrorMessage="p3 is required")}
         ;;; <summary>
         ;;; Parameter 3 (REQUIRED INOUT STRING)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p3, string
+        public p3, string
 
     endclass
 
@@ -1078,14 +1079,14 @@ namespace MyApi
         ;;; Parameter 1 (REQUIRED IN CUSTOMERS)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p1, @Customer
+        public p1, @Customer
 
         {Required(ErrorMessage="p3 is required")}
         ;;; <summary>
         ;;; Parameter 3 (REQUIRED INOUT CUSTOMERS)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p3, @Customer
+        public p3, @Customer
 
     endclass
 
@@ -1122,14 +1123,14 @@ namespace MyApi
         ;;; Parameter 1 (REQUIRED IN CUSTOMERS)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p1, [#]@Customer
+        public p1, [#]@Customer
 
         {Required(ErrorMessage="p3 is required")}
         ;;; <summary>
         ;;; Parameter 3 (REQUIRED INOUT CUSTOMERS)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p3, [#]@Customer
+        public p3, [#]@Customer
 
     endclass
 
@@ -1166,7 +1167,7 @@ namespace MyApi
         ;;; Parameter 1 (REQUIRED IN CUSTOMERS)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  p1, [#]@Customer
+        public p1, [#]@Customer
 
     endclass
 
@@ -1186,6 +1187,7 @@ namespace MyApi
 
 ;;--------------------------------------------------------------------------------
 ;; AAA_StructureCollectionMH
+    ;; This metho has no in parameters
 
     ;;; <summary>
     ;;; Represents OUT parameters for method MyApi.AAA_StructureCollectionMH.
@@ -1226,7 +1228,7 @@ namespace MyApi
         ;;; Parameter 1 (REQUIRED IN CUSTOMERS)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  Customer, @Customer
+        public Customer, @Customer
 
     endclass
 
@@ -1256,7 +1258,7 @@ namespace MyApi
         ;;; Parameter 1 (REQUIRED IN ITEMS)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  Item, @Item
+        public Item, @Item
 
     endclass
 
@@ -1286,7 +1288,7 @@ namespace MyApi
         ;;; Parameter 1 (REQUIRED IN ORDERS)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  Order, @Order
+        public Order, @Order
 
     endclass
 
@@ -1316,7 +1318,7 @@ namespace MyApi
         ;;; Parameter 1 (REQUIRED IN ORDER_ITEMS)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  OrderItem, @OrderItem
+        public OrderItem, @OrderItem
 
     endclass
 
@@ -1346,7 +1348,7 @@ namespace MyApi
         ;;; Parameter 1 (REQUIRED IN VENDORS)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  Vendor, @Vendor
+        public Vendor, @Vendor
 
     endclass
 
@@ -1376,7 +1378,7 @@ namespace MyApi
         ;;; Parameter 1 (REQUIRED IN D6)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  CustomerNumber, int
+        public CustomerNumber, int
 
     endclass
 
@@ -1406,7 +1408,7 @@ namespace MyApi
         ;;; Parameter 1 (REQUIRED IN D6)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  ItemNumber, int
+        public ItemNumber, int
 
     endclass
 
@@ -1436,7 +1438,7 @@ namespace MyApi
         ;;; Parameter 1 (REQUIRED IN D6)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  OrderNumber, int
+        public OrderNumber, int
 
     endclass
 
@@ -1466,14 +1468,14 @@ namespace MyApi
         ;;; Parameter 1 (REQUIRED IN D6)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  OrderNumber, int
+        public OrderNumber, int
 
         {Required(ErrorMessage="ItemNumber is required")}
         ;;; <summary>
         ;;; Parameter 2 (REQUIRED IN D2)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  ItemNumber, int
+        public ItemNumber, int
 
     endclass
 
@@ -1503,7 +1505,7 @@ namespace MyApi
         ;;; Parameter 1 (REQUIRED IN D6)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  VendorNumber, int
+        public VendorNumber, int
 
     endclass
 
@@ -1533,7 +1535,7 @@ namespace MyApi
         ;;; Parameter 1 (REQUIRED IN D6)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  CustomerNumber, int
+        public CustomerNumber, int
 
     endclass
 
@@ -1563,7 +1565,7 @@ namespace MyApi
         ;;; Parameter 1 (REQUIRED IN D6)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  ItemNumber, int
+        public ItemNumber, int
 
     endclass
 
@@ -1593,7 +1595,7 @@ namespace MyApi
         ;;; Parameter 1 (REQUIRED IN D6)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  OrderNumber, int
+        public OrderNumber, int
 
     endclass
 
@@ -1623,14 +1625,14 @@ namespace MyApi
         ;;; Parameter 1 (REQUIRED IN D6)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  OrderNumber, int
+        public OrderNumber, int
 
         {Required(ErrorMessage="ItemNumber is required")}
         ;;; <summary>
         ;;; Parameter 2 (REQUIRED IN D2)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  ItemNumber, int
+        public ItemNumber, int
 
     endclass
 
@@ -1660,7 +1662,7 @@ namespace MyApi
         ;;; Parameter 1 (REQUIRED IN D6)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  VendorNumber, int
+        public VendorNumber, int
 
     endclass
 
@@ -1679,6 +1681,7 @@ namespace MyApi
 
 ;;--------------------------------------------------------------------------------
 ;; GetAllCustomers
+    ;; This metho has no in parameters
 
     ;;; <summary>
     ;;; Represents OUT parameters and return value for method MyApi.GetAllCustomers.
@@ -1701,6 +1704,7 @@ namespace MyApi
 
 ;;--------------------------------------------------------------------------------
 ;; GetAllItems
+    ;; This metho has no in parameters
 
     ;;; <summary>
     ;;; Represents OUT parameters and return value for method MyApi.GetAllItems.
@@ -1734,7 +1738,7 @@ namespace MyApi
         ;;; Parameter 1 (REQUIRED IN D6)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  OrderNumber, int
+        public OrderNumber, int
 
     endclass
 
@@ -1759,6 +1763,7 @@ namespace MyApi
 
 ;;--------------------------------------------------------------------------------
 ;; GetAllOrders
+    ;; This metho has no in parameters
 
     ;;; <summary>
     ;;; Represents OUT parameters and return value for method MyApi.GetAllOrders.
@@ -1781,6 +1786,7 @@ namespace MyApi
 
 ;;--------------------------------------------------------------------------------
 ;; GetAllVendors
+    ;; This metho has no in parameters
 
     ;;; <summary>
     ;;; Represents OUT parameters and return value for method MyApi.GetAllVendors.
@@ -1814,7 +1820,7 @@ namespace MyApi
         ;;; Parameter 1 (REQUIRED IN D6)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  CustomerNumber, int
+        public CustomerNumber, int
 
     endclass
 
@@ -1850,7 +1856,7 @@ namespace MyApi
         ;;; Parameter 1 (REQUIRED IN D6)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  ItemNumber, int
+        public ItemNumber, int
 
     endclass
 
@@ -1886,7 +1892,7 @@ namespace MyApi
         ;;; Parameter 1 (REQUIRED IN D6)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  OrderNumber, int
+        public OrderNumber, int
 
     endclass
 
@@ -1922,14 +1928,14 @@ namespace MyApi
         ;;; Parameter 1 (REQUIRED IN D6)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  OrderNumber, int
+        public OrderNumber, int
 
         {Required(ErrorMessage="ItemNumber is required")}
         ;;; <summary>
         ;;; Parameter 2 (REQUIRED IN D2)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  ItemNumber, int
+        public ItemNumber, int
 
     endclass
 
@@ -1965,7 +1971,7 @@ namespace MyApi
         ;;; Parameter 1 (REQUIRED IN D6)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  VendorNumber, int
+        public VendorNumber, int
 
     endclass
 
@@ -2001,7 +2007,7 @@ namespace MyApi
         ;;; Parameter 1 (REQUIRED IN CUSTOMERS)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  Customer, @Customer
+        public Customer, @Customer
 
     endclass
 
@@ -2031,7 +2037,7 @@ namespace MyApi
         ;;; Parameter 1 (REQUIRED IN ITEMS)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  Item, @Item
+        public Item, @Item
 
     endclass
 
@@ -2061,7 +2067,7 @@ namespace MyApi
         ;;; Parameter 1 (REQUIRED IN ORDERS)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  Order, @Order
+        public Order, @Order
 
     endclass
 
@@ -2091,7 +2097,7 @@ namespace MyApi
         ;;; Parameter 1 (REQUIRED IN ORDER_ITEMS)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  OrderItem, @OrderItem
+        public OrderItem, @OrderItem
 
     endclass
 
@@ -2121,7 +2127,7 @@ namespace MyApi
         ;;; Parameter 1 (REQUIRED IN VENDORS)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  Vendor, @Vendor
+        public Vendor, @Vendor
 
     endclass
 
@@ -2151,7 +2157,7 @@ namespace MyApi
         ;;; Parameter 1 (REQUIRED INOUT CUSTOMERS)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  Customer, @Customer
+        public Customer, @Customer
 
     endclass
 
@@ -2187,7 +2193,7 @@ namespace MyApi
         ;;; Parameter 1 (REQUIRED INOUT ITEMS)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  Item, @Item
+        public Item, @Item
 
     endclass
 
@@ -2223,7 +2229,7 @@ namespace MyApi
         ;;; Parameter 1 (REQUIRED INOUT ORDERS)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  Order, @Order
+        public Order, @Order
 
     endclass
 
@@ -2259,7 +2265,7 @@ namespace MyApi
         ;;; Parameter 1 (REQUIRED INOUT ORDER_ITEMS)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  OrderItem, @OrderItem
+        public OrderItem, @OrderItem
 
     endclass
 
@@ -2295,7 +2301,7 @@ namespace MyApi
         ;;; Parameter 1 (REQUIRED INOUT VENDORS)
         ;;; No description found in method catalog
         ;;; </summary>
-        public  Vendor, @Vendor
+        public Vendor, @Vendor
 
     endclass
 

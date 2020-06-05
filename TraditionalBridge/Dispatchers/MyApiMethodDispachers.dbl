@@ -850,19 +850,19 @@ namespace TraditionalBridge.Dispatchers.MyApi
             returnValue = %AAA_Enum(arg1,arg2,arg3)
 
             ;;Function return value
-            serializer.ArgumentData(0,returnValue,FieldDataType.EnumField,4,0,false)
+            serializer.ArgumentData(0,(int)returnValue,FieldDataType.EnumField,4,0,false)
 
             ;;--------------------------------------------------------------------------------
             ;;Argument 2 (REQUIRED OUT p2 enum TESTENUM)
             
             ;TODO: Do we need custom processing for enum fields beyond the integer value?
-            serializer.ArgumentData(2,arg2,FieldDataType.IntegerField,4,0,false)
+            serializer.ArgumentData(2,(int)arg2,FieldDataType.IntegerField,4,0,false)
 
             ;;--------------------------------------------------------------------------------
             ;;Argument 3 (REQUIRED INOUT p3 enum TESTENUM)
             
             ;TODO: Do we need custom processing for enum fields beyond the integer value?
-            serializer.ArgumentData(3,arg3,FieldDataType.IntegerField,4,0,false)
+            serializer.ArgumentData(3,(int)arg3,FieldDataType.IntegerField,4,0,false)
         endmethod
 
     endclass

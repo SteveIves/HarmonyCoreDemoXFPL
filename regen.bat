@@ -85,8 +85,6 @@ rem BRIDGE_ALIASES      Optional aliases for the structures listed in BRIDGE_STR
 rem ================================================================================================================================
 rem Comment or uncomment the following lines to enable or disable optional features:
 
-rem Note that the ENABLE_SWAGGER_DOCS and ENABLE_API_VERSIONING are mutually exclusive.
-
 set ENABLE_ODATA_ENVIRONMENT=YES
 set ENABLE_SELF_HOST_GENERATION=YES
 set ENABLE_CREATE_TEST_FILES=-define ENABLE_CREATE_TEST_FILES
@@ -110,8 +108,8 @@ set ENABLE_PATCH=-define ENABLE_PATCH
 set ENABLE_DELETE=-define ENABLE_DELETE
 rem set ENABLE_SPROC=-define ENABLE_SPROC
 rem set ENABLE_ADAPTER_ROUTING=-define ENABLE_ADAPTER_ROUTING
-rem set ENABLE_AUTHENTICATION=-define ENABLE_AUTHENTICATION
-rem set ENABLE_CUSTOM_AUTHENTICATION=-define ENABLE_CUSTOM_AUTHENTICATION
+set ENABLE_AUTHENTICATION=-define ENABLE_AUTHENTICATION
+set ENABLE_CUSTOM_AUTHENTICATION=-define ENABLE_CUSTOM_AUTHENTICATION
 rem set ENABLE_FIELD_SECURITY=-define ENABLE_FIELD_SECURITY
 rem set ENABLE_SIGNALR=-define ENABLE_SIGNALR
 set ENABLE_UNIT_TEST_GENERATION=YES
@@ -331,7 +329,8 @@ set SMC_XML_FILE=SMC\smc.xml
 set SMC_INTERFACE=MyApi
 rem set BRIDGE_DISPATCHER_TEMPLATE=InterfaceMethodDispatchers
 set XFPL_SMCPATH=
-set STDOPTS=-e -lf -rps %RPSMFIL% %RPSTFIL% -r %ENABLE_AUTHENTICATION% %ENABLE_BRIDGE_SAMPLE_DISPATCHERS%
+set NOREPLACEOPTS=-e -lf -rps %RPSMFIL% %RPSTFIL% %ENABLE_AUTHENTICATION% %ENABLE_BRIDGE_SAMPLE_DISPATCHERS%
+set STDOPTS=%NOREPLACEOPTS% -r
 
 if DEFINED ENABLE_BRIDGE_OPTIONAL_PARAMETERS (
   set BRIDGE_DISPATCHER_TEMPLATE=OptionalParameterMethodDispatchers
@@ -452,15 +451,33 @@ goto :eof
           %STDOPTS%
   if ERRORLEVEL 1 goto error
 
+  if DEFINED ENABLE_POSTMAN_TESTS (
+
   rem Generate the Postman tests for the Interface
 
-  codegen -smc %SMC_XML_FILE% ^
-          -interface %1 ^
-          -t InterfacePostmanTests ^
-          -i %SolutionDir%Templates\TraditionalBridge ^
-          -o %SolutionDir% ^
-          %STDOPTS%
-  if ERRORLEVEL 1 goto error
+    codegen -smc %SMC_XML_FILE% ^
+            -interface %1 ^
+            -t InterfacePostmanTests ^
+            -i %SolutionDir%Templates\TraditionalBridge ^
+            -o %SolutionDir% ^
+            %STDOPTS%
+    if ERRORLEVEL 1 goto error
+  )
+
+  if DEFINED ENABLE_UNIT_TEST_GENERATION (
+
+    rem Generate a unit test class for the Interface
+    codegen -smc %SMC_XML_FILE% ^
+            -interface %1 ^
+            -t  InterfaceUnitTests InterfaceUnitTestValues ^
+            -i  %SolutionDir%Templates\TraditionalBridge ^
+            -o  %SolutionDir%%TestProject% -tf ^
+            -n  %TestProject% ^
+            -ut CLIENT_MODELS_NAMESPACE=%TestProject%.Models DTOS_NAMESPACE=%SMC_INTERFACE% ^
+                %STDOPTS%
+    if ERRORLEVEL 1 goto error
+
+  )
 
 GOTO:eof
 

@@ -54,8 +54,12 @@
       <Version>3.0.1</Version>
     </PackageReference>
     <PackageReference Include="SSH.NET" Version="2016.1.0" />
-  <FrameworkReference Include="Microsoft.AspNetCore.App" /><PackageReference Include="HarmonyCore.CodeDomProvider" Version="1.0.7" /></ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="HarmonyCore.CodeDomProvider" Version="1.0.7" />
+  </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthenticationController.dbl" />
+    <Compile Include="AuthenticationTools.dbl" />
     <Compile Include="AuthTools.dbl" />
     <Compile Include="CustomersController.dbl" />
     <Compile Include="IsolatedMethodsBase.dbl" />
